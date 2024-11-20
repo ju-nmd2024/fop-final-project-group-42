@@ -1,3 +1,5 @@
+//import GameStage1 from "./gameScreen1.js";
+
 function setup() {
   createCanvas(600, 800);
 }
@@ -12,6 +14,7 @@ function setup() {
 
 //Fuel Tank
 function fuelTank() {
+  push();
   angleMode(DEGREES);
   let fuelX = 200;
   let fuelY = 200;
@@ -43,7 +46,9 @@ function fuelTank() {
   fill(100, 0, 0);
   stroke(100, 0, 0);
   strokeWeight(15);
+  textFont("arial");
   text("X", fuelX + 23, fuelY + 95);
+  pop();
 }
 
 //Start Screen
@@ -51,6 +56,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
+let gameState = "start";
 
 function logo() {
   fill(0);
@@ -100,7 +106,16 @@ function buttons() {
   text("INSTRUCTIONS", 362, 542.5);
   pop();
 }
-
+function startScreen() {
+  noStroke();
+  background(5, 5, 15);
+  for (let index in starX) {
+    fill(255, 255, 255, starAlpha[index] * 255);
+    ellipse(starX[index], starY[index], 1.25);
+  }
+  logo();
+  buttons();
+}
 for (let i = 0; i < 2500; i++) {
   const x = Math.floor(Math.random() * width);
   const y = Math.floor(Math.random() * height);
@@ -120,13 +135,18 @@ for (let i = 0; i < 2500; i++) {
 //The big ship
 
 function draw() {
-  noStroke();
-  background(5, 5, 15);
-
-  for (let index in starX) {
-    fill(255, 255, 255, starAlpha[index] * 255);
-    ellipse(starX[index], starY[index], 1.25);
+  if (gameState === "start") {
+    startScreen();
+  } else if (gameState === "gameStage1") {
   }
-  logo();
-  buttons();
+  //fuelTank();
+
+  //buttons' functionality
+  if (gameState === "start") {
+    if (mouseIsPressed) {
+      if (mouseX > 215 && mouseX < 380 && mouseY > 395 && mouseY < 470) {
+        //gameState = "gameStage1";
+      }
+    }
+  }
 }

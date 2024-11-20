@@ -24,8 +24,10 @@ function draw() {
     fill(255, 255, 255, starAlpha[index] * 255);
     ellipse(starX[index], starY[index], 1.25);
   }
-
+  push();
   textSize(30);
+  fill(255);
   textFont("stencil");
   text("Final Stage", 210, 30);
+  pop();
 }
