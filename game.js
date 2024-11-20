@@ -5,13 +5,115 @@ function setup() {
 }
 
 //Player (ship and flames and ammo)
+function ship() {
+  let shX = 350;
+  let shY = 350;
+  let shS = 1.0;
+  angleMode(DEGREES);
+  push();
+  strokeWeight(3 * shS);
+  translate(350, 600);
+  rotate();
 
+  //color
+  push();
+  noStroke();
+  fill(200);
+  rect(shX - 40 * shS, shY - 20 * shS, 80 * shS, 85 * shS);
+  rect(shX - 23 * shS, shY + 65 * shS, 46 * shS, 10 * shS);
+
+  pop();
+
+  //cockpit
+  fill(200);
+  arc(shX, shY - 15 * shS, 80 * shS, 300 * shS, 180, 0);
+  //wings
+  fill(200);
+  quad(
+    shX - 50 * shS,
+    shY + 50 * shS,
+    shX - 50 * shS,
+    shY - 50 * shS,
+    shX - 200 * shS,
+    shY,
+    shX - 200 * shS,
+    shY + 30 * shS
+  );
+  quad(
+    shX + 50 * shS,
+    shY + 50 * shS,
+    shX + 50 * shS,
+    shY - 50 * shS,
+    shX + 200 * shS,
+    shY,
+    shX + 200 * shS,
+    shY + 30 * shS
+  );
+  //engines
+  push();
+  fill(150);
+  rect(shX - 80 * shS, shY - 60 * shS, 40 * shS, 50 * shS);
+  rect(shX + 80 * shS, shY - 60 * shS, -40 * shS, 50 * shS);
+  arc(shX - 60 * shS, shY - 58 * shS, 40.3 * shS, 20 * shS, 180, 0);
+  arc(shX + 60 * shS, shY - 58 * shS, 40.3 * shS, 20 * shS, 180, 0);
+  rect(shX - 90 * shS, shY, 60 * shS, 80 * shS);
+  rect(shX + 90 * shS, shY, -60 * shS, 80 * shS);
+  arc(shX + 60 * shS, shY + 2 * shS, 60 * shS, 40 * shS, 180, 0);
+  arc(shX - 60 * shS, shY + 2 * shS, 60 * shS, 40 * shS, 180, 0);
+  pop();
+  //window
+
+  push();
+  fill(0, 40, 200);
+  ellipse(shX, shY - 110 * shS, 30 * shS, 30 * shS);
+  ellipse(shX, shY - 90 * shS, 30 * shS, 30 * shS);
+  ellipse(shX, shY - 100 * shS, 45 * shS, 30 * shS);
+  pop();
+  //weapon
+  push();
+  fill(120);
+  arc(shX, shY - 20 * shS, 50 * shS, 40 * shS, 170, 10);
+  arc(shX, shY - 20 * shS, 25 * shS, 20 * shS, 180, 0);
+  fill(0);
+  circle(shX, shY - 20 * shS, 10 * shS);
+  strokeWeight(5 * shS);
+  line(shX, shY - 20 * shS, shX, shY - 50 * shS);
+  strokeWeight(1 * shS);
+  rect(shX - 5 * shS, shY - 55 * shS, 10 * shS, 5 * shS);
+  pop();
+
+  //back turbine
+  noFill();
+  strokeWeight(3 * shS);
+  arc(shX - 30 * shS, shY + 75 * shS, 20 * shS, 20 * shS, 270, 0);
+  arc(shX + 30 * shS, shY + 75 * shS, 20 * shS, 20 * shS, 180, 270);
+  fill(80);
+  rect(shX - 20 * shS, shY + 75 * shS, 40 * shS, 10 * shS);
+
+  //wing engines
+  push();
+  fill(150);
+  rect(shX - 215 * shS, shY - 10 * shS, 15 * shS, 45 * shS);
+  rect(shX + 200 * shS, shY - 10 * shS, 15 * shS, 45 * shS);
+  pop();
+  pop();
+}
 //Enemies
 
 //Gem
 
 //Projectiles
+function proyectile() {
+  push();
+  noStroke();
+  fill(110, 220, 255);
+  rect(195, 195, 30, 80, 20);
+  noStroke();
+  fill(181, 255, 255);
+  rect(200, 200, 20, 70, 20);
 
+  pop();
+}
 //Fuel Tank
 function fuelTank() {
   push();
