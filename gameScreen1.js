@@ -37,8 +37,6 @@ class GameStage1 {
       starY.push(y);
       starAlpha.push(alpha);
     }
-
-
   }
 }
 

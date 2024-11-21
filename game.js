@@ -103,7 +103,7 @@ function ship() {
 //Gem
 
 //Projectiles
-function proyectile() {
+function projectile() {
   push();
   noStroke();
   fill(110, 220, 255);
