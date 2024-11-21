@@ -2,13 +2,13 @@ class GameStage1 {
   constructor(x, y, starX, starY) {
     this.x = x;
     this.y = y;
-    this.starX = starX;
-    this.starY = starY;
+    this.starX = [];
+    this.starY = [];
+    this.starAlpha = [];
   }
   draw() {
     noStroke();
     background(5, 5, 15);
-
     let starX = [];
     let starY = [];
     let starAlpha = [];
@@ -17,6 +17,17 @@ class GameStage1 {
       fill(255, 255, 255, starAlpha[index] * 255);
       ellipse(starX[index], starY[index], 1.25);
     }
+
+    push();
+    textSize(30);
+    fill(255);
+    textFont("stencil");
+    text("Stage 1", 250, 30);
+    pop();
+  }
+  setup() {
+    createCanvas(600, 800);
+
     for (let i = 0; i < 2500; i++) {
       const x = Math.floor(Math.random() * width);
       const y = Math.floor(Math.random() * height);
@@ -25,21 +36,14 @@ class GameStage1 {
       starX.push(x);
       starY.push(y);
       starAlpha.push(alpha);
-
-      push();
-      textSize(30);
-      fill(255);
-      textFont("stencil");
-      text("Stage 1", 250, 30);
-      pop();
     }
-  }
-  setup() {
-    createCanvas(600, 800);
+
+
   }
 }
 
-const gameStage1 = new GameStage1(this.x, this.y);
+const gameStage1 = new GameStage1(100, 100, 30, 30);
+
 function draw() {
   gameStage1.setup();
   gameStage1.draw();
