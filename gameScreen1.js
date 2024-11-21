@@ -1,7 +1,5 @@
 export default class GameStage1 {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
+  constructor() {
     this.starX = [];
     this.starY = [];
     this.starAlpha = [];

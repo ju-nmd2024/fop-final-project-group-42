@@ -1,4 +1,5 @@
 import GameStage1 from "./gameScreen1.js";
+const stage1 = new GameStage1();
 
 function setup() {
   createCanvas(600, 800);
@@ -239,15 +240,16 @@ for (let i = 0; i < 2500; i++) {
 function draw() {
   if (gameState === "start") {
     startScreen();
-  } else if (gameState === "gameStage1") {
+  } else if (gameState === "stage1") {
+    stage1.draw();
   }
   //fuelTank();
-  const gameStage1 = new GameStage1();
+
   //buttons' functionality
   if (gameState === "start") {
     if (mouseIsPressed) {
       if (mouseX > 215 && mouseX < 380 && mouseY > 395 && mouseY < 470) {
-        gameState = "GameStage1";
+        gameState = "stage1";
       }
     }
   }
