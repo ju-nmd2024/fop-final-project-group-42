@@ -1,4 +1,4 @@
-//import GameStage1 from "./gameScreen1.js";
+import GameStage1 from "./gameScreen1.js";
 
 function setup() {
   createCanvas(600, 800);

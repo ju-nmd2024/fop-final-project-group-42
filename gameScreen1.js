@@ -1,21 +1,31 @@
-class GameStage1 {
-  constructor(x, y, starX, starY) {
+export default class GameStage1 {
+  constructor(x, y) {
     this.x = x;
     this.y = y;
     this.starX = [];
     this.starY = [];
     this.starAlpha = [];
+
+    for (let i = 0; i < 2500; i++) {
+      const x = Math.floor(Math.random() * width);
+      const y = Math.floor(Math.random() * height);
+      const alpha = Math.random();
+
+      this.starX.push(x);
+      this.starY.push(y);
+      this.starAlpha.push(alpha);
+    }
   }
   draw() {
     noStroke();
     background(5, 5, 15);
-    let starX = [];
-    let starY = [];
-    let starAlpha = [];
+    /*  starX = [];
+    starY = [];
+    starAlpha = []; */
 
-    for (let index in starX) {
-      fill(255, 255, 255, starAlpha[index] * 255);
-      ellipse(starX[index], starY[index], 1.25);
+    for (let index in this.starX) {
+      fill(255, 255, 255, this.starAlpha[index] * 255);
+      ellipse(this.starX[index], this.starY[index], 1.25);
     }
 
     push();
@@ -25,24 +35,12 @@ class GameStage1 {
     text("Stage 1", 250, 30);
     pop();
   }
-  setup() {
-    createCanvas(600, 800);
-
-    for (let i = 0; i < 2500; i++) {
-      const x = Math.floor(Math.random() * width);
-      const y = Math.floor(Math.random() * height);
-      const alpha = Math.random();
-
-      starX.push(x);
-      starY.push(y);
-      starAlpha.push(alpha);
-    }
-  }
 }
-
-const gameStage1 = new GameStage1(100, 100, 30, 30);
+function setup() {
+  createCanvas(600, 800);
+}
+const gameStage1 = new GameStage1(); //do this in game.js and call it then you can use it
 
 function draw() {
-  gameStage1.setup();
   gameStage1.draw();
 }
