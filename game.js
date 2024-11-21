@@ -242,12 +242,12 @@ function draw() {
   } else if (gameState === "gameStage1") {
   }
   //fuelTank();
-
+  const gameStage1 = new GameStage1();
   //buttons' functionality
   if (gameState === "start") {
     if (mouseIsPressed) {
       if (mouseX > 215 && mouseX < 380 && mouseY > 395 && mouseY < 470) {
-        //gameState = "gameStage1";
+        gameState = "GameStage1";
       }
     }
   }

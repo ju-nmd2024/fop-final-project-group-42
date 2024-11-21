@@ -39,7 +39,7 @@ export default class GameStage1 {
 function setup() {
   createCanvas(600, 800);
 }
-const gameStage1 = new GameStage1(); //do this in game.js and call it then you can use it
+//do this in game.js and call it then you can use it
 
 function draw() {
   gameStage1.draw();

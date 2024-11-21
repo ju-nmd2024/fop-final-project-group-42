@@ -1,33 +1,46 @@
+export default class GameStage1 {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.starX = [];
+    this.starY = [];
+    this.starAlpha = [];
+
+    for (let i = 0; i < 2500; i++) {
+      const x = Math.floor(Math.random() * width);
+      const y = Math.floor(Math.random() * height);
+      const alpha = Math.random();
+
+      this.starX.push(x);
+      this.starY.push(y);
+      this.starAlpha.push(alpha);
+    }
+  }
+  draw() {
+    noStroke();
+    background(5, 5, 15);
+    /*  starX = [];
+    starY = [];
+    starAlpha = []; */
+
+    for (let index in this.starX) {
+      fill(255, 255, 255, this.starAlpha[index] * 255);
+      ellipse(this.starX[index], this.starY[index], 1.25);
+    }
+
+    push();
+    textSize(30);
+    fill(255);
+    textFont("stencil");
+    text("Final Stage", 210, 30);
+    pop();
+  }
+}
 function setup() {
   createCanvas(600, 800);
 }
-
-let starX = [];
-let starY = [];
-let starAlpha = [];
-
-for (let i = 0; i < 2500; i++) {
-  const x = Math.floor(Math.random() * width);
-  const y = Math.floor(Math.random() * height);
-  const alpha = Math.random();
-
-  starX.push(x);
-  starY.push(y);
-  starAlpha.push(alpha);
-}
+//do this in game.js and call it then you can use it
 
 function draw() {
-  noStroke();
-  background(5, 5, 15);
-
-  for (let index in starX) {
-    fill(255, 255, 255, starAlpha[index] * 255);
-    ellipse(starX[index], starY[index], 1.25);
-  }
-  push();
-  textSize(30);
-  fill(255);
-  textFont("stencil");
-  text("Final Stage", 210, 30);
-  pop();
+  gameStage1.draw();
 }
