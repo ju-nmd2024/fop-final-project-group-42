@@ -1,4 +1,4 @@
-export default class GameStage1 {
+export default class GameScreen1 {
   constructor() {
     this.starX = [];
     this.starY = [];

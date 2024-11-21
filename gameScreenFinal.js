@@ -1,4 +1,4 @@
-export default class GameStage1 {
+export default class GameScreenFinal {
   constructor(x, y) {
     this.x = x;
     this.y = y;

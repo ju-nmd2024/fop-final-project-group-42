@@ -1,15 +1,12 @@
-import GameStage1 from "./gameScreen1.js";
-const stage1 = new GameStage1();
-
 function setup() {
   createCanvas(600, 800);
 }
 
 //Player (ship and flames and ammo)
 function ship() {
-  let shX = 350;
-  let shY = 350;
-  let shS = 1.0;
+  let shX = -50;
+  let shY = -200;
+  let shS = 0.45;
   angleMode(DEGREES);
   push();
   strokeWeight(3 * shS);
@@ -105,52 +102,72 @@ function ship() {
 
 //Projectiles
 function projectile() {
+  let projectileX = 300;
+  let projectileY = 400;
+  let projectileS = 0.4;
   push();
-  noStroke();
-  fill(110, 220, 255);
-  rect(195, 195, 30, 80, 20);
-  noStroke();
+  strokeWeight(5);
+  stroke(110, 220, 255);
   fill(181, 255, 255);
-  rect(200, 200, 20, 70, 20);
-
+  rect(
+    projectileX - 4,
+    projectileY - 110,
+    20 * projectileS,
+    70 * projectileS,
+    20 * projectileS
+  );
   pop();
 }
 //Fuel Tank
 function fuelTank() {
   push();
   angleMode(DEGREES);
-  let fuelX = 200;
-  let fuelY = 200;
-  strokeWeight(3);
+  let fuelX = 100;
+  let fuelY = 100;
+  let fuelS = 0.3;
+  strokeWeight(3 * fuelS);
   fill(100, 0, 0);
   stroke(0, 0, 0);
-  rect(fuelX - 10, fuelY + 10, 100, 135, 20);
+  rect(
+    fuelX - 10 * fuelS,
+    fuelY + 10 * fuelS,
+    100 * fuelS,
+    135 * fuelS,
+    20 * fuelS
+  );
   fill(150, 0, 0);
   push();
-  strokeWeight(15);
+  strokeWeight(15 * fuelS);
   stroke(0, 0, 0);
   noFill();
-  square(fuelX + 10, fuelY - 15, 50, 18);
-  square(fuelX + 70, fuelY, 18, 5);
+  square(fuelX + 10 * fuelS, fuelY - 15 * fuelS, 50 * fuelS, 18 * fuelS);
+  square(fuelX + 70 * fuelS, fuelY * fuelS, 18, 5);
   push();
-  strokeWeight(8);
-  arc(fuelX + 100, fuelY + 5, 50, 50, 180, -80);
+  strokeWeight(8 * fuelS);
+  arc(
+    fuelX + 100 * fuelS,
+    fuelY + 5 * fuelS,
+    50 * fuelS,
+    50 * fuelS,
+    180 * fuelS,
+    -80 * fuelS
+  );
   pop();
-  strokeWeight(10);
+  strokeWeight(10 * fuelS);
   stroke(150, 0, 0);
   noFill();
-  square(fuelX + 10, fuelY - 15, 50, 18);
+  square(fuelX + 10 * fuelS, fuelY - 15 * fuelS, 50 * fuelS, 18 * fuelS);
   pop();
   stroke(0, 0, 0);
   fill(150, 0, 0);
-  rect(fuelX, fuelY, 100, 135, 20);
+  rect(fuelX, fuelY, 100 * fuelS, 135 * fuelS, 20 * fuelS);
 
-  textSize(80);
+  textSize(80 * fuelS);
   fill(100, 0, 0);
   stroke(100, 0, 0);
-  strokeWeight(15);
+  strokeWeight(15 * fuelS);
   textFont("arial");
-  text("X", fuelX + 23, fuelY + 95);
+  text("X", fuelX + 23 * fuelS, fuelY + 95 * fuelS);
   pop();
 }
 
@@ -229,27 +246,51 @@ for (let i = 0; i < 2500; i++) {
   starAlpha.push(alpha);
 }
 
-//Game Screen
+//Game Screens
+//importing gameScreen1
+import GameScreen1 from "./gameScreen1.js";
+const stage1 = new GameScreen1();
+
+//importing gameScreen2
+import GameScreen2 from "./gameScreen2.js";
+const stage2 = new GameScreen2();
+
+//importing gameScreenFinal
+import GameScreenFinal from "./gameScreenFinal.js";
+const stageFinal = new GameScreenFinal();
 
 //Results Screen
-
-//Background
 
 //The big ship
 
 function draw() {
   if (gameState === "start") {
     startScreen();
+    ship();
   } else if (gameState === "stage1") {
     stage1.draw();
+    ship();
+    projectile();
+    fuelTank();
+  } else if (gameState === "stage2") {
+    stage2.draw();
+  } else if (gameState === "stageFinal") {
+    stageFinal.draw();
+  } else if (gameState === "how to play") {
+    howToPlay();
+  } else if (gameState === "instructions") {
+    instructions();
   }
-  //fuelTank();
 
   //buttons' functionality
   if (gameState === "start") {
     if (mouseIsPressed) {
       if (mouseX > 215 && mouseX < 380 && mouseY > 395 && mouseY < 470) {
         gameState = "stage1";
+      } else if (mouseX > 47 && mouseX < 252 && mouseY > 497 && mouseY < 572) {
+        gameState = "howToPlay";
+      } else if (mouseX > 347 && mouseX < 552 && mouseY > 497 && mouseY < 572) {
+        gameState = "instructions";
       }
     }
   }
