@@ -197,7 +197,6 @@ function buttons() {
   strokeWeight(5);
   stroke(190, 250, 255);
   stroke(255);
-  /*  stroke(250, 250, 0);*/
   rect(220, 400, 160, 70, 25);
   push();
   noStroke();
@@ -213,7 +212,7 @@ function buttons() {
   fill(255);
   strokeWeight(1);
   noStroke();
-  text("HOW TO PLAY", 63, 545);
+  text("HOW TO PLAY", 61, 545);
   pop();
 
   //instructions button
@@ -259,6 +258,14 @@ const stage2 = new GameScreen2();
 import GameScreenFinal from "./gameScreenFinal.js";
 const stageFinal = new GameScreenFinal();
 
+//importing howtoplayscreen
+import HowToPlayScreen from "./howToPlayScreen.js";
+const howToPlayScreen = new HowToPlayScreen();
+
+//importing instructions screen
+import InstructionsScreen from "./instructionsScreen.js";
+const instructionsScreen = new InstructionsScreen();
+
 //Results Screen
 
 //The big ship
@@ -266,7 +273,7 @@ const stageFinal = new GameScreenFinal();
 function draw() {
   if (gameState === "start") {
     startScreen();
-    ship();
+    //ship();
   } else if (gameState === "stage1") {
     stage1.draw();
     ship();
@@ -276,21 +283,33 @@ function draw() {
     stage2.draw();
   } else if (gameState === "stageFinal") {
     stageFinal.draw();
-  } else if (gameState === "how to play") {
-    howToPlay();
+  } else if (gameState === "howToPlay") {
+    howToPlayScreen.draw();
   } else if (gameState === "instructions") {
-    instructions();
+    instructionsScreen.draw();
   }
 
   //buttons' functionality
   if (gameState === "start") {
     if (mouseIsPressed) {
-      if (mouseX > 215 && mouseX < 380 && mouseY > 395 && mouseY < 470) {
+      if (mouseX > 215 && mouseX < 380 && mouseY > 395 && mouseY < 475) {
         gameState = "stage1";
       } else if (mouseX > 47 && mouseX < 252 && mouseY > 497 && mouseY < 572) {
         gameState = "howToPlay";
       } else if (mouseX > 347 && mouseX < 552 && mouseY > 497 && mouseY < 572) {
         gameState = "instructions";
+      }
+    }
+  }
+
+  if (gameState === "instructions") {
+    if (mouseIsPressed) {
+      if (mouseX > 45 && mouseX < 252 && mouseY > 150 && mouseY < 722) {
+        gameState = "start";
+      } else if (mouseX > 345 && mouseX < 552 && mouseY > 647 && mouseY < 722) {
+        gameState = "stage1";
+      } else if (mouseX > 196 && mouseX < 402 && mouseY > 547 && mouseY < 622) {
+        gameState = "howToPlay";
       }
     }
   }
