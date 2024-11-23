@@ -6,7 +6,7 @@ function setup() {
 function ship() {
   let shX = -50;
   let shY = -200;
-  let shS = 0.45;
+  let shS = 0.4;
   angleMode(DEGREES);
   push();
   stroke(0);
