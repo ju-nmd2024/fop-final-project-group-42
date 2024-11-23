@@ -37,7 +37,47 @@ export default class HowToPlayScreen {
     stroke(255);
     strokeWeight(5);
     fill(0);
-    rect(20, 150, 560, 600, 50);
+    rect(20, 150, 560, 562.5, 50);
+    pop();
+
+    //back to menu and start the game and how to play button
+    push();
+    fill(0);
+    stroke(255);
+    strokeWeight(5);
+    rect(50, 612.5, 200, 70, 25);
+    textFont("stencil");
+    textSize(25);
+    fill(255);
+    strokeWeight(1);
+    noStroke();
+    text("back to menu", 62, 655);
+    pop();
+
+    push();
+    fill(0);
+    stroke(255);
+    strokeWeight(5);
+    rect(350, 612.5, 200, 70, 25);
+    textFont("stencil");
+    textSize(25);
+    fill(255);
+    strokeWeight(1);
+    noStroke();
+    text("instructions", 363, 655);
+    pop();
+
+    push();
+    fill(0);
+    stroke(255);
+    strokeWeight(5);
+    rect(200, 512.5, 200, 70, 25);
+    textFont("stencil");
+    textSize(25);
+    fill(255);
+    strokeWeight(1);
+    noStroke();
+    text("start to play", 211, 555.5);
     pop();
   }
 }

@@ -39,7 +39,7 @@ export default class InstructionsScreen {
     stroke(255);
     strokeWeight(3);
     fill(0);
-    rect(20, 150, 560, 600, 50);
+    rect(20, 150, 560, 637.5, 50);
     pop();
 
     //back to menu and start the game and how to play button
@@ -47,39 +47,39 @@ export default class InstructionsScreen {
     fill(0);
     stroke(255);
     strokeWeight(5);
-    rect(50, 650, 200, 70, 25);
+    rect(50, 687.5, 200, 70, 25);
     textFont("stencil");
     textSize(25);
     fill(255);
     strokeWeight(1);
     noStroke();
-    text("back to menu", 62, 692.5);
+    text("back to menu", 62, 730);
     pop();
 
     push();
     fill(0);
     stroke(255);
     strokeWeight(5);
-    rect(350, 650, 200, 70, 25);
+    rect(350, 687.5, 200, 70, 25);
     textFont("stencil");
     textSize(25);
     fill(255);
     strokeWeight(1);
     noStroke();
-    text("start to play", 360, 692.5);
+    text("start to play", 360, 730);
     pop();
 
     push();
     fill(0);
     stroke(255);
     strokeWeight(5);
-    rect(200, 550, 200, 70, 25);
+    rect(200, 587.5, 200, 70, 25);
     textFont("stencil");
     textSize(28);
     fill(255);
     strokeWeight(1);
     noStroke();
-    text("HOW TO PLAY", 213, 595);
+    text("HOW TO PLAY", 213, 632.5);
     pop();
   }
 }

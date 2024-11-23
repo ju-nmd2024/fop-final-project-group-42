@@ -291,6 +291,7 @@ function draw() {
   }
 
   //buttons' functionality
+  //start screen buttons
   if (gameState === "start") {
     if (mouseIsPressed) {
       if (mouseX > 215 && mouseX < 380 && mouseY > 395 && mouseY < 475) {
@@ -302,15 +303,48 @@ function draw() {
       }
     }
   }
-
+  //instructions buttons
   if (gameState === "instructions") {
     if (mouseIsPressed) {
-      if (mouseX > 45 && mouseX < 252 && mouseY > 150 && mouseY < 722) {
+      if (mouseX > 45 && mouseX < 252 && mouseY > 687.5 && mouseY < 759.5) {
         gameState = "start";
-      } else if (mouseX > 345 && mouseX < 552 && mouseY > 647 && mouseY < 722) {
+      } else if (
+        mouseX > 345 &&
+        mouseX < 552 &&
+        mouseY > 687.5 &&
+        mouseY < 759.5
+      ) {
         gameState = "stage1";
-      } else if (mouseX > 196 && mouseX < 402 && mouseY > 547 && mouseY < 622) {
+      } else if (
+        mouseX > 196 &&
+        mouseX < 402 &&
+        mouseY > 584.5 &&
+        mouseY < 659.5
+      ) {
         gameState = "howToPlay";
+      }
+    }
+  }
+
+  //howToPlay buttons
+  if (gameState === "howToPlay") {
+    if (mouseIsPressed) {
+      if (mouseX > 45 && mouseX < 252 && mouseY > 609.5 && mouseY < 684.5) {
+        gameState = "start";
+      } else if (
+        mouseX > 196 &&
+        mouseX < 402 &&
+        mouseY > 507.5 &&
+        mouseY < 584.5
+      ) {
+        gameState = "stage1";
+      } else if (
+        mouseX > 346 &&
+        mouseX < 552 &&
+        mouseY > 609.5 &&
+        mouseY < 684.5
+      ) {
+        gameState = "instructions";
       }
     }
   }
