@@ -4,8 +4,8 @@ function setup() {
 
 //Player (ship and flames and ammo)
 function ship() {
-  let shX = -50;
-  let shY = -200;
+  let shX = 0;
+  let shY = 0;
   let shS = 0.4;
   angleMode(DEGREES);
   push();
