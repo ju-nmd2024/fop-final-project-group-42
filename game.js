@@ -9,6 +9,7 @@ function ship() {
   let shS = 0.45;
   angleMode(DEGREES);
   push();
+  stroke(0);
   strokeWeight(3 * shS);
   translate(350, 600);
   rotate();
