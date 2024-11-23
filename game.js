@@ -4,14 +4,14 @@ function setup() {
 
 //Player (ship and flames and ammo)
 function ship() {
-  let shX = -50;
-  let shY = -200;
+  let shX = 0;
+  let shY = 0;
   let shS = 0.45;
   angleMode(DEGREES);
   push();
   stroke(0);
   strokeWeight(3 * shS);
-  translate(350, 600);
+  translate(300, 420);
   rotate();
 
   //color
