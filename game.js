@@ -318,6 +318,7 @@ const instructionsScreen = new InstructionsScreen();
 //Results Screen
 
 //The big ship
+function bigShip() {}
 
 function draw() {
   if (gameState === "start") {
