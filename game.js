@@ -98,6 +98,54 @@ function ship() {
   pop();
 }
 //Enemies
+//enemy1
+function enemy1() {
+  let eX1 = 0;
+  let eY1 = 0;
+  let eS1 = 0.5;
+  angleMode(DEGREES);
+  push();
+  translate(400, 100);
+  rotate(0);
+  //connections
+  stroke(0);
+  strokeWeight(5 * eS1);
+  fill(100);
+  rect(eX1 - 70 * eS1, eY1 - 10 * eS1, 140 * eS1, 20 * eS1);
+  //turbine
+  quad(
+    eX1 - 15 * eS1,
+    eY1 - 80 * eS1,
+    eX1 - 10 * eS1,
+    eY1 - 95 * eS1,
+    eX1 + 10 * eS1,
+    eY1 - 95 * eS1,
+    eX1 + 15 * eS1,
+    eY1 - 80 * eS1
+  );
+  //outer ring
+  strokeWeight(20 * eS1);
+  noFill();
+  arc(eX1, eY1, 150 * eS1, 150 * eS1, 115, 65);
+  strokeWeight(13 * eS1);
+  stroke(140);
+  arc(eX1, eY1, 150 * eS1, 150 * eS1, 115, 65);
+  //mid section
+  stroke(0);
+  strokeWeight(5 * eS1);
+  fill(140);
+  circle(eX1, eY1, 90 * eS1);
+  strokeWeight(4 * eS1);
+  circle(eX1, eY1 - 55 * eS1, 20 * eS1);
+  noFill();
+  //window
+  strokeWeight(15 * eS1);
+  arc(eX1, eY1 + -5 * eS1, 70 * eS1, 70 * eS1, 50, 130);
+  strokeWeight(10 * eS1);
+  stroke(0, 40, 200);
+  arc(eX1, eY1 + -5 * eS1, 70 * eS1, 70 * eS1, 50, 130);
+  pop();
+}
 
 //Gem
 
@@ -278,6 +326,7 @@ function draw() {
   } else if (gameState === "stage1") {
     stage1.draw();
     ship();
+    enemy1();
     projectile();
     fuelTank();
   } else if (gameState === "stage2") {
