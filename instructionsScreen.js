@@ -81,6 +81,36 @@ export default class InstructionsScreen {
     noStroke();
     text("HOW TO PLAY", 213, 632.5);
     pop();
+
+    //game scenario
+    push();
+    textFont("arial");
+    fill(255);
+    textSize(20);
+    text("Welcome to Galaxy Rush!", 60, 205);
+    text(
+      "In this game, you have to transport a gem from a spaceship to another. Your mission is to defeat all the enemies on the way and shoot them all to get the gem safely to the destination.",
+      60,
+      225,
+      500,
+      500
+    );
+    text(
+      "Keep in mind that the gem is priceless and everyone is trying to get their hands on it. This wont be no easy test!",
+      60,
+      335,
+      490,
+      500
+    );
+    text(
+      "You need to keep track of your fuel as well. In order to refill your tanks, you have to clear out the enemies in the stage that you are in. Eventually, they will drop a fuel supply for you and you need to shoot it to use it.",
+      60,
+      420,
+      490,
+      500
+    );
+    text("Good luck with your mission Soldier!", 60, 550);
+    pop();
   }
 }
 function setup() {

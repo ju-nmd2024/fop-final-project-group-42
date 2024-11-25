@@ -225,7 +225,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "start";
+let gameState = "instructions";
 
 function logo() {
   fill(0);
