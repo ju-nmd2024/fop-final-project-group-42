@@ -142,7 +142,7 @@ function enemy1() {
   strokeWeight(15 * eS1);
   arc(eX1, eY1 + -5 * eS1, 70 * eS1, 70 * eS1, 50, 130);
   strokeWeight(10 * eS1);
-  stroke(0, 40, 200);
+  stroke(170, 40, 0);
   arc(eX1, eY1 + -5 * eS1, 70 * eS1, 70 * eS1, 50, 130);
   pop();
 }

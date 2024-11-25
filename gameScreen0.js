@@ -18,8 +18,8 @@ export default class GameScreen1 {
     noStroke();
     background(5, 5, 15);
     /*  starX = [];
-    starY = [];
-    starAlpha = []; */
+      starY = [];
+      starAlpha = []; */
 
     for (let index in this.starX) {
       fill(255, 255, 255, this.starAlpha[index] * 255);
