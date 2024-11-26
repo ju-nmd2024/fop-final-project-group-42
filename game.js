@@ -225,7 +225,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "howToPlay";
+let gameState = "lose";
 
 function logo() {
   fill(0);
@@ -295,6 +295,10 @@ for (let i = 0; i < 2500; i++) {
 }
 
 //Game Screens
+//importing gameScreen0
+import GameScreen0 from "./gameScreen0.js";
+const stage0 = new GameScreen0();
+
 //importing gameScreen1
 import GameScreen1 from "./gameScreen1.js";
 const stage1 = new GameScreen1();
@@ -315,6 +319,14 @@ const howToPlayScreen = new HowToPlayScreen();
 import InstructionsScreen from "./instructionsScreen.js";
 const instructionsScreen = new InstructionsScreen();
 
+//importing winning screen
+import WinScreen from "./winScreen.js";
+const winScreen = new WinScreen();
+
+//importing losing screen
+import LoseScreen from "./loseScreen.js";
+const loseScreen = new LoseScreen();
+
 //Results Screen
 
 //The big ship
@@ -324,12 +336,14 @@ function draw() {
   if (gameState === "start") {
     startScreen();
     //ship();
-  } else if (gameState === "stage1") {
-    stage1.draw();
+  } else if (gameState === "stage0") {
+    stage0.draw();
     ship();
     enemy1();
     projectile();
     fuelTank();
+  } else if (gameState === "stage1") {
+    stage1.draw();
   } else if (gameState === "stage2") {
     stage2.draw();
   } else if (gameState === "stageFinal") {
@@ -338,6 +352,10 @@ function draw() {
     howToPlayScreen.draw();
   } else if (gameState === "instructions") {
     instructionsScreen.draw();
+  } else if (gameState === "lose") {
+    loseScreen.draw();
+  } else if (gameState === "win") {
+    winScreen.draw();
   }
 
   //buttons' functionality
@@ -345,7 +363,7 @@ function draw() {
   if (gameState === "start") {
     if (mouseIsPressed) {
       if (mouseX > 215 && mouseX < 380 && mouseY > 395 && mouseY < 475) {
-        gameState = "stage1";
+        gameState = "stage0";
       } else if (mouseX > 47 && mouseX < 252 && mouseY > 497 && mouseY < 572) {
         gameState = "howToPlay";
       } else if (mouseX > 347 && mouseX < 552 && mouseY > 497 && mouseY < 572) {
@@ -364,7 +382,7 @@ function draw() {
         mouseY > 687.5 &&
         mouseY < 759.5
       ) {
-        gameState = "stage1";
+        gameState = "stage0";
       } else if (
         mouseX > 196 &&
         mouseX < 402 &&
@@ -387,7 +405,7 @@ function draw() {
         mouseY > 507.5 &&
         mouseY < 584.5
       ) {
-        gameState = "stage1";
+        gameState = "stage0";
       } else if (
         mouseX > 346 &&
         mouseX < 552 &&
@@ -395,6 +413,28 @@ function draw() {
         mouseY < 684.5
       ) {
         gameState = "instructions";
+      }
+    }
+  }
+
+  //winScreen buttons
+  if (gameState === "win") {
+    if (mouseIsPressed) {
+      if (mouseX > 47 && mouseX < 252 && mouseY > 610 && mouseY < 685) {
+        gameState = "start";
+      } else if (mouseX > 345 && mouseX < 552 && mouseY > 610 && mouseY < 685) {
+        gameState = "stage0";
+      }
+    }
+  }
+
+  //loseScreen buttons
+  if (gameState === "lose") {
+    if (mouseIsPressed) {
+      if (mouseX > 47 && mouseX < 252 && mouseY > 610 && mouseY < 685) {
+        gameState = "start";
+      } else if (mouseX > 345 && mouseX < 552 && mouseY > 610 && mouseY < 685) {
+        gameState = "stage0";
       }
     }
   }

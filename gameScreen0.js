@@ -1,4 +1,4 @@
-export default class GameScreen1 {
+export default class GameScreen0 {
   constructor() {
     this.starX = [];
     this.starY = [];
@@ -30,7 +30,7 @@ export default class GameScreen1 {
     textSize(30);
     fill(255);
     textFont("stencil");
-    text("Stage 1", 250, 30);
+    text("Stage 0", 250, 30);
     pop();
   }
 }
