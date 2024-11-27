@@ -252,6 +252,151 @@ function enemy1(enemy1X, enemy1Y, enemy1Angle) {
 
 //Gem
 
+//enemy2
+function enemy2(enemy2X, enemy2Y) {
+  angleMode(DEGREES);
+  let enemy2X = 0;
+  let enemy2Y = 0;
+  let enemy2Size = 1.0;
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy2Size);
+  //iner
+  circle(enemy2X, enemy2Y, 70 * enemy2Size);
+  rect(
+    enemy2X - 40 * enemy2Size,
+    enemy2Y - 55 * enemy2Size,
+    65 * enemy2Size,
+    55 * enemy2Size
+  );
+  circle(enemy2X, enemy2Y, 30 * enemy2Size);
+  //inner wings
+  triangle(
+    enemy2X + 25 * enemy2Size,
+    enemy2Y - 100 * enemy2Size,
+    enemy2X + 25 * enemy2Size,
+    enemy2Y + 100 * enemy2Size,
+    enemy2X + 100 * enemy2Size,
+    enemy2Y - 100 * enemy2Size
+  );
+  triangle(
+    enemy2X - 25 * enemy2Size,
+    enemy2Y - 100 * enemy2Size,
+    enemy2X - 25 * enemy2Size,
+    enemy2Y + 100 * enemy2Size,
+    enemy2X - 100 * enemy2Size,
+    enemy2Y - 100 * enemy2Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy2Size);
+  arc(
+    enemy2X,
+    enemy2Y + -10 * enemy2Size,
+    70 * enemy2Size,
+    70 * enemy2Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy2Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy2X,
+    enemy2Y + -10 * enemy2Size,
+    70 * enemy2Size,
+    70 * enemy2Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy2Size);
+  stroke(0);
+  triangle(
+    enemy2X + 125 * enemy2Size,
+    enemy2Y - 100 * enemy2Size,
+    enemy2X + 125 * enemy2Size,
+    enemy2Y,
+    enemy2X + 90 * enemy2Size,
+    enemy2Y - 100 * enemy2Size
+  );
+  triangle(
+    enemy2X - 125 * enemy2Size,
+    enemy2Y - 100 * enemy2Size,
+    enemy2X - 125 * enemy2Size,
+    enemy2Y,
+    enemy2X - 90 * enemy2Size,
+    enemy2Y - 100 * enemy2Size
+  );
+  noStroke();
+  rect(
+    enemy2X - 123 * enemy2Size,
+    enemy2Y - 99 * enemy2Size,
+    96 * enemy2Size,
+    55 * enemy2Size
+  );
+  rect(
+    enemy2X + 123 * enemy2Size,
+    enemy2Y - 99 * enemy2Size,
+    -96 * enemy2Size,
+    55 * enemy2Size
+  );
+  noFill();
+  stroke(3 * enemy2Size);
+  arc(
+    enemy2X + 95 * enemy2Size,
+    enemy2Y - 10 * enemy2Size,
+    50 * enemy2Size,
+    70 * enemy2Size,
+    225,
+    311
+  );
+  arc(
+    enemy2X - 95 * enemy2Size,
+    enemy2Y - 10 * enemy2Size,
+    50 * enemy2Size,
+    70 * enemy2Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy2Size);
+  rect(
+    enemy2X - 90 * enemy2Size,
+    enemy2Y - 125 * enemy2Size,
+    40 * enemy2Size,
+    60 * enemy2Size
+  );
+  arc(
+    enemy2X - 70 * enemy2Size,
+    enemy2Y - 67 * enemy2Size,
+    40.6 * enemy2Size,
+    20 * enemy2Size,
+    0,
+    180
+  );
+  rect(
+    enemy2X + 90 * enemy2Size,
+    enemy2Y - 125 * enemy2Size,
+    -40 * enemy2Size,
+    60 * enemy2Size
+  );
+  arc(
+    enemy2X + 70 * enemy2Size,
+    enemy2Y - 67 * enemy2Size,
+    40.6 * enemy2Size,
+    20 * enemy2Size,
+    0,
+    180
+  );
+  pop();
+}
+
 //Projectiles
 let projectileX = 0;
 let projectileY = 350;
