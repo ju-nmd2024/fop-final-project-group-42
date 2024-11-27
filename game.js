@@ -1,169 +1,275 @@
 function setup() {
   createCanvas(600, 800);
 }
+let shipX = 0;
+let shipY = 350;
+let shipRotate = 0;
+let shipSize = 0.3;
+let shipVelocity = 5;
 
 //Player (ship and flames and ammo)
 function ship() {
-  let shX = 0;
-  let shY = 0;
-  let shS = 0.4;
   angleMode(DEGREES);
   push();
   stroke(0);
-  strokeWeight(3 * shS);
+  strokeWeight(3 * shipSize);
   translate(300, 420);
-  rotate(50);
+  rotate(shipRotate);
 
   //color
   push();
   noStroke();
   fill(200);
-  rect(shX - 40 * shS, shY - 20 * shS, 80 * shS, 85 * shS);
-  rect(shX - 23 * shS, shY + 65 * shS, 46 * shS, 10 * shS);
-
+  rect(
+    shipX - 40 * shipSize,
+    shipY - 20 * shipSize,
+    80 * shipSize,
+    85 * shipSize
+  );
+  rect(
+    shipX - 23 * shipSize,
+    shipY + 65 * shipSize,
+    46 * shipSize,
+    10 * shipSize
+  );
   pop();
 
   //cockpit
   fill(200);
-  arc(shX, shY - 15 * shS, 80 * shS, 300 * shS, 180, 0);
+  arc(shipX, shipY - 15 * shipSize, 80 * shipSize, 300 * shipSize, 180, 0);
   //wings
   fill(200);
   quad(
-    shX - 50 * shS,
-    shY + 50 * shS,
-    shX - 50 * shS,
-    shY - 50 * shS,
-    shX - 200 * shS,
-    shY,
-    shX - 200 * shS,
-    shY + 30 * shS
+    shipX - 50 * shipSize,
+    shipY + 50 * shipSize,
+    shipX - 50 * shipSize,
+    shipY - 50 * shipSize,
+    shipX - 200 * shipSize,
+    shipY,
+    shipX - 200 * shipSize,
+    shipY + 30 * shipSize
   );
   quad(
-    shX + 50 * shS,
-    shY + 50 * shS,
-    shX + 50 * shS,
-    shY - 50 * shS,
-    shX + 200 * shS,
-    shY,
-    shX + 200 * shS,
-    shY + 30 * shS
+    shipX + 50 * shipSize,
+    shipY + 50 * shipSize,
+    shipX + 50 * shipSize,
+    shipY - 50 * shipSize,
+    shipX + 200 * shipSize,
+    shipY,
+    shipX + 200 * shipSize,
+    shipY + 30 * shipSize
   );
   //engines
   push();
   fill(150);
-  rect(shX - 80 * shS, shY - 60 * shS, 40 * shS, 50 * shS);
-  rect(shX + 80 * shS, shY - 60 * shS, -40 * shS, 50 * shS);
-  arc(shX - 60 * shS, shY - 58 * shS, 40.3 * shS, 20 * shS, 180, 0);
-  arc(shX + 60 * shS, shY - 58 * shS, 40.3 * shS, 20 * shS, 180, 0);
-  rect(shX - 90 * shS, shY, 60 * shS, 80 * shS);
-  rect(shX + 90 * shS, shY, -60 * shS, 80 * shS);
-  arc(shX + 60 * shS, shY + 2 * shS, 60 * shS, 40 * shS, 180, 0);
-  arc(shX - 60 * shS, shY + 2 * shS, 60 * shS, 40 * shS, 180, 0);
+  rect(
+    shipX - 80 * shipSize,
+    shipY - 60 * shipSize,
+    40 * shipSize,
+    50 * shipSize
+  );
+  rect(
+    shipX + 80 * shipSize,
+    shipY - 60 * shipSize,
+    -40 * shipSize,
+    50 * shipSize
+  );
+  arc(
+    shipX - 60 * shipSize,
+    shipY - 58 * shipSize,
+    40.3 * shipSize,
+    20 * shipSize,
+    180,
+    0
+  );
+  arc(
+    shipX + 60 * shipSize,
+    shipY - 58 * shipSize,
+    40.3 * shipSize,
+    20 * shipSize,
+    180,
+    0
+  );
+  rect(shipX - 90 * shipSize, shipY, 60 * shipSize, 80 * shipSize);
+  rect(shipX + 90 * shipSize, shipY, -60 * shipSize, 80 * shipSize);
+  arc(
+    shipX + 60 * shipSize,
+    shipY + 2 * shipSize,
+    60 * shipSize,
+    40 * shipSize,
+    180,
+    0
+  );
+  arc(
+    shipX - 60 * shipSize,
+    shipY + 2 * shipSize,
+    60 * shipSize,
+    40 * shipSize,
+    180,
+    0
+  );
   pop();
   //window
 
   push();
   fill(0, 40, 200);
-  ellipse(shX, shY - 110 * shS, 30 * shS, 30 * shS);
-  ellipse(shX, shY - 90 * shS, 30 * shS, 30 * shS);
-  ellipse(shX, shY - 100 * shS, 45 * shS, 30 * shS);
+  ellipse(shipX, shipY - 110 * shipSize, 30 * shipSize, 30 * shipSize);
+  ellipse(shipX, shipY - 90 * shipSize, 30 * shipSize, 30 * shipSize);
+  ellipse(shipX, shipY - 100 * shipSize, 45 * shipSize, 30 * shipSize);
   pop();
   //weapon
   push();
   fill(120);
-  arc(shX, shY - 20 * shS, 50 * shS, 40 * shS, 170, 10);
-  arc(shX, shY - 20 * shS, 25 * shS, 20 * shS, 180, 0);
+  arc(shipX, shipY - 20 * shipSize, 50 * shipSize, 40 * shipSize, 170, 10);
+  arc(shipX, shipY - 20 * shipSize, 25 * shipSize, 20 * shipSize, 180, 0);
   fill(0);
-  circle(shX, shY - 20 * shS, 10 * shS);
-  strokeWeight(5 * shS);
-  line(shX, shY - 20 * shS, shX, shY - 50 * shS);
-  strokeWeight(1 * shS);
-  rect(shX - 5 * shS, shY - 55 * shS, 10 * shS, 5 * shS);
+  circle(shipX, shipY - 20 * shipSize, 10 * shipSize);
+  strokeWeight(5 * shipSize);
+  line(shipX, shipY - 20 * shipSize, shipX, shipY - 50 * shipSize);
+  strokeWeight(1 * shipSize);
+  rect(
+    shipX - 5 * shipSize,
+    shipY - 55 * shipSize,
+    10 * shipSize,
+    5 * shipSize
+  );
   pop();
 
   //back turbine
   noFill();
-  strokeWeight(3 * shS);
-  arc(shX - 30 * shS, shY + 75 * shS, 20 * shS, 20 * shS, 270, 0);
-  arc(shX + 30 * shS, shY + 75 * shS, 20 * shS, 20 * shS, 180, 270);
+  strokeWeight(3 * shipSize);
+  arc(
+    shipX - 30 * shipSize,
+    shipY + 75 * shipSize,
+    20 * shipSize,
+    20 * shipSize,
+    270,
+    0
+  );
+  arc(
+    shipX + 30 * shipSize,
+    shipY + 75 * shipSize,
+    20 * shipSize,
+    20 * shipSize,
+    180,
+    270
+  );
   fill(80);
-  rect(shX - 20 * shS, shY + 75 * shS, 40 * shS, 10 * shS);
+  rect(
+    shipX - 20 * shipSize,
+    shipY + 75 * shipSize,
+    40 * shipSize,
+    10 * shipSize
+  );
 
   //wing engines
   push();
   fill(150);
-  rect(shX - 215 * shS, shY - 10 * shS, 15 * shS, 45 * shS);
-  rect(shX + 200 * shS, shY - 10 * shS, 15 * shS, 45 * shS);
+  rect(
+    shipX - 215 * shipSize,
+    shipY - 10 * shipSize,
+    15 * shipSize,
+    45 * shipSize
+  );
+  rect(
+    shipX + 200 * shipSize,
+    shipY - 10 * shipSize,
+    15 * shipSize,
+    45 * shipSize
+  );
   pop();
   pop();
 }
 //Enemies
 //enemy1
-function enemy1() {
-  let eX1 = 0;
-  let eY1 = 0;
-  let eS1 = 0.5;
+/* let enemy1X = 0;
+let enemy1Y = 0; */
+let enemy1Size = 0.4;
+let enemyVelocity = 1;
+function enemy1(enemy1X, enemy1Y) {
   angleMode(DEGREES);
   push();
   translate(400, 100);
   rotate(0);
   //connections
   stroke(0);
-  strokeWeight(5 * eS1);
+  strokeWeight(5 * enemy1Size);
   fill(100);
-  rect(eX1 - 70 * eS1, eY1 - 10 * eS1, 140 * eS1, 20 * eS1);
+  rect(
+    enemy1X - 70 * enemy1Size,
+    enemy1Y - 10 * enemy1Size,
+    140 * enemy1Size,
+    20 * enemy1Size
+  );
   //turbine
   quad(
-    eX1 - 15 * eS1,
-    eY1 - 80 * eS1,
-    eX1 - 10 * eS1,
-    eY1 - 95 * eS1,
-    eX1 + 10 * eS1,
-    eY1 - 95 * eS1,
-    eX1 + 15 * eS1,
-    eY1 - 80 * eS1
+    enemy1X - 15 * enemy1Size,
+    enemy1Y - 80 * enemy1Size,
+    enemy1X - 10 * enemy1Size,
+    enemy1Y - 95 * enemy1Size,
+    enemy1X + 10 * enemy1Size,
+    enemy1Y - 95 * enemy1Size,
+    enemy1X + 15 * enemy1Size,
+    enemy1Y - 80 * enemy1Size
   );
   //outer ring
-  strokeWeight(20 * eS1);
+  strokeWeight(20 * enemy1Size);
   noFill();
-  arc(eX1, eY1, 150 * eS1, 150 * eS1, 115, 65);
-  strokeWeight(13 * eS1);
+  arc(enemy1X, enemy1Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+  strokeWeight(13 * enemy1Size);
   stroke(140);
-  arc(eX1, eY1, 150 * eS1, 150 * eS1, 115, 65);
+  arc(enemy1X, enemy1Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
   //mid section
   stroke(0);
-  strokeWeight(5 * eS1);
+  strokeWeight(5 * enemy1Size);
   fill(140);
-  circle(eX1, eY1, 90 * eS1);
-  strokeWeight(4 * eS1);
-  circle(eX1, eY1 - 55 * eS1, 20 * eS1);
+  circle(enemy1X, enemy1Y, 90 * enemy1Size);
+  strokeWeight(4 * enemy1Size);
+  circle(enemy1X, enemy1Y - 55 * enemy1Size, 20 * enemy1Size);
   noFill();
   //window
-  strokeWeight(15 * eS1);
-  arc(eX1, eY1 + -5 * eS1, 70 * eS1, 70 * eS1, 50, 130);
-  strokeWeight(10 * eS1);
+  strokeWeight(15 * enemy1Size);
+  arc(
+    enemy1X,
+    enemy1Y + -5 * enemy1Size,
+    70 * enemy1Size,
+    70 * enemy1Size,
+    50,
+    130
+  );
+  strokeWeight(10 * enemy1Size);
   stroke(170, 40, 0);
-  arc(eX1, eY1 + -5 * eS1, 70 * eS1, 70 * eS1, 50, 130);
+  arc(
+    enemy1X,
+    enemy1Y + -5 * enemy1Size,
+    70 * enemy1Size,
+    70 * enemy1Size,
+    50,
+    130
+  );
   pop();
 }
 
 //Gem
 
 //Projectiles
+let projectileX = 0;
+let projectileY = 350;
+let projectileSize = 0.3;
 function projectile() {
-  let projectileX = 300;
-  let projectileY = 400;
-  let projectileS = 0.4;
   push();
-  strokeWeight(5);
+  angleMode(DEGREES);
+  strokeWeight(1.5);
   stroke(110, 220, 255);
   fill(181, 255, 255);
+  translate(300, 420);
+  rotate(shipRotate);
   rect(
     projectileX - 4,
-    projectileY - 110,
-    20 * projectileS,
-    70 * projectileS,
-    20 * projectileS
+    projectileY - 10,
+    20 * projectileSize,
+    70 * projectileSize,
+    20 * projectileSize
   );
   pop();
 }
@@ -225,8 +331,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "pause";
-
+let gameState = "stage0";
 function logo() {
   fill(0);
   stroke(255, 255, 255);
@@ -319,6 +424,7 @@ const howToPlayScreen = new HowToPlayScreen();
 import InstructionsScreen from "./instructionsScreen.js";
 const instructionsScreen = new InstructionsScreen();
 
+//Results Screens
 //importing winning screen
 import WinScreen from "./winScreen.js";
 const winScreen = new WinScreen();
@@ -331,21 +437,18 @@ const loseScreen = new LoseScreen();
 import PauseScreen from "./pauseMenu.js";
 const pauseScreen = new PauseScreen(); we'll maybe work on this if we have time (prolly wont)
  */
-//Results Screen
 
 //The big ship
-function bigShip() {}
 
 function draw() {
   if (gameState === "start") {
     startScreen();
-    //ship();
   } else if (gameState === "stage0") {
     stage0.draw();
-    ship();
-    enemy1();
     projectile();
-    fuelTank();
+    ship();
+    enemy1(0, 100);
+    enemy1(0, 300);
   } else if (gameState === "stage1") {
     stage1.draw();
   } else if (gameState === "stage2") {
@@ -459,4 +562,38 @@ function draw() {
       }
     } 
   }  we'll maybe work on this if we have time (prolly wont)*/
+
+  //gameplay in stage0
+
+  if (gameState === "stage0") {
+    //key functionalities
+    if (keyIsDown(38) || keyIsDown(87)) {
+      shipY -= shipVelocity;
+      projectileY -= shipVelocity;
+      console.log(shipY);
+    } else if (keyIsDown(39) || keyIsDown(68)) {
+      shipRotate += 10;
+    } else if (keyIsDown(37) || keyIsDown(65)) {
+      shipRotate -= 10;
+    }
+
+    //stopping at shY && eY1 = 0
+    if (shipY <= 0) {
+      shipVelocity = 0;
+      shipY = 0;
+      //enemy1Y += enemyVelocity;
+      if (enemy1Y >= 300) {
+        enemy1Y = 300;
+        enemyVelocity = 0;
+      }
+    } else if (shipY >= 0) {
+      shipRotate = 0;
+    }
+  }
+
+  //gameplay in stage1
+
+  //gameplay in stage2
+
+  //gameplay in stage3
 }
