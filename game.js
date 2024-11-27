@@ -253,10 +253,50 @@ function enemy1(enemy1X, enemy1Y, enemy1Angle) {
 //Gem
 
 //enemy2
-function enemy2(enemy2X, enemy2Y) {
+let enemy201X = 0;
+let enemy201Y = 0;
+let enemy201Size = 1.0;
+
+let enemy2Size = 0.4;
+let enemy2X = 3;
+enemy2Y = 4;
+
+let enemy202X = 0;
+let enemy202Y = 0;
+let enemy202Size = 1.0;
+
+let enemy203X = 0;
+let enemy203Y = 0;
+let enemy203Size = 1.0;
+
+let enemy204X = 0;
+let enemy204Y = 0;
+let enemy204Size = 1.0;
+
+let enemy205X = 0;
+let enemy205Y = 0;
+let enemy205Size = 1.0;
+
+let enemy206X = 0;
+let enemy206Y = 0;
+let enemy206Size = 1.0;
+
+let enemy207X = 0;
+let enemy207Y = 0;
+let enemy207Size = 1.0;
+
+let enemy208X = 0;
+let enemy208Y = 0;
+let enemy208Size = 1.0;
+
+let enemy209X = 0;
+let enemy209Y = 0;
+let enemy209Size = 1.0;
+
+function enemy2model(enemy2X, enemy2Y) {
   angleMode(DEGREES);
-  let enemy2X = 0;
-  let enemy2Y = 0;
+  // let enemy2X = 0;
+  // let enemy2Y = 0;
   let enemy2Size = 1.0;
   push();
   translate(300, 300);
@@ -396,7 +436,1264 @@ function enemy2(enemy2X, enemy2Y) {
   );
   pop();
 }
+function enemy201(enemy201X, enemy201Y) {
+  angleMode(DEGREES);
+  let enemy201Size = 1.0;
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy201Size);
+  //iner
+  circle(enemy201X, enemy201Y, 70 * enemy201Size);
+  rect(
+    enemy201X - 40 * enemy201Size,
+    enemy201Y - 55 * enemy201Size,
+    65 * enemy201Size,
+    55 * enemy201Size
+  );
+  circle(enemy201X, enemy201Y, 30 * enemy201Size);
+  //inner wings
+  triangle(
+    enemy201X + 25 * enemy201Size,
+    enemy201Y - 100 * enemy201Size,
+    enemy201X + 25 * enemy201Size,
+    enemy201Y + 100 * enemy201Size,
+    enemy201X + 100 * enemy201Size,
+    enemy201Y - 100 * enemy201Size
+  );
+  triangle(
+    enemy201X - 25 * enemy201Size,
+    enemy201Y - 100 * enemy201Size,
+    enemy201X - 25 * enemy201Size,
+    enemy201Y + 100 * enemy201Size,
+    enemy201X - 100 * enemy201Size,
+    enemy201Y - 100 * enemy201Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy201Size);
+  arc(
+    enemy201X,
+    enemy201Y + -10 * enemy201Size,
+    70 * enemy201Size,
+    70 * enemy201Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy201Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy201X,
+    enemy201Y + -10 * enemy201Size,
+    70 * enemy201Size,
+    70 * enemy201Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy201Size);
+  stroke(0);
+  triangle(
+    enemy201X + 125 * enemy201Size,
+    enemy201Y - 100 * enemy201Size,
+    enemy201X + 125 * enemy201Size,
+    enemy201Y,
+    enemy201X + 90 * enemy201Size,
+    enemy201Y - 100 * enemy201Size
+  );
+  triangle(
+    enemy201X - 125 * enemy201Size,
+    enemy201Y - 100 * enemy201Size,
+    enemy201X - 125 * enemy201Size,
+    enemy201Y,
+    enemy201X - 90 * enemy201Size,
+    enemy201Y - 100 * enemy201Size
+  );
+  noStroke();
+  rect(
+    enemy201X - 123 * enemy201Size,
+    enemy201Y - 99 * enemy201Size,
+    96 * enemy201Size,
+    55 * enemy201Size
+  );
+  rect(
+    enemy201X + 123 * enemy201Size,
+    enemy201Y - 99 * enemy201Size,
+    -96 * enemy201Size,
+    55 * enemy201Size
+  );
+  noFill();
+  stroke(3 * enemy201Size);
+  arc(
+    enemy201X + 95 * enemy201Size,
+    enemy201Y - 10 * enemy201Size,
+    50 * enemy201Size,
+    70 * enemy201Size,
+    225,
+    311
+  );
+  arc(
+    enemy201X - 95 * enemy201Size,
+    enemy201Y - 10 * enemy201Size,
+    50 * enemy201Size,
+    70 * enemy201Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy201Size);
+  rect(
+    enemy201X - 90 * enemy201Size,
+    enemy201Y - 125 * enemy201Size,
+    40 * enemy201Size,
+    60 * enemy201Size
+  );
+  arc(
+    enemy201X - 70 * enemy201Size,
+    enemy201Y - 67 * enemy201Size,
+    40.6 * enemy201Size,
+    20 * enemy201Size,
+    0,
+    180
+  );
+  rect(
+    enemy201X + 90 * enemy201Size,
+    enemy201Y - 125 * enemy201Size,
+    -40 * enemy201Size,
+    60 * enemy201Size
+  );
+  arc(
+    enemy201X + 70 * enemy201Size,
+    enemy201Y - 67 * enemy201Size,
+    40.6 * enemy201Size,
+    20 * enemy201Size,
+    0,
+    180
+  );
+  pop();
+}
 
+function enemy202() {
+  function enemy2() {
+    angleMode(DEGREES);
+
+    push();
+    translate(300, 300);
+    fill(150);
+    stroke(0);
+    strokeWeight(3 * enemy202Size);
+    //iner
+    circle(enemy202X, enemy202Y, 70 * enemy202Size);
+    rect(
+      enemy202X - 40 * enemy202Size,
+      enemy202Y - 55 * enemy202Size,
+      65 * enemy202Size,
+      55 * enemy202Size
+    );
+    circle(enemy202X, enemy202Y, 30 * enemy202Size);
+    //inner wings
+    triangle(
+      enemy202X + 25 * enemy202Size,
+      enemy202Y - 100 * enemy202Size,
+      enemy202X + 25 * enemy202Size,
+      enemy202Y + 100 * enemy202Size,
+      enemy202X + 100 * enemy202Size,
+      enemy202Y - 100 * enemy202Size
+    );
+    triangle(
+      enemy202X - 25 * enemy202Size,
+      enemy202Y - 100 * enemy202Size,
+      enemy202X - 25 * enemy202Size,
+      enemy202Y + 100 * enemy202Size,
+      enemy202X - 100 * enemy202Size,
+      enemy202Y - 100 * enemy202Size
+    );
+    //window
+    noFill();
+    strokeWeight(10 * enemy202Size);
+    arc(
+      enemy202X,
+      enemy202Y + -10 * enemy202Size,
+      70 * enemy202Size,
+      70 * enemy202Size,
+      60,
+      120
+    );
+    strokeWeight(5 * enemy202Size);
+    stroke(0, 40, 200);
+    arc(
+      enemy202X,
+      enemy202Y + -10 * enemy202Size,
+      70 * enemy202Size,
+      70 * enemy202Size,
+      60,
+      120
+    );
+    //outer wings
+    fill(150);
+    strokeWeight(3 * enemy202Size);
+    stroke(0);
+    triangle(
+      enemy202X + 125 * enemy202Size,
+      enemy202Y - 100 * enemy202Size,
+      enemy202X + 125 * enemy202Size,
+      enemy202Y,
+      enemy202X + 90 * enemy202Size,
+      enemy202Y - 100 * enemy202Size
+    );
+    triangle(
+      enemy202X - 125 * enemy202Size,
+      enemy202Y - 100 * enemy202Size,
+      enemy202X - 125 * enemy202Size,
+      enemy202Y,
+      enemy202X - 90 * enemy202Size,
+      enemy202Y - 100 * enemy202Size
+    );
+    noStroke();
+    rect(
+      enemy202X - 123 * enemy202Size,
+      enemy202Y - 99 * enemy202Size,
+      96 * enemy202Size,
+      55 * enemy202Size
+    );
+    rect(
+      enemy202X + 123 * enemy202Size,
+      enemy202Y - 99 * enemy202Size,
+      -96 * enemy202Size,
+      55 * enemy202Size
+    );
+    noFill();
+    stroke(3 * enemy202Size);
+    arc(
+      enemy202X + 95 * enemy202Size,
+      enemy202Y - 10 * enemy202Size,
+      50 * enemy202Size,
+      70 * enemy202Size,
+      225,
+      311
+    );
+    arc(
+      enemy202X - 95 * enemy202Size,
+      enemy202Y - 10 * enemy202Size,
+      50 * enemy202Size,
+      70 * enemy202Size,
+      235,
+      310
+    );
+    noStroke();
+    fill(150);
+    // engines
+    fill(80);
+    stroke(3 * enemy202Size);
+    rect(
+      enemy202X - 90 * enemy202Size,
+      enemy202Y - 125 * enemy202Size,
+      40 * enemy202Size,
+      60 * enemy202Size
+    );
+    arc(
+      enemy202X - 70 * enemy202Size,
+      enemy202Y - 67 * enemy202Size,
+      40.6 * enemy202Size,
+      20 * enemy202Size,
+      0,
+      180
+    );
+    rect(
+      enemy202X + 90 * enemy202Size,
+      enemy202Y - 125 * enemy202Size,
+      -40 * enemy202Size,
+      60 * enemy202Size
+    );
+    arc(
+      enemy202X + 70 * enemy202Size,
+      enemy202Y - 67 * enemy202Size,
+      40.6 * enemy202Size,
+      20 * enemy202Size,
+      0,
+      180
+    );
+    pop();
+  }
+}
+function enemy203() {
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy203Size);
+  //iner
+  circle(enemy203X, enemy203Y, 70 * enemy203Size);
+  rect(
+    enemy203X - 40 * enemy203Size,
+    enemy203Y - 55 * enemy203Size,
+    65 * enemy203Size,
+    55 * enemy203Size
+  );
+  circle(enemy203X, enemy203Y, 30 * enemy203Size);
+  //inner wings
+  triangle(
+    enemy203X + 25 * enemy203Size,
+    enemy203Y - 100 * enemy203Size,
+    enemy203X + 25 * enemy203Size,
+    enemy203Y + 100 * enemy203Size,
+    enemy203X + 100 * enemy203Size,
+    enemy203Y - 100 * enemy203Size
+  );
+  triangle(
+    enemy203X - 25 * enemy203Size,
+    enemy203Y - 100 * enemy203Size,
+    enemy203X - 25 * enemy203Size,
+    enemy203Y + 100 * enemy203Size,
+    enemy203X - 100 * enemy203Size,
+    enemy203Y - 100 * enemy203Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy203Size);
+  arc(
+    enemy203X,
+    enemy203Y + -10 * enemy203Size,
+    70 * enemy203Size,
+    70 * enemy203Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy203Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy203X,
+    enemy203Y + -10 * enemy203Size,
+    70 * enemy203Size,
+    70 * enemy203Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy203Size);
+  stroke(0);
+  triangle(
+    enemy203X + 125 * enemy203Size,
+    enemy203Y - 100 * enemy203Size,
+    enemy203X + 125 * enemy203Size,
+    enemy203Y,
+    enemy203X + 90 * enemy203Size,
+    enemy203Y - 100 * enemy203Size
+  );
+  triangle(
+    enemy203X - 125 * enemy203Size,
+    enemy203Y - 100 * enemy203Size,
+    enemy203X - 125 * enemy203Size,
+    enemy203Y,
+    enemy203X - 90 * enemy203Size,
+    enemy203Y - 100 * enemy203Size
+  );
+  noStroke();
+  rect(
+    enemy203X - 123 * enemy203Size,
+    enemy203Y - 99 * enemy203Size,
+    96 * enemy203Size,
+    55 * enemy203Size
+  );
+  rect(
+    enemy203X + 123 * enemy203Size,
+    enemy203Y - 99 * enemy203Size,
+    -96 * enemy203Size,
+    55 * enemy203Size
+  );
+  noFill();
+  stroke(3 * enemy203Size);
+  arc(
+    enemy203X + 95 * enemy203Size,
+    enemy203Y - 10 * enemy203Size,
+    50 * enemy203Size,
+    70 * enemy203Size,
+    225,
+    311
+  );
+  arc(
+    enemy203X - 95 * enemy203Size,
+    enemy203Y - 10 * enemy203Size,
+    50 * enemy203Size,
+    70 * enemy203Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy203Size);
+  rect(
+    enemy203X - 90 * enemy203Size,
+    enemy203Y - 125 * enemy203Size,
+    40 * enemy203Size,
+    60 * enemy203Size
+  );
+  arc(
+    enemy203X - 70 * enemy203Size,
+    enemy203Y - 67 * enemy203Size,
+    40.6 * enemy203Size,
+    20 * enemy203Size,
+    0,
+    180
+  );
+  rect(
+    enemy203X + 90 * enemy203Size,
+    enemy203Y - 125 * enemy203Size,
+    -40 * enemy203Size,
+    60 * enemy203Size
+  );
+  arc(
+    enemy203X + 70 * enemy203Size,
+    enemy203Y - 67 * enemy203Size,
+    40.6 * enemy203Size,
+    20 * enemy203Size,
+    0,
+    180
+  );
+  pop();
+}
+function enemy204() {
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy204Size);
+  //iner
+  circle(enemy204X, enemy204Y, 70 * enemy204Size);
+  rect(
+    enemy204X - 40 * enemy204Size,
+    enemy204Y - 55 * enemy204Size,
+    65 * enemy204Size,
+    55 * enemy204Size
+  );
+  circle(enemy204X, enemy204Y, 30 * enemy204Size);
+  //inner wings
+  triangle(
+    enemy204X + 25 * enemy204Size,
+    enemy204Y - 100 * enemy204Size,
+    enemy204X + 25 * enemy204Size,
+    enemy204Y + 100 * enemy204Size,
+    enemy204X + 100 * enemy204Size,
+    enemy204Y - 100 * enemy204Size
+  );
+  triangle(
+    enemy204X - 25 * enemy204Size,
+    enemy204Y - 100 * enemy204Size,
+    enemy204X - 25 * enemy204Size,
+    enemy204Y + 100 * enemy204Size,
+    enemy204X - 100 * enemy204Size,
+    enemy204Y - 100 * enemy204Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy204Size);
+  arc(
+    enemy204X,
+    enemy204Y + -10 * enemy204Size,
+    70 * enemy204Size,
+    70 * enemy204Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy204Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy204X,
+    enemy204Y + -10 * enemy204Size,
+    70 * enemy204Size,
+    70 * enemy204Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy204Size);
+  stroke(0);
+  triangle(
+    enemy204X + 125 * enemy204Size,
+    enemy204Y - 100 * enemy204Size,
+    enemy204X + 125 * enemy204Size,
+    enemy204Y,
+    enemy204X + 90 * enemy204Size,
+    enemy204Y - 100 * enemy204Size
+  );
+  triangle(
+    enemy204X - 125 * enemy204Size,
+    enemy204Y - 100 * enemy204Size,
+    enemy204X - 125 * enemy204Size,
+    enemy204Y,
+    enemy204X - 90 * enemy204Size,
+    enemy204Y - 100 * enemy204Size
+  );
+  noStroke();
+  rect(
+    enemy204X - 123 * enemy204Size,
+    enemy204Y - 99 * enemy204Size,
+    96 * enemy204Size,
+    55 * enemy204Size
+  );
+  rect(
+    enemy204X + 123 * enemy204Size,
+    enemy204Y - 99 * enemy204Size,
+    -96 * enemy204Size,
+    55 * enemy204Size
+  );
+  noFill();
+  stroke(3 * enemy204Size);
+  arc(
+    enemy204X + 95 * enemy204Size,
+    enemy204Y - 10 * enemy204Size,
+    50 * enemy204Size,
+    70 * enemy204Size,
+    225,
+    311
+  );
+  arc(
+    enemy204X - 95 * enemy204Size,
+    enemy204Y - 10 * enemy204Size,
+    50 * enemy204Size,
+    70 * enemy204Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy204Size);
+  rect(
+    enemy204X - 90 * enemy204Size,
+    enemy204Y - 125 * enemy204Size,
+    40 * enemy204Size,
+    60 * enemy204Size
+  );
+  arc(
+    enemy204X - 70 * enemy204Size,
+    enemy204Y - 67 * enemy204Size,
+    40.6 * enemy204Size,
+    20 * enemy204Size,
+    0,
+    180
+  );
+  rect(
+    enemy204X + 90 * enemy204Size,
+    enemy204Y - 125 * enemy204Size,
+    -40 * enemy204Size,
+    60 * enemy204Size
+  );
+  arc(
+    enemy204X + 70 * enemy204Size,
+    enemy204Y - 67 * enemy204Size,
+    40.6 * enemy204Size,
+    20 * enemy204Size,
+    0,
+    180
+  );
+  pop();
+}
+function enemy205() {
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy205Size);
+  //iner
+  circle(enemy205X, enemy205Y, 70 * enemy205Size);
+  rect(
+    enemy205X - 40 * enemy205Size,
+    enemy205Y - 55 * enemy205Size,
+    65 * enemy205Size,
+    55 * enemy205Size
+  );
+  circle(enemy205X, enemy205Y, 30 * enemy205Size);
+  //inner wings
+  triangle(
+    enemy205X + 25 * enemy205Size,
+    enemy205Y - 100 * enemy205Size,
+    enemy205X + 25 * enemy205Size,
+    enemy205Y + 100 * enemy205Size,
+    enemy205X + 100 * enemy205Size,
+    enemy205Y - 100 * enemy205Size
+  );
+  triangle(
+    enemy205X - 25 * enemy205Size,
+    enemy205Y - 100 * enemy205Size,
+    enemy205X - 25 * enemy205Size,
+    enemy205Y + 100 * enemy205Size,
+    enemy205X - 100 * enemy205Size,
+    enemy205Y - 100 * enemy205Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy205Size);
+  arc(
+    enemy205X,
+    enemy205Y + -10 * enemy205Size,
+    70 * enemy205Size,
+    70 * enemy205Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy205Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy205X,
+    enemy205Y + -10 * enemy205Size,
+    70 * enemy205Size,
+    70 * enemy205Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy205Size);
+  stroke(0);
+  triangle(
+    enemy205X + 125 * enemy205Size,
+    enemy205Y - 100 * enemy205Size,
+    enemy205X + 125 * enemy205Size,
+    enemy205Y,
+    enemy205X + 90 * enemy205Size,
+    enemy205Y - 100 * enemy205Size
+  );
+  triangle(
+    enemy205X - 125 * enemy205Size,
+    enemy205Y - 100 * enemy205Size,
+    enemy205X - 125 * enemy205Size,
+    enemy205Y,
+    enemy205X - 90 * enemy205Size,
+    enemy205Y - 100 * enemy205Size
+  );
+  noStroke();
+  rect(
+    enemy205X - 123 * enemy205Size,
+    enemy205Y - 99 * enemy205Size,
+    96 * enemy205Size,
+    55 * enemy205Size
+  );
+  rect(
+    enemy205X + 123 * enemy205Size,
+    enemy205Y - 99 * enemy205Size,
+    -96 * enemy205Size,
+    55 * enemy205Size
+  );
+  noFill();
+  stroke(3 * enemy205Size);
+  arc(
+    enemy205X + 95 * enemy205Size,
+    enemy205Y - 10 * enemy205Size,
+    50 * enemy205Size,
+    70 * enemy205Size,
+    225,
+    311
+  );
+  arc(
+    enemy205X - 95 * enemy205Size,
+    enemy205Y - 10 * enemy205Size,
+    50 * enemy205Size,
+    70 * enemy205Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy205Size);
+  rect(
+    enemy205X - 90 * enemy205Size,
+    enemy205Y - 125 * enemy205Size,
+    40 * enemy205Size,
+    60 * enemy205Size
+  );
+  arc(
+    enemy205X - 70 * enemy205Size,
+    enemy205Y - 67 * enemy205Size,
+    40.6 * enemy205Size,
+    20 * enemy205Size,
+    0,
+    180
+  );
+  rect(
+    enemy205X + 90 * enemy205Size,
+    enemy205Y - 125 * enemy205Size,
+    -40 * enemy205Size,
+    60 * enemy205Size
+  );
+  arc(
+    enemy205X + 70 * enemy205Size,
+    enemy205Y - 67 * enemy205Size,
+    40.6 * enemy205Size,
+    20 * enemy205Size,
+    0,
+    180
+  );
+  pop();
+}
+function enemy206() {
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy206Size);
+  //iner
+  circle(enemy206X, enemy206Y, 70 * enemy206Size);
+  rect(
+    enemy206X - 40 * enemy206Size,
+    enemy206Y - 55 * enemy206Size,
+    65 * enemy206Size,
+    55 * enemy206Size
+  );
+  circle(enemy206X, enemy206Y, 30 * enemy206Size);
+  //inner wings
+  triangle(
+    enemy206X + 25 * enemy206Size,
+    enemy206Y - 100 * enemy206Size,
+    enemy206X + 25 * enemy206Size,
+    enemy206Y + 100 * enemy206Size,
+    enemy206X + 100 * enemy206Size,
+    enemy206Y - 100 * enemy206Size
+  );
+  triangle(
+    enemy206X - 25 * enemy206Size,
+    enemy206Y - 100 * enemy206Size,
+    enemy206X - 25 * enemy206Size,
+    enemy206Y + 100 * enemy206Size,
+    enemy206X - 100 * enemy206Size,
+    enemy206Y - 100 * enemy206Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy206Size);
+  arc(
+    enemy206X,
+    enemy206Y + -10 * enemy206Size,
+    70 * enemy206Size,
+    70 * enemy206Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy206Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy206X,
+    enemy206Y + -10 * enemy206Size,
+    70 * enemy206Size,
+    70 * enemy206Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy206Size);
+  stroke(0);
+  triangle(
+    enemy206X + 125 * enemy206Size,
+    enemy206Y - 100 * enemy206Size,
+    enemy206X + 125 * enemy206Size,
+    enemy206Y,
+    enemy206X + 90 * enemy206Size,
+    enemy206Y - 100 * enemy206Size
+  );
+  triangle(
+    enemy206X - 125 * enemy206Size,
+    enemy206Y - 100 * enemy206Size,
+    enemy206X - 125 * enemy206Size,
+    enemy206Y,
+    enemy206X - 90 * enemy206Size,
+    enemy206Y - 100 * enemy206Size
+  );
+  noStroke();
+  rect(
+    enemy206X - 123 * enemy206Size,
+    enemy206Y - 99 * enemy206Size,
+    96 * enemy206Size,
+    55 * enemy206Size
+  );
+  rect(
+    enemy206X + 123 * enemy206Size,
+    enemy206Y - 99 * enemy206Size,
+    -96 * enemy206Size,
+    55 * enemy206Size
+  );
+  noFill();
+  stroke(3 * enemy206Size);
+  arc(
+    enemy206X + 95 * enemy206Size,
+    enemy206Y - 10 * enemy206Size,
+    50 * enemy206Size,
+    70 * enemy206Size,
+    225,
+    311
+  );
+  arc(
+    enemy206X - 95 * enemy206Size,
+    enemy206Y - 10 * enemy206Size,
+    50 * enemy206Size,
+    70 * enemy206Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy206Size);
+  rect(
+    enemy206X - 90 * enemy206Size,
+    enemy206Y - 125 * enemy206Size,
+    40 * enemy206Size,
+    60 * enemy206Size
+  );
+  arc(
+    enemy206X - 70 * enemy206Size,
+    enemy206Y - 67 * enemy206Size,
+    40.6 * enemy206Size,
+    20 * enemy206Size,
+    0,
+    180
+  );
+  rect(
+    enemy206X + 90 * enemy206Size,
+    enemy206Y - 125 * enemy206Size,
+    -40 * enemy206Size,
+    60 * enemy206Size
+  );
+  arc(
+    enemy206X + 70 * enemy206Size,
+    enemy206Y - 67 * enemy206Size,
+    40.6 * enemy206Size,
+    20 * enemy206Size,
+    0,
+    180
+  );
+  pop();
+}
+function enemy207() {
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy207Size);
+  //iner
+  circle(enemy207X, enemy207Y, 70 * enemy207Size);
+  rect(
+    enemy207X - 40 * enemy207Size,
+    enemy207Y - 55 * enemy207Size,
+    65 * enemy207Size,
+    55 * enemy207Size
+  );
+  circle(enemy207X, enemy207Y, 30 * enemy207Size);
+  //inner wings
+  triangle(
+    enemy207X + 25 * enemy207Size,
+    enemy207Y - 100 * enemy207Size,
+    enemy207X + 25 * enemy207Size,
+    enemy207Y + 100 * enemy207Size,
+    enemy207X + 100 * enemy207Size,
+    enemy207Y - 100 * enemy207Size
+  );
+  triangle(
+    enemy207X - 25 * enemy207Size,
+    enemy207Y - 100 * enemy207Size,
+    enemy207X - 25 * enemy207Size,
+    enemy207Y + 100 * enemy207Size,
+    enemy207X - 100 * enemy207Size,
+    enemy207Y - 100 * enemy207Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy207Size);
+  arc(
+    enemy207X,
+    enemy207Y + -10 * enemy207Size,
+    70 * enemy207Size,
+    70 * enemy207Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy207Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy207X,
+    enemy207Y + -10 * enemy207Size,
+    70 * enemy207Size,
+    70 * enemy207Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy207Size);
+  stroke(0);
+  triangle(
+    enemy207X + 125 * enemy207Size,
+    enemy207Y - 100 * enemy207Size,
+    enemy207X + 125 * enemy207Size,
+    enemy207Y,
+    enemy207X + 90 * enemy207Size,
+    enemy207Y - 100 * enemy207Size
+  );
+  triangle(
+    enemy207X - 125 * enemy207Size,
+    enemy207Y - 100 * enemy207Size,
+    enemy207X - 125 * enemy207Size,
+    enemy207Y,
+    enemy207X - 90 * enemy207Size,
+    enemy207Y - 100 * enemy207Size
+  );
+  noStroke();
+  rect(
+    enemy207X - 123 * enemy207Size,
+    enemy207Y - 99 * enemy207Size,
+    96 * enemy207Size,
+    55 * enemy207Size
+  );
+  rect(
+    enemy207X + 123 * enemy207Size,
+    enemy207Y - 99 * enemy207Size,
+    -96 * enemy207Size,
+    55 * enemy207Size
+  );
+  noFill();
+  stroke(3 * enemy207Size);
+  arc(
+    enemy207X + 95 * enemy207Size,
+    enemy207Y - 10 * enemy207Size,
+    50 * enemy207Size,
+    70 * enemy207Size,
+    225,
+    311
+  );
+  arc(
+    enemy207X - 95 * enemy207Size,
+    enemy207Y - 10 * enemy207Size,
+    50 * enemy207Size,
+    70 * enemy207Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy207Size);
+  rect(
+    enemy207X - 90 * enemy207Size,
+    enemy207Y - 125 * enemy207Size,
+    40 * enemy207Size,
+    60 * enemy207Size
+  );
+  arc(
+    enemy207X - 70 * enemy207Size,
+    enemy207Y - 67 * enemy207Size,
+    40.6 * enemy207Size,
+    20 * enemy207Size,
+    0,
+    180
+  );
+  rect(
+    enemy207X + 90 * enemy207Size,
+    enemy207Y - 125 * enemy207Size,
+    -40 * enemy207Size,
+    60 * enemy207Size
+  );
+  arc(
+    enemy207X + 70 * enemy207Size,
+    enemy207Y - 67 * enemy207Size,
+    40.6 * enemy207Size,
+    20 * enemy207Size,
+    0,
+    180
+  );
+  pop();
+}
+function enemy208() {
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy208Size);
+  //iner
+  circle(enemy208X, enemy208Y, 70 * enemy208Size);
+  rect(
+    enemy208X - 40 * enemy208Size,
+    enemy208Y - 55 * enemy208Size,
+    65 * enemy208Size,
+    55 * enemy208Size
+  );
+  circle(enemy208X, enemy208Y, 30 * enemy208Size);
+  //inner wings
+  triangle(
+    enemy208X + 25 * enemy208Size,
+    enemy208Y - 100 * enemy208Size,
+    enemy208X + 25 * enemy208Size,
+    enemy208Y + 100 * enemy208Size,
+    enemy208X + 100 * enemy208Size,
+    enemy208Y - 100 * enemy208Size
+  );
+  triangle(
+    enemy208X - 25 * enemy208Size,
+    enemy208Y - 100 * enemy208Size,
+    enemy208X - 25 * enemy208Size,
+    enemy208Y + 100 * enemy208Size,
+    enemy208X - 100 * enemy208Size,
+    enemy208Y - 100 * enemy208Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy208Size);
+  arc(
+    enemy208X,
+    enemy208Y + -10 * enemy208Size,
+    70 * enemy208Size,
+    70 * enemy208Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy208Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy208X,
+    enemy208Y + -10 * enemy208Size,
+    70 * enemy208Size,
+    70 * enemy208Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy208Size);
+  stroke(0);
+  triangle(
+    enemy208X + 125 * enemy208Size,
+    enemy208Y - 100 * enemy208Size,
+    enemy208X + 125 * enemy208Size,
+    enemy208Y,
+    enemy208X + 90 * enemy208Size,
+    enemy208Y - 100 * enemy208Size
+  );
+  triangle(
+    enemy208X - 125 * enemy208Size,
+    enemy208Y - 100 * enemy208Size,
+    enemy208X - 125 * enemy208Size,
+    enemy208Y,
+    enemy208X - 90 * enemy208Size,
+    enemy208Y - 100 * enemy208Size
+  );
+  noStroke();
+  rect(
+    enemy208X - 123 * enemy208Size,
+    enemy208Y - 99 * enemy208Size,
+    96 * enemy208Size,
+    55 * enemy208Size
+  );
+  rect(
+    enemy208X + 123 * enemy208Size,
+    enemy208Y - 99 * enemy208Size,
+    -96 * enemy208Size,
+    55 * enemy208Size
+  );
+  noFill();
+  stroke(3 * enemy208Size);
+  arc(
+    enemy208X + 95 * enemy208Size,
+    enemy208Y - 10 * enemy208Size,
+    50 * enemy208Size,
+    70 * enemy208Size,
+    225,
+    311
+  );
+  arc(
+    enemy208X - 95 * enemy208Size,
+    enemy208Y - 10 * enemy208Size,
+    50 * enemy208Size,
+    70 * enemy208Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy208Size);
+  rect(
+    enemy208X - 90 * enemy208Size,
+    enemy208Y - 125 * enemy208Size,
+    40 * enemy208Size,
+    60 * enemy208Size
+  );
+  arc(
+    enemy208X - 70 * enemy208Size,
+    enemy208Y - 67 * enemy208Size,
+    40.6 * enemy208Size,
+    20 * enemy208Size,
+    0,
+    180
+  );
+  rect(
+    enemy208X + 90 * enemy208Size,
+    enemy208Y - 125 * enemy208Size,
+    -40 * enemy208Size,
+    60 * enemy208Size
+  );
+  arc(
+    enemy208X + 70 * enemy208Size,
+    enemy208Y - 67 * enemy208Size,
+    40.6 * enemy208Size,
+    20 * enemy208Size,
+    0,
+    180
+  );
+  pop();
+}
+function enemy209() {
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy209Size);
+  //iner
+  circle(enemy209X, enemy209Y, 70 * enemy209Size);
+  rect(
+    enemy209X - 40 * enemy209Size,
+    enemy209Y - 55 * enemy209Size,
+    65 * enemy209Size,
+    55 * enemy209Size
+  );
+  circle(enemy209X, enemy209Y, 30 * enemy209Size);
+  //inner wings
+  triangle(
+    enemy209X + 25 * enemy209Size,
+    enemy209Y - 100 * enemy209Size,
+    enemy209X + 25 * enemy209Size,
+    enemy209Y + 100 * enemy209Size,
+    enemy209X + 100 * enemy209Size,
+    enemy209Y - 100 * enemy209Size
+  );
+  triangle(
+    enemy209X - 25 * enemy209Size,
+    enemy209Y - 100 * enemy209Size,
+    enemy209X - 25 * enemy209Size,
+    enemy209Y + 100 * enemy209Size,
+    enemy209X - 100 * enemy209Size,
+    enemy209Y - 100 * enemy209Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy209Size);
+  arc(
+    enemy209X,
+    enemy209Y + -10 * enemy209Size,
+    70 * enemy209Size,
+    70 * enemy209Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy209Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy209X,
+    enemy209Y + -10 * enemy209Size,
+    70 * enemy209Size,
+    70 * enemy209Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy209Size);
+  stroke(0);
+  triangle(
+    enemy209X + 125 * enemy209Size,
+    enemy209Y - 100 * enemy209Size,
+    enemy209X + 125 * enemy209Size,
+    enemy209Y,
+    enemy209X + 90 * enemy209Size,
+    enemy209Y - 100 * enemy209Size
+  );
+  triangle(
+    enemy209X - 125 * enemy209Size,
+    enemy209Y - 100 * enemy209Size,
+    enemy209X - 125 * enemy209Size,
+    enemy209Y,
+    enemy209X - 90 * enemy209Size,
+    enemy209Y - 100 * enemy209Size
+  );
+  noStroke();
+  rect(
+    enemy209X - 123 * enemy209Size,
+    enemy209Y - 99 * enemy209Size,
+    96 * enemy209Size,
+    55 * enemy209Size
+  );
+  rect(
+    enemy209X + 123 * enemy209Size,
+    enemy209Y - 99 * enemy209Size,
+    -96 * enemy209Size,
+    55 * enemy209Size
+  );
+  noFill();
+  stroke(3 * enemy209Size);
+  arc(
+    enemy209X + 95 * enemy209Size,
+    enemy209Y - 10 * enemy209Size,
+    50 * enemy209Size,
+    70 * enemy209Size,
+    225,
+    311
+  );
+  arc(
+    enemy209X - 95 * enemy209Size,
+    enemy209Y - 10 * enemy209Size,
+    50 * enemy209Size,
+    70 * enemy209Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy209Size);
+  rect(
+    enemy209X - 90 * enemy209Size,
+    enemy209Y - 125 * enemy209Size,
+    40 * enemy209Size,
+    60 * enemy209Size
+  );
+  arc(
+    enemy209X - 70 * enemy209Size,
+    enemy209Y - 67 * enemy209Size,
+    40.6 * enemy209Size,
+    20 * enemy209Size,
+    0,
+    180
+  );
+  rect(
+    enemy209X + 90 * enemy209Size,
+    enemy209Y - 125 * enemy209Size,
+    -40 * enemy209Size,
+    60 * enemy209Size
+  );
+  arc(
+    enemy209X + 70 * enemy209Size,
+    enemy209Y - 67 * enemy209Size,
+    40.6 * enemy209Size,
+    20 * enemy209Size,
+    0,
+    180
+  );
+  pop();
+}
 //Projectiles
 let projectileX = 0;
 let projectileY = 350;
@@ -594,7 +1891,9 @@ function draw() {
     ship();
     let enemy1X = 0;
     let enemy1Y = 0;
+
     enemy1(enemy1X, enemy1Y - 250, 40);
+    enemy201(100, 100);
     //enemy1(100, 0,10);
   } else if (gameState === "stage1") {
     stage1.draw();
