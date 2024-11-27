@@ -781,7 +781,7 @@ let enemy201Size = 1.0;
 
 let enemy2Size = 0.4;
 let enemy2X = 3;
-enemy2Y = 4;
+let enemy2Y = 4;
 
 let enemy202X = 0;
 let enemy202Y = 0;
@@ -1103,147 +1103,145 @@ function enemy201(enemy201X, enemy201Y) {
 }
 
 function enemy202() {
-  function enemy2() {
-    angleMode(DEGREES);
+  angleMode(DEGREES);
 
-    push();
-    translate(300, 300);
-    fill(150);
-    stroke(0);
-    strokeWeight(3 * enemy202Size);
-    //iner
-    circle(enemy202X, enemy202Y, 70 * enemy202Size);
-    rect(
-      enemy202X - 40 * enemy202Size,
-      enemy202Y - 55 * enemy202Size,
-      65 * enemy202Size,
-      55 * enemy202Size
-    );
-    circle(enemy202X, enemy202Y, 30 * enemy202Size);
-    //inner wings
-    triangle(
-      enemy202X + 25 * enemy202Size,
-      enemy202Y - 100 * enemy202Size,
-      enemy202X + 25 * enemy202Size,
-      enemy202Y + 100 * enemy202Size,
-      enemy202X + 100 * enemy202Size,
-      enemy202Y - 100 * enemy202Size
-    );
-    triangle(
-      enemy202X - 25 * enemy202Size,
-      enemy202Y - 100 * enemy202Size,
-      enemy202X - 25 * enemy202Size,
-      enemy202Y + 100 * enemy202Size,
-      enemy202X - 100 * enemy202Size,
-      enemy202Y - 100 * enemy202Size
-    );
-    //window
-    noFill();
-    strokeWeight(10 * enemy202Size);
-    arc(
-      enemy202X,
-      enemy202Y + -10 * enemy202Size,
-      70 * enemy202Size,
-      70 * enemy202Size,
-      60,
-      120
-    );
-    strokeWeight(5 * enemy202Size);
-    stroke(0, 40, 200);
-    arc(
-      enemy202X,
-      enemy202Y + -10 * enemy202Size,
-      70 * enemy202Size,
-      70 * enemy202Size,
-      60,
-      120
-    );
-    //outer wings
-    fill(150);
-    strokeWeight(3 * enemy202Size);
-    stroke(0);
-    triangle(
-      enemy202X + 125 * enemy202Size,
-      enemy202Y - 100 * enemy202Size,
-      enemy202X + 125 * enemy202Size,
-      enemy202Y,
-      enemy202X + 90 * enemy202Size,
-      enemy202Y - 100 * enemy202Size
-    );
-    triangle(
-      enemy202X - 125 * enemy202Size,
-      enemy202Y - 100 * enemy202Size,
-      enemy202X - 125 * enemy202Size,
-      enemy202Y,
-      enemy202X - 90 * enemy202Size,
-      enemy202Y - 100 * enemy202Size
-    );
-    noStroke();
-    rect(
-      enemy202X - 123 * enemy202Size,
-      enemy202Y - 99 * enemy202Size,
-      96 * enemy202Size,
-      55 * enemy202Size
-    );
-    rect(
-      enemy202X + 123 * enemy202Size,
-      enemy202Y - 99 * enemy202Size,
-      -96 * enemy202Size,
-      55 * enemy202Size
-    );
-    noFill();
-    stroke(3 * enemy202Size);
-    arc(
-      enemy202X + 95 * enemy202Size,
-      enemy202Y - 10 * enemy202Size,
-      50 * enemy202Size,
-      70 * enemy202Size,
-      225,
-      311
-    );
-    arc(
-      enemy202X - 95 * enemy202Size,
-      enemy202Y - 10 * enemy202Size,
-      50 * enemy202Size,
-      70 * enemy202Size,
-      235,
-      310
-    );
-    noStroke();
-    fill(150);
-    // engines
-    fill(80);
-    stroke(3 * enemy202Size);
-    rect(
-      enemy202X - 90 * enemy202Size,
-      enemy202Y - 125 * enemy202Size,
-      40 * enemy202Size,
-      60 * enemy202Size
-    );
-    arc(
-      enemy202X - 70 * enemy202Size,
-      enemy202Y - 67 * enemy202Size,
-      40.6 * enemy202Size,
-      20 * enemy202Size,
-      0,
-      180
-    );
-    rect(
-      enemy202X + 90 * enemy202Size,
-      enemy202Y - 125 * enemy202Size,
-      -40 * enemy202Size,
-      60 * enemy202Size
-    );
-    arc(
-      enemy202X + 70 * enemy202Size,
-      enemy202Y - 67 * enemy202Size,
-      40.6 * enemy202Size,
-      20 * enemy202Size,
-      0,
-      180
-    );
-    pop();
-  }
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * enemy202Size);
+  //iner
+  circle(enemy202X, enemy202Y, 70 * enemy202Size);
+  rect(
+    enemy202X - 40 * enemy202Size,
+    enemy202Y - 55 * enemy202Size,
+    65 * enemy202Size,
+    55 * enemy202Size
+  );
+  circle(enemy202X, enemy202Y, 30 * enemy202Size);
+  //inner wings
+  triangle(
+    enemy202X + 25 * enemy202Size,
+    enemy202Y - 100 * enemy202Size,
+    enemy202X + 25 * enemy202Size,
+    enemy202Y + 100 * enemy202Size,
+    enemy202X + 100 * enemy202Size,
+    enemy202Y - 100 * enemy202Size
+  );
+  triangle(
+    enemy202X - 25 * enemy202Size,
+    enemy202Y - 100 * enemy202Size,
+    enemy202X - 25 * enemy202Size,
+    enemy202Y + 100 * enemy202Size,
+    enemy202X - 100 * enemy202Size,
+    enemy202Y - 100 * enemy202Size
+  );
+  //window
+  noFill();
+  strokeWeight(10 * enemy202Size);
+  arc(
+    enemy202X,
+    enemy202Y + -10 * enemy202Size,
+    70 * enemy202Size,
+    70 * enemy202Size,
+    60,
+    120
+  );
+  strokeWeight(5 * enemy202Size);
+  stroke(0, 40, 200);
+  arc(
+    enemy202X,
+    enemy202Y + -10 * enemy202Size,
+    70 * enemy202Size,
+    70 * enemy202Size,
+    60,
+    120
+  );
+  //outer wings
+  fill(150);
+  strokeWeight(3 * enemy202Size);
+  stroke(0);
+  triangle(
+    enemy202X + 125 * enemy202Size,
+    enemy202Y - 100 * enemy202Size,
+    enemy202X + 125 * enemy202Size,
+    enemy202Y,
+    enemy202X + 90 * enemy202Size,
+    enemy202Y - 100 * enemy202Size
+  );
+  triangle(
+    enemy202X - 125 * enemy202Size,
+    enemy202Y - 100 * enemy202Size,
+    enemy202X - 125 * enemy202Size,
+    enemy202Y,
+    enemy202X - 90 * enemy202Size,
+    enemy202Y - 100 * enemy202Size
+  );
+  noStroke();
+  rect(
+    enemy202X - 123 * enemy202Size,
+    enemy202Y - 99 * enemy202Size,
+    96 * enemy202Size,
+    55 * enemy202Size
+  );
+  rect(
+    enemy202X + 123 * enemy202Size,
+    enemy202Y - 99 * enemy202Size,
+    -96 * enemy202Size,
+    55 * enemy202Size
+  );
+  noFill();
+  stroke(3 * enemy202Size);
+  arc(
+    enemy202X + 95 * enemy202Size,
+    enemy202Y - 10 * enemy202Size,
+    50 * enemy202Size,
+    70 * enemy202Size,
+    225,
+    311
+  );
+  arc(
+    enemy202X - 95 * enemy202Size,
+    enemy202Y - 10 * enemy202Size,
+    50 * enemy202Size,
+    70 * enemy202Size,
+    235,
+    310
+  );
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * enemy202Size);
+  rect(
+    enemy202X - 90 * enemy202Size,
+    enemy202Y - 125 * enemy202Size,
+    40 * enemy202Size,
+    60 * enemy202Size
+  );
+  arc(
+    enemy202X - 70 * enemy202Size,
+    enemy202Y - 67 * enemy202Size,
+    40.6 * enemy202Size,
+    20 * enemy202Size,
+    0,
+    180
+  );
+  rect(
+    enemy202X + 90 * enemy202Size,
+    enemy202Y - 125 * enemy202Size,
+    -40 * enemy202Size,
+    60 * enemy202Size
+  );
+  arc(
+    enemy202X + 70 * enemy202Size,
+    enemy202Y - 67 * enemy202Size,
+    40.6 * enemy202Size,
+    20 * enemy202Size,
+    0,
+    180
+  );
+  pop();
 }
 function enemy203() {
   push();
@@ -2413,7 +2411,10 @@ function draw() {
     stage0.draw();
     projectile();
     ship();
-    enemy101();
+  } else if (gameState === "stage1") {
+    stage1.draw();
+    ship();
+    /* enemy101();
     enemy102();
     enemy103();
     enemy104();
@@ -2421,9 +2422,7 @@ function draw() {
     enemy106();
     enemy107();
     enemy108();
-    enemy109();
-  } else if (gameState === "stage1") {
-    stage1.draw();
+    enemy109(); */
   } else if (gameState === "stage2") {
     stage2.draw();
   } else if (gameState === "stageFinal") {
@@ -2543,13 +2542,25 @@ function draw() {
     if (keyIsDown(38) || keyIsDown(87)) {
       shipY -= shipVelocity;
       projectileY -= shipVelocity;
+    }
+  }
+
+  //stopping at shY && eY1 = 0
+
+  if (gameState === "stage0" && shipY <= -440) {
+    gameState = "stage1";
+    shipY = 380;
+  }
+
+  if (gameState === "stage1") {
+    if (keyIsDown(38) || keyIsDown(87)) {
+      shipY -= shipVelocity;
+      projectileY -= shipVelocity;
     } else if (keyIsDown(39) || keyIsDown(68)) {
       shipRotate += 10;
     } else if (keyIsDown(37) || keyIsDown(65)) {
       shipRotate -= 10;
     }
-
-    //stopping at shY && eY1 = 0
     if (shipY <= 0) {
       shipVelocity = 0;
       shipY = 0;
@@ -2562,18 +2573,13 @@ function draw() {
       enemy107Y += enemyVelocity;
       enemy108Y += enemyVelocity;
       enemy109Y += enemyVelocity;
-      console.log(enemyVelocity);
-      if (enemyY >= -45) {
-        enemyVelocity = 0;
-      }
     } else if (shipY >= 0) {
       shipRotate = 0;
     }
+    //gameplay in stage2
+
+    //gameplay in stage3
   }
-
-  //gameplay in stage1
-
-  //gameplay in stage2
-
-  //gameplay in stage3
 }
+
+//gameplay in stage1
