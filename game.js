@@ -225,7 +225,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "lose";
+let gameState = "pause";
 
 function logo() {
   fill(0);
@@ -327,6 +327,10 @@ const winScreen = new WinScreen();
 import LoseScreen from "./loseScreen.js";
 const loseScreen = new LoseScreen();
 
+/* //importing pause screen
+import PauseScreen from "./pauseMenu.js";
+const pauseScreen = new PauseScreen(); we'll maybe work on this if we have time (prolly wont)
+ */
 //Results Screen
 
 //The big ship
@@ -356,7 +360,9 @@ function draw() {
     loseScreen.draw();
   } else if (gameState === "win") {
     winScreen.draw();
-  }
+  } /* else if (gameState === "pause") {
+    pauseScreen.draw();
+  } */
 
   //buttons' functionality
   //start screen buttons
@@ -438,4 +444,19 @@ function draw() {
       }
     }
   }
+
+  //pause menu buttons
+  /*  if (gameState === "pause") {
+    if (mouseIsPressed) {
+      if (mouseX > 198 && mouseX < 402 && mouseY > 277 && mouseY < 331) {
+        //resume
+      } else if (mouseX > 198 && mouseX < 402 && mouseY > 306 && mouseY < 422) {
+        gameState = "stage0";
+      } else if (mouseX > 198 && mouseX < 402 && mouseY > 458 && mouseY < 512) {
+        gameState = "howToPlay";
+      } else if (mouseX > 198 && mouseX < 402 && mouseY > 548 && mosueY < 602) {
+        gameState = "start";
+      }
+    } 
+  }  we'll maybe work on this if we have time (prolly wont)*/
 }
