@@ -250,6 +250,84 @@ function enemy1(enemy1X, enemy1Y) {
   pop();
 }
 
+//enemy 2
+function enemy2() {
+  angleMode(DEGREES);
+  let eX2 = 0;
+  let eY2 = 0;
+  let eS2 = 1.0;
+  push();
+  translate(300, 300);
+  fill(150);
+  stroke(0);
+  strokeWeight(3 * eS2);
+  //iner
+  circle(eX2, eY2, 70 * eS2);
+  rect(eX2 - 40 * eS2, eY2 - 55 * eS2, 65 * eS2, 55 * eS2);
+  circle(eX2, eY2, 30 * eS2);
+  //inner wings
+  triangle(
+    eX2 + 25 * eS2,
+    eY2 - 100 * eS2,
+    eX2 + 25 * eS2,
+    eY2 + 100 * eS2,
+    eX2 + 100 * eS2,
+    eY2 - 100 * eS2
+  );
+  triangle(
+    eX2 - 25 * eS2,
+    eY2 - 100 * eS2,
+    eX2 - 25 * eS2,
+    eY2 + 100 * eS2,
+    eX2 - 100 * eS2,
+    eY2 - 100 * eS2
+  );
+  //window
+  noFill();
+  strokeWeight(10 * eS2);
+  arc(eX2, eY2 + -10 * eS2, 70 * eS2, 70 * eS2, 60, 120);
+  strokeWeight(5 * eS2);
+  stroke(0, 40, 200);
+  arc(eX2, eY2 + -10 * eS2, 70 * eS2, 70 * eS2, 60, 120);
+  //outer wings
+  fill(150);
+  strokeWeight(3 * eS2);
+  stroke(0);
+  triangle(
+    eX2 + 125 * eS2,
+    eY2 - 100 * eS2,
+    eX2 + 125 * eS2,
+    eY2,
+    eX2 + 90 * eS2,
+    eY2 - 100 * eS2
+  );
+  triangle(
+    eX2 - 125 * eS2,
+    eY2 - 100 * eS2,
+    eX2 - 125 * eS2,
+    eY2,
+    eX2 - 90 * eS2,
+    eY2 - 100 * eS2
+  );
+  noStroke();
+  rect(eX2 - 123 * eS2, eY2 - 99 * eS2, 96 * eS2, 55 * eS2);
+  rect(eX2 + 123 * eS2, eY2 - 99 * eS2, -96 * eS2, 55 * eS2);
+  noFill();
+  stroke(3 * eS2);
+  arc(eX2 + 95 * eS2, eY2 - 10 * eS2, 50 * eS2, 70 * eS2, 225, 311);
+  arc(eX2 - 95 * eS2, eY2 - 10 * eS2, 50 * eS2, 70 * eS2, 235, 310);
+  noStroke();
+  fill(150);
+  // engines
+  fill(80);
+  stroke(3 * eS2);
+  rect(eX2 - 90 * eS2, eY2 - 125 * eS2, 40 * eS2, 60 * eS2);
+  arc(eX2 - 70 * eS2, eY2 - 67 * eS2, 40.6 * eS2, 20 * eS2, 0, 180);
+  rect(eX2 + 90 * eS2, eY2 - 125 * eS2, -40 * eS2, 60 * eS2);
+  arc(eX2 + 70 * eS2, eY2 - 67 * eS2, 40.6 * eS2, 20 * eS2, 0, 180);
+  pop();
+}
+
 //Gem
 
 //Projectiles
