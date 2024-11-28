@@ -2404,6 +2404,93 @@ const pauseScreen = new PauseScreen(); we'll maybe work on this if we have time 
  */
 
 //The big ship
+function mothaship() {
+  let mx = 300;
+  let my = 400;
+  rotate();
+  fill(125);
+  stroke(0);
+  strokeWeight(4);
+
+  rect(mx - 300, my + 200, 600, 150);
+  fill(40, 200, 220);
+  rect(mx - 300, my + 225, 600, 150);
+  fill(80);
+  rect(mx - 300, my + 250, 600, 150);
+  fill(140);
+  strokeWeight(4);
+
+  rect(mx - 100, my + 100, 200, 240);
+  stroke(240, 200, 0);
+  fill(240, 200, 0);
+  textSize(140);
+  text("H", 250, 630);
+  fill(50);
+  stroke(0);
+
+  arc(mx + 302, my + 248, 150, 150, 180, 270);
+  arc(mx - 302, my + 248, 150, 150, 270, 0);
+  strokeWeight(20);
+  stroke(50);
+
+  line(mx - 70, my + 105, mx - 70, my + 340);
+  line(mx + 70, my + 105, mx + 70, my + 340);
+
+  strokeWeight(1);
+  fill(0, 255, 0);
+  circle(mx - 70, my + 220, 8);
+  circle(mx - 70, my + 190, 8);
+  circle(mx - 70, my + 160, 8);
+  circle(mx - 70, my + 130, 8);
+  circle(mx - 70, my + 100, 8);
+  circle(mx - 70, my + 250, 8);
+  circle(mx - 70, my + 280, 8);
+  circle(mx + 70, my + 220, 8);
+  circle(mx + 70, my + 190, 8);
+  circle(mx + 70, my + 160, 8);
+  circle(mx + 70, my + 130, 8);
+  circle(mx + 70, my + 100, 8);
+  circle(mx + 70, my + 250, 8);
+  circle(mx + 70, my + 280, 8);
+  stroke(0);
+  strokeWeight(4);
+  line(mx - 210, my + 250, mx - 210, my + 400);
+  noFill();
+  circle(mx - 220, my + 260, 4);
+  circle(mx - 220, my + 285, 4);
+  circle(mx - 220, my + 310, 4);
+  circle(mx - 220, my + 335, 4);
+  circle(mx - 220, my + 360, 4);
+  circle(mx - 220, my + 385, 4);
+  circle(mx - 200, my + 260, 4);
+  circle(mx - 200, my + 285, 4);
+  circle(mx - 200, my + 310, 4);
+  circle(mx - 200, my + 335, 4);
+  circle(mx - 200, my + 360, 4);
+  circle(mx - 200, my + 385, 4);
+
+  line(mx + 170, my + 250, mx + 170, my + 310);
+  line(mx + 170, my + 310, mx + 300, my + 310);
+  circle(mx + 160, my + 260, 4);
+  circle(mx + 160, my + 280, 4);
+  circle(mx + 160, my + 300, 4);
+  circle(mx + 180, my + 260, 4);
+  circle(mx + 180, my + 280, 4);
+  circle(mx + 180, my + 300, 4);
+  circle(mx + 180, my + 320, 4);
+  circle(mx + 200, my + 320, 4);
+  circle(mx + 220, my + 320, 4);
+  circle(mx + 240, my + 320, 4);
+  circle(mx + 260, my + 320, 4);
+  circle(mx + 280, my + 320, 4);
+  circle(mx + 300, my + 320, 4);
+  circle(mx + 200, my + 300, 4);
+  circle(mx + 220, my + 300, 4);
+  circle(mx + 240, my + 300, 4);
+  circle(mx + 260, my + 300, 4);
+  circle(mx + 280, my + 300, 4);
+  circle(mx + 300, my + 300, 4);
+}
 
 function draw() {
   if (gameState === "start") {
