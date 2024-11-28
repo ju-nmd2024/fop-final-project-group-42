@@ -6,7 +6,10 @@ let shipY = 350;
 let shipRotate = 0;
 let shipSize = 0.3;
 let shipVelocity = 5;
-
+let boosterSize = 0.6;
+let fuelState = false;
+let turningState = false;
+let movingState = false;
 //Player (ship and flames and ammo)
 function ship() {
   angleMode(DEGREES);
@@ -180,6 +183,72 @@ function ship() {
   pop();
   pop();
 }
+//flame left
+function shipTurningRightBooster() {
+  push();
+  angleMode(DEGREES);
+  translate(300, 420);
+  rotate(shipRotate);
+  beginShape();
+  fill(230);
+  stroke(135, 206, 250);
+  strokeWeight(4 * boosterSize);
+  vertex(shipX - 103 * boosterSize, shipY + 70 * boosterSize);
+  bezierVertex(
+    shipX - 118 * boosterSize,
+    shipY + 3 * boosterSize,
+    shipX - 88 * boosterSize,
+    shipY + 3 * boosterSize,
+    shipX - 103 * boosterSize,
+    shipY + 70 * boosterSize
+  );
+  endShape();
+  pop();
+}
+//flame right
+function shipTurningLeftBooster() {
+  push();
+  angleMode(DEGREES);
+  translate(300, 420);
+  rotate(shipRotate);
+  beginShape();
+  fill(230);
+  stroke(135, 206, 250);
+  strokeWeight(4 * boosterSize);
+  vertex(shipX + 103 * boosterSize, shipY + 70 * boosterSize);
+  bezierVertex(
+    shipX + 118 * boosterSize,
+    shipY + 3 * boosterSize,
+    shipX + 88 * boosterSize,
+    shipY + 3 * boosterSize,
+    shipX + 103 * boosterSize,
+    shipY + 70 * boosterSize
+  );
+  endShape();
+  pop();
+}
+//flame middle
+function shipBooster() {
+  push();
+  translate(300, 405);
+  beginShape();
+  rotate();
+  stroke(135, 206, 250);
+  fill(230);
+  strokeWeight(5 * boosterSize);
+  vertex(shipX, shipY + 140 * boosterSize);
+  bezierVertex(
+    shipX - 25 * boosterSize,
+    shipY + 65 * boosterSize,
+    shipX + 25 * boosterSize,
+    shipY + 65 * boosterSize,
+    shipX,
+    shipY + 140 * boosterSize
+  );
+  endShape();
+  pop();
+}
+
 //Enemies
 //enemy1
 let y = 300;
@@ -2404,9 +2473,9 @@ const pauseScreen = new PauseScreen(); we'll maybe work on this if we have time 
  */
 
 //The big ship
+let mx = 300;
+let my = 400;
 function mothaship() {
-  let mx = 300;
-  let my = 400;
   rotate();
   fill(125);
   stroke(0);
@@ -2491,14 +2560,46 @@ function mothaship() {
   circle(mx + 280, my + 300, 4);
   circle(mx + 300, my + 300, 4);
 }
-
+function motharoof() {
+  push();
+  stroke(0);
+  fill(25);
+  quad(
+    mx - 115,
+    my + 300,
+    mx + 115,
+    my + 300,
+    mx + 195,
+    my + 405,
+    mx - 195,
+    my + 405
+  );
+  fill(45);
+  quad(
+    mx - 115,
+    my + 300,
+    mx + 115,
+    my + 300,
+    mx + 170,
+    my + 405,
+    mx - 170,
+    my + 405
+  );
+  pop();
+}
 function draw() {
   if (gameState === "start") {
     startScreen();
   } else if (gameState === "stage0") {
     stage0.draw();
+
+    mothaship();
     projectile();
     ship();
+    motharoof();
+    if (keyIsDown(38) || keyIsDown(87)) {
+      shipBooster();
+    }
   } else if (gameState === "stage1") {
     stage1.draw();
     ship();
@@ -2624,10 +2725,35 @@ function draw() {
   }  we'll maybe work on this if we have time (prolly wont)*/
 
   //gameplay in stage0
-
-  if (gameState === "stage0") {
-    //key functionalities
+  if (movingState === true) {
     if (keyIsDown(38) || keyIsDown(87)) {
+      shipY -= shipVelocity;
+      projectileY -= shipVelocity;
+    }
+  } else if (movingState === false) {
+    turningState = true;
+  }
+  if (fuelState === true) {
+    shipBooster();
+  }
+  if (turningState === true) {
+    if (keyIsDown(39) || keyIsDown(68)) {
+      shipTurningRightBooster();
+    } else if (keyIsDown(37) || keyIsDown(65)) {
+      shipTurningLeftBooster();
+    }
+  }
+  if (gameState === "stage0") {
+    shipY -= 3;
+    projectileY -= 3;
+    if (shipY <= 150) {
+      shipY += 3;
+      projectileY += 3;
+    }
+    //key functionalities
+
+    if (keyIsDown(38) || keyIsDown(87)) {
+      shipBooster();
       shipY -= shipVelocity;
       projectileY -= shipVelocity;
     }
@@ -2642,11 +2768,13 @@ function draw() {
 
   if (gameState === "stage1") {
     if (keyIsDown(38) || keyIsDown(87)) {
-      shipY -= shipVelocity;
-      projectileY -= shipVelocity;
-    } else if (keyIsDown(39) || keyIsDown(68)) {
+      fuelState = true;
+    } else fuelState = false;
+    if (keyIsDown(39) || keyIsDown(68)) {
+      turningState = true;
       shipRotate += 10;
     } else if (keyIsDown(37) || keyIsDown(65)) {
+      turningState = true;
       shipRotate -= 10;
     }
     if (shipY <= 0) {
@@ -2661,9 +2789,13 @@ function draw() {
       enemy107Y += enemyVelocity;
       enemy108Y += enemyVelocity;
       enemy109Y += enemyVelocity;
+      fuelState = false;
     } else if (shipY >= 0) {
       shipRotate = 0;
+      turningState = false;
+      movingState = true;
     }
+    console.log(shipY);
 
     //gameplay in stage2
 
