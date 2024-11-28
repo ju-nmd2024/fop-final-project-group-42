@@ -271,7 +271,7 @@ let enemy107Y = -1600 - y;
 let enemy108Y = -850 - y;
 let enemy109Y = -500 - y;
 let enemy1Size = 0.4;
-let enemyVelocity = 5;
+let enemyVelocity = 50;
 let enemyY = -250;
 
 function enemy101() {
@@ -2777,9 +2777,8 @@ function draw() {
       turningState = true;
       shipRotate -= 10;
     }
-    if (shipY <= 0) {
+    if (shipY === 0) {
       shipVelocity = 0;
-      shipY = 0;
       enemy101Y += enemyVelocity;
       enemy102Y += enemyVelocity;
       enemy103Y += enemyVelocity;
@@ -2790,11 +2789,16 @@ function draw() {
       enemy108Y += enemyVelocity;
       enemy109Y += enemyVelocity;
       fuelState = false;
-    } else if (shipY >= 0) {
+    } else if (shipY >= 0 || shipY <= -10) {
+      shipVelocity = 5;
       shipRotate = 0;
       turningState = false;
       movingState = true;
     }
+    if (enemy107Y >= 410) {
+      shipY = -100;
+    }
+
     console.log(shipY);
 
     //gameplay in stage2
