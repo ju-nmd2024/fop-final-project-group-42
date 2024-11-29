@@ -232,7 +232,7 @@ function shipBooster() {
   push();
   translate(300, 405);
   beginShape();
-  rotate();
+  //rotate();
   stroke(135, 206, 250);
   fill(230);
   strokeWeight(5 * boosterSize);
@@ -271,7 +271,7 @@ let enemy107Y = -1600 - y;
 let enemy108Y = -850 - y;
 let enemy109Y = -500 - y;
 let enemy1Size = 0.4;
-let enemyVelocity = 50;
+let enemyVelocity = 5;
 let enemyY = -250;
 
 function enemy101() {
@@ -782,7 +782,7 @@ function enemy109() {
   angleMode(DEGREES);
   push();
   translate(300, 400);
-  rotate();
+  //rotate();
   //connections
   stroke(0);
   strokeWeight(5 * enemy1Size);
@@ -2476,7 +2476,7 @@ const pauseScreen = new PauseScreen(); we'll maybe work on this if we have time 
 let mx = 300;
 let my = 400;
 function mothaship() {
-  rotate();
+  //rotate();
   fill(125);
   stroke(0);
   strokeWeight(4);
@@ -2724,25 +2724,32 @@ function draw() {
     } 
   }  we'll maybe work on this if we have time (prolly wont)*/
 
-  //gameplay in stage0
+  if (fuelState === true) {
+    shipBooster();
+  }
+
+  //moving mechanics
   if (movingState === true) {
+    fuelState = true;
     if (keyIsDown(38) || keyIsDown(87)) {
+      shipVelocity = 5;
       shipY -= shipVelocity;
       projectileY -= shipVelocity;
     }
   } else if (movingState === false) {
-    turningState = true;
-  }
-  if (fuelState === true) {
-    shipBooster();
+    fuelState = false;
   }
   if (turningState === true) {
+    shipVelocity = 0;
     if (keyIsDown(39) || keyIsDown(68)) {
       shipTurningRightBooster();
+      shipRotate += 10;
     } else if (keyIsDown(37) || keyIsDown(65)) {
       shipTurningLeftBooster();
+      shipRotate -= 10;
     }
   }
+  //gameplay in stage0
   if (gameState === "stage0") {
     shipY -= 3;
     projectileY -= 3;
@@ -2765,20 +2772,27 @@ function draw() {
     gameState = "stage1";
     shipY = 380;
   }
-
+  // gameplay in stage1
   if (gameState === "stage1") {
+    movingState = true;
     if (keyIsDown(38) || keyIsDown(87)) {
-      fuelState = true;
+      // fuelState = true;
     } else fuelState = false;
-    if (keyIsDown(39) || keyIsDown(68)) {
-      turningState = true;
-      shipRotate += 10;
-    } else if (keyIsDown(37) || keyIsDown(65)) {
-      turningState = true;
-      shipRotate -= 10;
-    }
+
+    //deleting for efficiency changes
+
+    // if (keyIsDown(39) || keyIsDown(68)) {
+    //   // turningState = true;
+    //   shipRotate += 10;
+    // } else if (keyIsDown(37) || keyIsDown(65)) {
+    //   // turningState = true;
+    //   shipRotate -= 10;
+    // }
     if (shipY === 0) {
-      shipVelocity = 0;
+      // shipVelocity = 0;
+      // fuelState = false;
+      turningState = true;
+      movingState = false;
       enemy101Y += enemyVelocity;
       enemy102Y += enemyVelocity;
       enemy103Y += enemyVelocity;
@@ -2788,18 +2802,21 @@ function draw() {
       enemy107Y += enemyVelocity;
       enemy108Y += enemyVelocity;
       enemy109Y += enemyVelocity;
-      fuelState = false;
-    } else if (shipY >= 0 || shipY <= -10) {
-      shipVelocity = 5;
+    }
+    if (shipY < 0) {
+      // shipVelocity = 5;
       shipRotate = 0;
       turningState = false;
       movingState = true;
     }
-    if (enemy107Y >= 410) {
+    if (enemy107Y >= 410 && turningState) {
       shipY = -100;
     }
 
-    console.log(shipY);
+    // console.log(shipY);
+    //  console.log (turningState);
+    // console.log (movingState);
+    // console.log (shipVelocity);
 
     //gameplay in stage2
 
