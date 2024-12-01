@@ -278,14 +278,14 @@ let enemyY = -250;
 
 // const enemies1 = [enemy101,enemy102];
 
-let speed = 1;
+let speed = 5;
 let enemies = []; // Array to store enemy instances
 
 class Enemy1 {
   constructor(x, y, size, rotation) {
     this.x = x; // Position x-coordinate
     this.y = y; // Position y-coordinate
-    this.size = 0.5; // Scale size
+    this.size = 0.4; // Scale size
     this.rotation = rotation; // Rotation in degrees
   }
 
@@ -2136,24 +2136,15 @@ function draw() {
     }
   } else if (gameState === "stage1") {
     stage1.draw();
-    // draw(enemies1.enemy101,enemy101X,enemy101Y);
-
     ship();
     enemies = enemies.filter((enemy) => enemy.y < -100);
 
-    for (let enemy of enemies) {
-      enemy.draw();
-      enemy.move(speed);
+    if (shipY <= 0) {
+      for (let enemy of enemies) {
+        enemy.draw();
+        enemy.move(speed);
+      }
     }
-
-    // enemy102();
-    // enemy103();
-    // enemy104();
-    // enemy105();
-    // enemy106();
-    // enemy107();
-    // enemy108();
-    // enemy109();
   } else if (gameState === "stage2") {
     stage2.draw();
   } else if (gameState === "stageFinal") {
@@ -2318,32 +2309,10 @@ function draw() {
   if (gameState === "stage1") {
     movingState = true;
     if (keyIsDown(38) || keyIsDown(87)) {
-      // fuelState = true;
     } else fuelState = false;
-
-    //deleting for efficiency changes
-
-    // if (keyIsDown(39) || keyIsDown(68)) {
-    //   // turningState = true;
-    //   shipRotate += 10;
-    // } else if (keyIsDown(37) || keyIsDown(65)) {
-    //   // turningState = true;
-    //   shipRotate -= 10;
-    // }
     if (shipY === 0) {
-      // shipVelocity = 0;
-      // fuelState = false;
       turningState = true;
       movingState = false;
-      enemy101Y += enemyVelocity;
-      enemy102Y += enemyVelocity;
-      enemy103Y += enemyVelocity;
-      enemy104Y += enemyVelocity;
-      enemy105Y += enemyVelocity;
-      enemy106Y += enemyVelocity;
-      enemy107Y += enemyVelocity;
-      enemy108Y += enemyVelocity;
-      enemy109Y += enemyVelocity;
     }
     if (shipY < 0) {
       // shipVelocity = 5;
@@ -2351,9 +2320,9 @@ function draw() {
       turningState = false;
       movingState = true;
     }
-    if (enemy107Y >= 410 && turningState) {
-      shipY = -100;
-    }
+    // if ( >= 410 && turningState) {
+    //   shipY = -100;
+    // }
 
     // console.log(shipY);
     //  console.log (turningState);
