@@ -5,7 +5,7 @@ let shipX = 0;
 let shipY = 350;
 let shipRotate = 0;
 let shipSize = 0.3;
-let shipVelocity = 5;
+let shipVelocity = 3;
 let boosterSize = 0.6;
 let fuelState = false;
 let turningState = false;
@@ -830,7 +830,6 @@ function draw() {
     startScreen();
   } else if (gameState === "stage0") {
     stage0.draw();
-
     mothaship();
     projectile();
     ship();
@@ -1009,13 +1008,6 @@ function draw() {
     if (shipY <= 150) {
       shipY += 3;
       projectileY += 3;
-    }
-    //key functionalities
-
-    if (keyIsDown(38) || keyIsDown(87)) {
-      shipBooster();
-      shipY -= shipVelocity;
-      projectileY -= shipVelocity;
     }
   }
 
