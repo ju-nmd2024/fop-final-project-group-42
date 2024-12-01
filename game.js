@@ -10,6 +10,8 @@ let boosterSize = 0.6;
 let fuelState = false;
 let turningState = false;
 let movingState = false;
+
+// let enemy1 = enemy101;
 //Player (ship and flames and ammo)
 function ship() {
   angleMode(DEGREES);
@@ -261,7 +263,7 @@ let enemy106X = 0;
 let enemy107X = 0;
 let enemy108X = 0;
 let enemy109X = 0;
-let enemy101Y = -750 - y;
+let enemy101Y = 10 - y;
 let enemy102Y = -240 - y;
 let enemy103Y = -1000 - y;
 let enemy104Y = -1300 - y;
@@ -274,573 +276,673 @@ let enemy1Size = 0.4;
 let enemyVelocity = 5;
 let enemyY = -250;
 
-function enemy101() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  rotate(60);
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy101X - 70 * enemy1Size,
-    enemy101Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy101X - 15 * enemy1Size,
-    enemy101Y - 80 * enemy1Size,
-    enemy101X - 10 * enemy1Size,
-    enemy101Y - 95 * enemy1Size,
-    enemy101X + 10 * enemy1Size,
-    enemy101Y - 95 * enemy1Size,
-    enemy101X + 15 * enemy1Size,
-    enemy101Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy101X, enemy101Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy101X, enemy101Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy101X, enemy101Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy101X, enemy101Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy101X,
-    enemy101Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy101X,
-    enemy101Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
+// const enemies1 = [enemy101,enemy102];
+
+let speed = 1;
+let enemies = []; // Array to store enemy instances
+
+class Enemy1 {
+  constructor(x, y, size, rotation) {
+    this.x = x; // Position x-coordinate
+    this.y = y; // Position y-coordinate
+    this.size = 0.5; // Scale size
+    this.rotation = rotation; // Rotation in degrees
+  }
+
+  move(speed) {
+    this.y += speed; // Moves the enemy closer to the center
+  }
+
+  draw() {
+    angleMode(DEGREES);
+    push();
+    translate(300, 400); // Move origin to center
+    rotate(this.rotation); // Rotate based on instance's rotation value
+
+    // Connections
+    stroke(0);
+    strokeWeight(5 * this.size);
+    fill(100);
+    rect(
+      this.x - 70 * this.size,
+      this.y - 10 * this.size,
+      140 * this.size,
+      20 * this.size
+    );
+
+    // Turbine
+    quad(
+      this.x - 15 * this.size,
+      this.y - 80 * this.size,
+      this.x - 10 * this.size,
+      this.y - 95 * this.size,
+      this.x + 10 * this.size,
+      this.y - 95 * this.size,
+      this.x + 15 * this.size,
+      this.y - 80 * this.size
+    );
+
+    // Outer ring
+    strokeWeight(20 * this.size);
+    noFill();
+    arc(this.x, this.y, 150 * this.size, 150 * this.size, 115, 65);
+    strokeWeight(13 * this.size);
+    stroke(140);
+    arc(this.x, this.y, 150 * this.size, 150 * this.size, 115, 65);
+
+    // Midsection
+    stroke(0);
+    strokeWeight(5 * this.size);
+    fill(140);
+    circle(this.x, this.y, 90 * this.size);
+    strokeWeight(4 * this.size);
+    circle(this.x, this.y - 55 * this.size, 20 * this.size);
+    noFill();
+
+    // Window
+    strokeWeight(15 * this.size);
+    arc(
+      this.x,
+      this.y + -5 * this.size,
+      70 * this.size,
+      70 * this.size,
+      50,
+      130
+    );
+    strokeWeight(10 * this.size);
+    stroke(170, 40, 0);
+    arc(
+      this.x,
+      this.y + -5 * this.size,
+      70 * this.size,
+      70 * this.size,
+      50,
+      130
+    );
+
+    pop();
+  }
 }
-function enemy102() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  rotate(40);
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy102X - 70 * enemy1Size,
-    enemy102Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy102X - 15 * enemy1Size,
-    enemy102Y - 80 * enemy1Size,
-    enemy102X - 10 * enemy1Size,
-    enemy102Y - 95 * enemy1Size,
-    enemy102X + 10 * enemy1Size,
-    enemy102Y - 95 * enemy1Size,
-    enemy102X + 15 * enemy1Size,
-    enemy102Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy102X, enemy102Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy102X, enemy102Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy102X, enemy102Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy102X, enemy102Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy102X,
-    enemy102Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy102X,
-    enemy102Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
+
+function setup() {
+  createCanvas(600, 800);
+
+  // Create enemies with different positions and sizes
+  enemies.push(new Enemy1(0, -400, 1.0, 0));
+  enemies.push(new Enemy1(0, -300, 0.8, 45));
+  enemies.push(new Enemy1(0, -700, 1, 80));
+  enemies.push(new Enemy1(0, -500, 1, 120));
+  enemies.push(new Enemy1(0, -400, 1, 260));
+  enemies.push(new Enemy1(0, -350, 1, 200));
 }
-function enemy103() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  rotate(12);
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy103X - 70 * enemy1Size,
-    enemy103Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy103X - 15 * enemy1Size,
-    enemy103Y - 80 * enemy1Size,
-    enemy103X - 10 * enemy1Size,
-    enemy103Y - 95 * enemy1Size,
-    enemy103X + 10 * enemy1Size,
-    enemy103Y - 95 * enemy1Size,
-    enemy103X + 15 * enemy1Size,
-    enemy103Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy103X, enemy103Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy103X, enemy103Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy103X, enemy103Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy103X, enemy103Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy103X,
-    enemy103Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy103X,
-    enemy103Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
-}
-function enemy104() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  rotate(-30);
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy104X - 70 * enemy1Size,
-    enemy104Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy104X - 15 * enemy1Size,
-    enemy104Y - 80 * enemy1Size,
-    enemy104X - 10 * enemy1Size,
-    enemy104Y - 95 * enemy1Size,
-    enemy104X + 10 * enemy1Size,
-    enemy104Y - 95 * enemy1Size,
-    enemy104X + 15 * enemy1Size,
-    enemy104Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy104X, enemy104Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy104X, enemy104Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy104X, enemy104Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy104X, enemy104Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy104X,
-    enemy104Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy104X,
-    enemy104Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
-}
-function enemy105() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  rotate(-40);
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy105X - 70 * enemy1Size,
-    enemy105Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy105X - 15 * enemy1Size,
-    enemy105Y - 80 * enemy1Size,
-    enemy105X - 10 * enemy1Size,
-    enemy105Y - 95 * enemy1Size,
-    enemy105X + 10 * enemy1Size,
-    enemy105Y - 95 * enemy1Size,
-    enemy105X + 15 * enemy1Size,
-    enemy105Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy105X, enemy105Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy105X, enemy105Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy105X, enemy105Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy105X, enemy105Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy105X,
-    enemy105Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy105X,
-    enemy105Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
-}
-function enemy106() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  rotate(180);
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy106X - 70 * enemy1Size,
-    enemy106Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy106X - 15 * enemy1Size,
-    enemy106Y - 80 * enemy1Size,
-    enemy106X - 10 * enemy1Size,
-    enemy106Y - 95 * enemy1Size,
-    enemy106X + 10 * enemy1Size,
-    enemy106Y - 95 * enemy1Size,
-    enemy106X + 15 * enemy1Size,
-    enemy106Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy106X, enemy106Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy106X, enemy106Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy106X, enemy106Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy106X, enemy106Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy106X,
-    enemy106Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy106X,
-    enemy106Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
-}
-function enemy107() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  rotate(270);
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy107X - 70 * enemy1Size,
-    enemy107Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy107X - 15 * enemy1Size,
-    enemy107Y - 80 * enemy1Size,
-    enemy107X - 10 * enemy1Size,
-    enemy107Y - 95 * enemy1Size,
-    enemy107X + 10 * enemy1Size,
-    enemy107Y - 95 * enemy1Size,
-    enemy107X + 15 * enemy1Size,
-    enemy107Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy107X, enemy107Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy107X, enemy107Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy107X, enemy107Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy107X, enemy107Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy107X,
-    enemy107Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy107X,
-    enemy107Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
-}
-function enemy108() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  rotate(55);
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy108X - 70 * enemy1Size,
-    enemy108Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy108X - 15 * enemy1Size,
-    enemy108Y - 80 * enemy1Size,
-    enemy108X - 10 * enemy1Size,
-    enemy108Y - 95 * enemy1Size,
-    enemy108X + 10 * enemy1Size,
-    enemy108Y - 95 * enemy1Size,
-    enemy108X + 15 * enemy1Size,
-    enemy108Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy108X, enemy108Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy108X, enemy108Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy108X, enemy108Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy108X, enemy108Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy108X,
-    enemy108Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy108X,
-    enemy108Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
-}
-function enemy109() {
-  angleMode(DEGREES);
-  push();
-  translate(300, 400);
-  //rotate();
-  //connections
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(100);
-  rect(
-    enemy109X - 70 * enemy1Size,
-    enemy109Y - 10 * enemy1Size,
-    140 * enemy1Size,
-    20 * enemy1Size
-  );
-  //turbine
-  quad(
-    enemy109X - 15 * enemy1Size,
-    enemy109Y - 80 * enemy1Size,
-    enemy109X - 10 * enemy1Size,
-    enemy109Y - 95 * enemy1Size,
-    enemy109X + 10 * enemy1Size,
-    enemy109Y - 95 * enemy1Size,
-    enemy109X + 15 * enemy1Size,
-    enemy109Y - 80 * enemy1Size
-  );
-  //outer ring
-  strokeWeight(20 * enemy1Size);
-  noFill();
-  arc(enemy109X, enemy109Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  strokeWeight(13 * enemy1Size);
-  stroke(140);
-  arc(enemy109X, enemy109Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
-  //mid section
-  stroke(0);
-  strokeWeight(5 * enemy1Size);
-  fill(140);
-  circle(enemy109X, enemy109Y, 90 * enemy1Size);
-  strokeWeight(4 * enemy1Size);
-  circle(enemy109X, enemy109Y - 55 * enemy1Size, 20 * enemy1Size);
-  noFill();
-  //window
-  strokeWeight(15 * enemy1Size);
-  arc(
-    enemy109X,
-    enemy109Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  strokeWeight(10 * enemy1Size);
-  stroke(170, 40, 0);
-  arc(
-    enemy109X,
-    enemy109Y + -5 * enemy1Size,
-    70 * enemy1Size,
-    70 * enemy1Size,
-    50,
-    130
-  );
-  pop();
-}
+
+// function enemy101() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   rotate(60);
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy101X - 70 * enemy1Size,
+//     enemy101Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy101X - 15 * enemy1Size,
+//     enemy101Y - 80 * enemy1Size,
+//     enemy101X - 10 * enemy1Size,
+//     enemy101Y - 95 * enemy1Size,
+//     enemy101X + 10 * enemy1Size,
+//     enemy101Y - 95 * enemy1Size,
+//     enemy101X + 15 * enemy1Size,
+//     enemy101Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy101X, enemy101Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy101X, enemy101Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy101X, enemy101Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy101X, enemy101Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy101X,
+//     enemy101Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy101X,
+//     enemy101Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
+// function enemy102() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   rotate(40);
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy102X - 70 * enemy1Size,
+//     enemy102Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy102X - 15 * enemy1Size,
+//     enemy102Y - 80 * enemy1Size,
+//     enemy102X - 10 * enemy1Size,
+//     enemy102Y - 95 * enemy1Size,
+//     enemy102X + 10 * enemy1Size,
+//     enemy102Y - 95 * enemy1Size,
+//     enemy102X + 15 * enemy1Size,
+//     enemy102Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy102X, enemy102Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy102X, enemy102Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy102X, enemy102Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy102X, enemy102Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy102X,
+//     enemy102Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy102X,
+//     enemy102Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
+// function enemy103() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   rotate(12);
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy103X - 70 * enemy1Size,
+//     enemy103Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy103X - 15 * enemy1Size,
+//     enemy103Y - 80 * enemy1Size,
+//     enemy103X - 10 * enemy1Size,
+//     enemy103Y - 95 * enemy1Size,
+//     enemy103X + 10 * enemy1Size,
+//     enemy103Y - 95 * enemy1Size,
+//     enemy103X + 15 * enemy1Size,
+//     enemy103Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy103X, enemy103Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy103X, enemy103Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy103X, enemy103Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy103X, enemy103Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy103X,
+//     enemy103Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy103X,
+//     enemy103Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
+// function enemy104() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   rotate(-30);
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy104X - 70 * enemy1Size,
+//     enemy104Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy104X - 15 * enemy1Size,
+//     enemy104Y - 80 * enemy1Size,
+//     enemy104X - 10 * enemy1Size,
+//     enemy104Y - 95 * enemy1Size,
+//     enemy104X + 10 * enemy1Size,
+//     enemy104Y - 95 * enemy1Size,
+//     enemy104X + 15 * enemy1Size,
+//     enemy104Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy104X, enemy104Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy104X, enemy104Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy104X, enemy104Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy104X, enemy104Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy104X,
+//     enemy104Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy104X,
+//     enemy104Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
+// function enemy105() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   rotate(-40);
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy105X - 70 * enemy1Size,
+//     enemy105Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy105X - 15 * enemy1Size,
+//     enemy105Y - 80 * enemy1Size,
+//     enemy105X - 10 * enemy1Size,
+//     enemy105Y - 95 * enemy1Size,
+//     enemy105X + 10 * enemy1Size,
+//     enemy105Y - 95 * enemy1Size,
+//     enemy105X + 15 * enemy1Size,
+//     enemy105Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy105X, enemy105Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy105X, enemy105Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy105X, enemy105Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy105X, enemy105Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy105X,
+//     enemy105Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy105X,
+//     enemy105Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
+// function enemy106() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   rotate(180);
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy106X - 70 * enemy1Size,
+//     enemy106Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy106X - 15 * enemy1Size,
+//     enemy106Y - 80 * enemy1Size,
+//     enemy106X - 10 * enemy1Size,
+//     enemy106Y - 95 * enemy1Size,
+//     enemy106X + 10 * enemy1Size,
+//     enemy106Y - 95 * enemy1Size,
+//     enemy106X + 15 * enemy1Size,
+//     enemy106Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy106X, enemy106Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy106X, enemy106Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy106X, enemy106Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy106X, enemy106Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy106X,
+//     enemy106Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy106X,
+//     enemy106Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
+// function enemy107() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   rotate(270);
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy107X - 70 * enemy1Size,
+//     enemy107Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy107X - 15 * enemy1Size,
+//     enemy107Y - 80 * enemy1Size,
+//     enemy107X - 10 * enemy1Size,
+//     enemy107Y - 95 * enemy1Size,
+//     enemy107X + 10 * enemy1Size,
+//     enemy107Y - 95 * enemy1Size,
+//     enemy107X + 15 * enemy1Size,
+//     enemy107Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy107X, enemy107Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy107X, enemy107Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy107X, enemy107Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy107X, enemy107Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy107X,
+//     enemy107Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy107X,
+//     enemy107Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
+// function enemy108() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   rotate(55);
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy108X - 70 * enemy1Size,
+//     enemy108Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy108X - 15 * enemy1Size,
+//     enemy108Y - 80 * enemy1Size,
+//     enemy108X - 10 * enemy1Size,
+//     enemy108Y - 95 * enemy1Size,
+//     enemy108X + 10 * enemy1Size,
+//     enemy108Y - 95 * enemy1Size,
+//     enemy108X + 15 * enemy1Size,
+//     enemy108Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy108X, enemy108Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy108X, enemy108Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy108X, enemy108Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy108X, enemy108Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy108X,
+//     enemy108Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy108X,
+//     enemy108Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
+// function enemy109() {
+//   angleMode(DEGREES);
+//   push();
+//   translate(300, 400);
+//   //rotate();
+//   //connections
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(100);
+//   rect(
+//     enemy109X - 70 * enemy1Size,
+//     enemy109Y - 10 * enemy1Size,
+//     140 * enemy1Size,
+//     20 * enemy1Size
+//   );
+//   //turbine
+//   quad(
+//     enemy109X - 15 * enemy1Size,
+//     enemy109Y - 80 * enemy1Size,
+//     enemy109X - 10 * enemy1Size,
+//     enemy109Y - 95 * enemy1Size,
+//     enemy109X + 10 * enemy1Size,
+//     enemy109Y - 95 * enemy1Size,
+//     enemy109X + 15 * enemy1Size,
+//     enemy109Y - 80 * enemy1Size
+//   );
+//   //outer ring
+//   strokeWeight(20 * enemy1Size);
+//   noFill();
+//   arc(enemy109X, enemy109Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   strokeWeight(13 * enemy1Size);
+//   stroke(140);
+//   arc(enemy109X, enemy109Y, 150 * enemy1Size, 150 * enemy1Size, 115, 65);
+//   //mid section
+//   stroke(0);
+//   strokeWeight(5 * enemy1Size);
+//   fill(140);
+//   circle(enemy109X, enemy109Y, 90 * enemy1Size);
+//   strokeWeight(4 * enemy1Size);
+//   circle(enemy109X, enemy109Y - 55 * enemy1Size, 20 * enemy1Size);
+//   noFill();
+//   //window
+//   strokeWeight(15 * enemy1Size);
+//   arc(
+//     enemy109X,
+//     enemy109Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   strokeWeight(10 * enemy1Size);
+//   stroke(170, 40, 0);
+//   arc(
+//     enemy109X,
+//     enemy109Y + -5 * enemy1Size,
+//     70 * enemy1Size,
+//     70 * enemy1Size,
+//     50,
+//     130
+//   );
+//   pop();
+// }
 
 //Gem
 
@@ -2602,16 +2704,24 @@ function draw() {
     }
   } else if (gameState === "stage1") {
     stage1.draw();
+    // draw(enemies1.enemy101,enemy101X,enemy101Y);
+
     ship();
-    enemy101();
-    enemy102();
-    enemy103();
-    enemy104();
-    enemy105();
-    enemy106();
-    enemy107();
-    enemy108();
-    enemy109();
+    enemies = enemies.filter((enemy) => enemy.y < -100);
+
+    for (let enemy of enemies) {
+      enemy.draw();
+      enemy.move(speed);
+    }
+
+    // enemy102();
+    // enemy103();
+    // enemy104();
+    // enemy105();
+    // enemy106();
+    // enemy107();
+    // enemy108();
+    // enemy109();
   } else if (gameState === "stage2") {
     stage2.draw();
   } else if (gameState === "stageFinal") {
