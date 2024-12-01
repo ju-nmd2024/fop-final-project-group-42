@@ -599,7 +599,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "stageFinal";
+let gameState = "stage0";
 function logo() {
   fill(0);
   stroke(255, 255, 255);
@@ -710,10 +710,11 @@ const pauseScreen = new PauseScreen(); we'll maybe work on this if we have time 
 let mothaShipX = 0;
 let mothaShipY = 0;
 function mothaship() {
+  push();
   //rotate();
   fill(125);
   stroke(0);
-  translate(0, 0);
+  translate(300, 400);
   strokeWeight(4);
 
   rect(mothaShipX - 300, mothaShipY + 200, 600, 150);
@@ -794,9 +795,11 @@ function mothaship() {
   circle(mothaShipX + 260, mothaShipY + 300, 4);
   circle(mothaShipX + 280, mothaShipY + 300, 4);
   circle(mothaShipX + 300, mothaShipY + 300, 4);
+  pop();
 }
 function motharoof() {
   push();
+  translate(300, 400);
   stroke(0);
   fill(25);
   quad(
@@ -853,14 +856,14 @@ function draw() {
     push();
     angleMode(DEGREES);
     stageFinal.draw();
-    translate(300, 400);
+    translate(600, 800);
     rotate(180);
     mothaship();
     pop();
 
     ship();
     push();
-    translate(300, 400);
+    translate(600, 800);
     rotate(180);
     motharoof();
 
