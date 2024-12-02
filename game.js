@@ -521,7 +521,7 @@ function setup() {
 //Gem
 
 //Projectiles
-let projectileX = 0;
+/* let projectileX = 0;
 let projectileY = 350;
 let projectileSize = 0.3;
 function projectile() {
@@ -540,6 +540,53 @@ function projectile() {
     20 * projectileSize
   );
   pop();
+  
+} */
+let projectiles = [];
+let projectileX = 300;
+let projectileY = 400;
+let projectileSize = 0.3;
+let projectileOrigin = {
+  x: 300,
+  y: 400,
+};
+class Projectile {
+  constructor(projectileX, projectileY) {
+    this.projectileX = projectileX;
+    this.projectileY = projectileY;
+    this.projectileSize = 0.3;
+    this.velocity = -15;
+  }
+
+  draw() {
+    push();
+    angleMode(DEGREES);
+    strokeWeight(1.5);
+    stroke(110, 220, 255);
+    fill(181, 255, 255);
+
+    rotate(0);
+    rect(
+      this.projectileX - 4,
+      this.projectileY - 10,
+      20 * this.projectileSize,
+      70 * this.projectileSize,
+      20 * this.projectileSize
+    );
+    pop();
+  }
+  move() {
+    this.projectileY += this.velocity;
+  }
+}
+
+let projectile = new Projectile(projectileX, projectileY);
+
+function createProjectiles(proyectileX, projectileY) {
+  for (let i = 0; i < 10; i++) {
+    projectile = new Projectile(proyectileX, projectileY);
+    projectiles.push(projectile);
+  }
 }
 //Fuel Tank
 function fuelTank() {
@@ -599,7 +646,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "stage0";
+let gameState = "stage1";
 function logo() {
   fill(0);
   stroke(255, 255, 255);
@@ -831,7 +878,6 @@ function draw() {
   } else if (gameState === "stage0") {
     stage0.draw();
     mothaship();
-    projectile();
     ship();
     motharoof();
     if (keyIsDown(38) || keyIsDown(87)) {
@@ -1012,7 +1058,6 @@ function draw() {
   }
 
   //stopping at shY && eY1 = 0
-
   if (gameState === "stage0" && shipY <= -440) {
     gameState = "stage1";
     shipY = 380;
@@ -1023,6 +1068,7 @@ function draw() {
     gameState = "stageFinal";
     shipY = 380;
   }
+
   // gameplay in stage1
   if (gameState === "stage1") {
     combatState = false;
@@ -1032,13 +1078,24 @@ function draw() {
       combatState = true;
       /* movingState = false; */
     }
-    if (combatState === true && shipY < 0) {
-      // shipVelocity = 5;
-      shipRotate = 0;
+    if (enemies.length === 0) {
       combatState = false;
+      shipRotate = 0;
+    }
+    for (let projectile of projectiles) {
+      projectile.move();
+      projectile.draw();
     }
   }
 }
+function keyTyped() {
+  if (gameState === "stage1") {
+    if (keyIsDown(32) && combatState === true) {
+      createProjectiles(projectileOrigin.x, projectileOrigin.y);
+    }
+  }
+}
+
 //gameplay in stage2
 
 //gameplay in stage3

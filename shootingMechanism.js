@@ -1,6 +1,6 @@
 let projectiles = [];
-let projectileX = -10;
-let projectileY = 350;
+let projectileX = 300;
+let projectileY = 400;
 let projectileSize = 0.3;
 
 class Projectile {
@@ -8,7 +8,7 @@ class Projectile {
     this.projectileX = projectileX;
     this.projectileY = projectileY;
     this.projectileSize = 0.3;
-    this.velocity = -50;
+    this.velocity = -15;
   }
 
   draw() {
@@ -17,7 +17,7 @@ class Projectile {
     strokeWeight(1.5);
     stroke(110, 220, 255);
     fill(181, 255, 255);
-    translate(0);
+
     rotate(0);
     rect(
       this.projectileX - 4,
@@ -44,13 +44,15 @@ function createProjectiles(proyectileX, projectileY) {
 
 function draw() {
   background(255, 255, 255);
-  // for (let projectile of projectiles) {
-  //   projectile.draw();
-  // }
-  projectile.move();
-  projectile.draw();
+
+  for (let projectile of projectiles) {
+    projectile.move();
+    projectile.draw();
+  }
 }
 
-function mousePressed() {
-  createProjectiles(mouseX, mouseY); // draw();
+function keyTyped() {
+  if (keyIsDown(32)) {
+    createProjectiles(projectileX, projectileY);
+  }
 }
