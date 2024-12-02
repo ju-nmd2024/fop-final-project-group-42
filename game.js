@@ -8,17 +8,15 @@ let shipSize = 0.3;
 let shipVelocity = 3;
 let boosterSize = 0.6;
 let fuelState = false;
-let turningState = false;
-let movingState = false;
 let combatState = false;
-// let enemy1 = enemy101;
+
 //Player (ship and flames and ammo)
 function ship() {
   angleMode(DEGREES);
   push();
   stroke(0);
   strokeWeight(3 * shipSize);
-  translate(300, 420);
+  translate(300, 400);
   rotate(shipRotate);
 
   //color
@@ -189,7 +187,7 @@ function ship() {
 function shipTurningRightBooster() {
   push();
   angleMode(DEGREES);
-  translate(300, 420);
+  translate(300, 400);
   rotate(shipRotate);
   beginShape();
   fill(230);
@@ -211,7 +209,7 @@ function shipTurningRightBooster() {
 function shipTurningLeftBooster() {
   push();
   angleMode(DEGREES);
-  translate(300, 420);
+  translate(300, 400);
   rotate(shipRotate);
   beginShape();
   fill(230);
@@ -232,9 +230,8 @@ function shipTurningLeftBooster() {
 //flame middle
 function shipBooster() {
   push();
-  translate(300, 405);
+  translate(300, 385);
   beginShape();
-  //rotate();
   stroke(135, 206, 250);
   fill(230);
   strokeWeight(5 * boosterSize);
@@ -252,31 +249,26 @@ function shipBooster() {
 }
 
 //Enemies
-//enemy1
-let y = 300;
-
-// const enemies1 = [enemy101,enemy102];
-
 let speed = 5;
-let enemies = []; // Array to store enemy instances
+let enemies = [];
 
 class Enemy1 {
   constructor(x, y, size, rotation) {
-    this.x = x; // Position x-coordinate
-    this.y = y; // Position y-coordinate
-    this.size = 0.4; // Scale size
-    this.rotation = rotation; // Rotation in degrees
+    this.x = x;
+    this.y = y;
+    this.size = 0.4;
+    this.rotation = rotation;
   }
 
   move(speed) {
-    this.y += speed; // Moves the enemy closer to the center
+    this.y += speed;
   }
 
   draw() {
     angleMode(DEGREES);
     push();
-    translate(300, 400); // Move origin to center
-    rotate(this.rotation); // Rotate based on instance's rotation value
+    translate(300, 400);
+    rotate(this.rotation);
 
     // Connections
     stroke(0);
@@ -501,7 +493,6 @@ class Enemy2 {
     pop();
   }
 }
-
 function setup() {
   createCanvas(600, 800);
   // Create enemy2 and add them to the array
@@ -520,72 +511,40 @@ function setup() {
 
 //Gem
 
-//Projectiles
-/* let projectileX = 0;
-let projectileY = 350;
-let projectileSize = 0.3;
-function projectile() {
-  push();
-  angleMode(DEGREES);
-  strokeWeight(1.5);
-  stroke(110, 220, 255);
-  fill(181, 255, 255);
-  translate(300, 420);
-  rotate(shipRotate);
-  rect(
-    projectileX - 4,
-    projectileY - 10,
-    20 * projectileSize,
-    70 * projectileSize,
-    20 * projectileSize
-  );
-  pop();
-  
-} */
+//projectile
 let projectiles = [];
 let projectileX = 300;
 let projectileY = 400;
-let projectileSize = 0.3;
-let projectileOrigin = {
-  x: 300,
-  y: 400,
-};
+let projectileRotate = 0;
 class Projectile {
-  constructor(projectileX, projectileY) {
-    this.projectileX = projectileX;
-    this.projectileY = projectileY;
+  constructor(startProjectileX, startProjectileY, projectileAngle) {
+    this.projectileX = startProjectileX;
+    this.projectileY = startProjectileY;
+    this.projectileAngle = projectileAngle;
     this.projectileSize = 0.3;
-    this.velocity = -15;
+    this.speed = -15;
   }
 
   draw() {
     push();
+    translate(this.projectileX, this.projectileY);
     angleMode(DEGREES);
+    rotate(this.projectileAngle);
     strokeWeight(1.5);
     stroke(110, 220, 255);
     fill(181, 255, 255);
-
-    rotate(0);
     rect(
-      this.projectileX - 4,
-      this.projectileY - 10,
-      20 * this.projectileSize,
+      0,
+      0,
       70 * this.projectileSize,
+      20 * this.projectileSize,
       20 * this.projectileSize
     );
     pop();
   }
   move() {
-    this.projectileY += this.velocity;
-  }
-}
-
-let projectile = new Projectile(projectileX, projectileY);
-
-function createProjectiles(proyectileX, projectileY) {
-  for (let i = 0; i < 10; i++) {
-    projectile = new Projectile(proyectileX, projectileY);
-    projectiles.push(projectile);
+    this.projectileX += this.speed * cos(this.projectileAngle);
+    this.projectileY += this.speed * sin(this.projectileAngle);
   }
 }
 //Fuel Tank
@@ -748,17 +707,11 @@ const winScreen = new WinScreen();
 import LoseScreen from "./loseScreen.js";
 const loseScreen = new LoseScreen();
 
-/* //importing pause screen
-import PauseScreen from "./pauseMenu.js";
-const pauseScreen = new PauseScreen(); we'll maybe work on this if we have time (prolly wont)
- */
-
 //The big ship
 let mothaShipX = 0;
 let mothaShipY = 0;
 function mothaship() {
   push();
-  //rotate();
   fill(125);
   stroke(0);
   translate(300, 400);
@@ -1009,33 +962,15 @@ function draw() {
       }
     }
   }
-
-  //pause menu buttons
-  /*  if (gameState === "pause") {
-    if (mouseIsPressed) {
-      if (mouseX > 198 && mouseX < 402 && mouseY > 277 && mouseY < 331) {
-        //resume
-      } else if (mouseX > 198 && mouseX < 402 && mouseY > 306 && mouseY < 422) {
-        gameState = "stage0";
-      } else if (mouseX > 198 && mouseX < 402 && mouseY > 458 && mouseY < 512) {
-        gameState = "howToPlay";
-      } else if (mouseX > 198 && mouseX < 402 && mouseY > 548 && mosueY < 602) {
-        gameState = "start";
-      }
-    } 
-  }  we'll maybe work on this if we have time (prolly wont)*/
-
   if (fuelState === true) {
     shipBooster();
   }
-
   //moving mechanics
   if (combatState === false) {
     if (keyIsDown(38) || keyIsDown(87)) {
       shipBooster();
       shipVelocity = 5;
       shipY -= shipVelocity;
-      projectileY -= shipVelocity;
     }
   } else if (combatState === true) {
     shipVelocity = 0;
@@ -1050,10 +985,9 @@ function draw() {
   //gameplay in stage0
   if (gameState === "stage0") {
     shipY -= 3;
-    projectileY -= 3;
+
     if (shipY <= 150) {
       shipY += 3;
-      projectileY += 3;
     }
   }
 
@@ -1072,28 +1006,48 @@ function draw() {
   // gameplay in stage1
   if (gameState === "stage1") {
     combatState = false;
-    /* if (keyIsDown(38) || keyIsDown(87)) {
-    } else fuelState = false; */
     if (shipY === 0) {
       combatState = true;
-      /* movingState = false; */
     }
     if (enemies.length === 0) {
       combatState = false;
       shipRotate = 0;
     }
-    for (let projectile of projectiles) {
+    for (let i = projectiles.length - 1; i >= 0; i--) {
+      let projectile = projectiles[i];
       projectile.move();
       projectile.draw();
+
+      // Remove projectiles if they go off-screen
+      if (
+        projectile.x < 0 ||
+        projectile.x > width ||
+        projectile.y < 0 ||
+        projectile.y > height
+      ) {
+        projectiles.splice(i, 1);
+      }
     }
   }
 }
-function keyTyped() {
-  if (gameState === "stage1") {
-    if (keyIsDown(32) && combatState === true) {
-      createProjectiles(projectileOrigin.x, projectileOrigin.y);
-    }
+function keyPressed() {
+  if (keyCode === 32 && combatState === true) {
+    createProjectile();
   }
+
+  // Rotate the ship using arrow keys
+  if (keyCode === LEFT_ARROW) {
+    projectileRotate -= 10; // Rotate counterclockwise
+  } else if (keyCode === RIGHT_ARROW) {
+    projectileRotate += 10; // Rotate clockwise
+  }
+}
+
+function createProjectile() {
+  // Create a new projectile at the ship's current position and rotation
+  angleMode(DEGREES);
+  let newProjectile = new Projectile(projectileX, projectileY, shipRotate + 90); // Adjusting for ship facing down
+  projectiles.push(newProjectile);
 }
 
 //gameplay in stage2

@@ -27,13 +27,6 @@ export default class GameScreenFinal {
       fill(255, 255, 255, this.starAlpha[index] * 255);
       ellipse(this.starX[index], this.starY[index], 1.25);
     }
-
-    push();
-    textSize(30);
-    fill(255);
-    textFont("stencil");
-    text("Final Stage", 210, 30);
-    pop();
   }
 }
 function setup() {
