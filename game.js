@@ -7,7 +7,7 @@ let shipRotate = 0;
 let shipSize = 0.3;
 let shipVelocity = 3;
 let boosterSize = 0.6;
-let fuelState = false;
+
 let combatState = false;
 //Player (ship and flames and ammo)
 function ship() {
@@ -606,7 +606,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "stage1";
+let gameState = "start";
 function logo() {
   fill(0);
   stroke(255, 255, 255);
@@ -725,14 +725,16 @@ function mothaship() {
   rect(mothaShipX - 300, mothaShipY + 250, 600, 150);
   fill(140);
   strokeWeight(4);
-
+  push();
   rect(mothaShipX - 100, mothaShipY + 100, 200, 240);
   stroke(240, 200, 0);
   fill(240, 200, 0);
   textSize(140);
+  textFont("arial");
   text("H", mothaShipX - 50, mothaShipY + 230);
   fill(50);
   stroke(0);
+  pop();
 
   arc(mothaShipX + 302, mothaShipY + 248, 150, 150, 180, 270);
   arc(mothaShipX - 302, mothaShipY + 248, 150, 150, 270, 0);
@@ -841,15 +843,18 @@ function draw() {
     stage1.draw();
     ship();
     //if(distance<100){
-    enemies = enemies.filter((enemy) => enemy.y < -100); //}
+    enemies = enemies.filter((enemy) => enemy.y < -70);
     //spawning enemies
     if (shipY <= 0) {
       for (let enemy of enemies) {
         enemy.draw();
         enemy.move(speed);
+        if (enemy.y >= -70) {
+          gameState = "lose";
+        }
       }
     }
-    //console.log(enemies.length);
+    console.log(enemies.length);
   } else if (gameState === "stage2") {
     stage2.draw();
     ship();
@@ -881,6 +886,11 @@ function draw() {
     instructionsScreen.draw();
   } else if (gameState === "lose") {
     loseScreen.draw();
+    enemies.pop();
+    for (let enemy of enemies) {
+      enemy.draw();
+      enemy.move(speed);
+    }
   } else if (gameState === "win") {
     winScreen.draw();
   }
@@ -946,28 +956,41 @@ function draw() {
 
   //winScreen buttons
   if (gameState === "win") {
+    combatState = false;
+
     if (mouseIsPressed) {
       if (mouseX > 47 && mouseX < 252 && mouseY > 610 && mouseY < 685) {
         gameState = "start";
+        shipY = 400;
+        combatState = false;
+        shipRotate = 0;
       } else if (mouseX > 345 && mouseX < 552 && mouseY > 610 && mouseY < 685) {
         gameState = "stage0";
+        shipY = 400;
+        combatState = false;
+        shipRotate = 0;
       }
     }
   }
 
   //loseScreen buttons
   if (gameState === "lose") {
+    combatState = false;
     if (mouseIsPressed) {
-      if (mouseX > 47 && mouseX < 252 && mouseY > 610 && mouseY < 685) {
+      if (mouseX > 77 && mouseX < 222 && mouseY > 610 && mouseY < 685) {
         gameState = "start";
-      } else if (mouseX > 345 && mouseX < 552 && mouseY > 610 && mouseY < 685) {
+        shipY = 400;
+        combatState = false;
+        shipRotate = 0;
+      } else if (mouseX > 315 && mouseX < 522 && mouseY > 610 && mouseY < 685) {
         gameState = "stage0";
+        shipY = 400;
+        combatState = false;
+        shipRotate = 0;
       }
     }
   }
-  if (fuelState === true) {
-    shipBooster();
-  }
+
   //moving mechanics
   if (combatState === false) {
     if (keyIsDown(38) || keyIsDown(87)) {
@@ -984,7 +1007,7 @@ function draw() {
       shipTurningLeftBooster();
       shipRotate -= 10;
     }
-    /* if (
+    /* if ( 
       dist(
         projectiles.projectileX,
         projectiles.projectileY,
@@ -1031,7 +1054,7 @@ function draw() {
       projectile.move();
       projectile.draw();
 
-      console.log(projectile.y);
+      //console.log(projectile.y);
 
       // Remove projectiles if they go off-screen
       if (
@@ -1067,6 +1090,7 @@ function createProjectile() {
   let newProjectile = new Projectile(projectileX, projectileY, shipRotate + 90);
   projectiles.push(newProjectile);
 }
+//losing condition
 
 //gameplay in stage2
 

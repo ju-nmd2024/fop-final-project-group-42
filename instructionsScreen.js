@@ -103,13 +103,13 @@ export default class InstructionsScreen {
       500
     );
     text(
-      "You need to keep track of your fuel as well. In order to refill your tanks, you have to clear out the enemies in the stage that you are in. Eventually, they will drop a fuel supply for you and you need to shoot it to use it.",
+      "You need to keep track of your fuel as well. In order to refill your tanks, you have to clear out the enemies in the stage that you are in.",
       60,
       420,
       490,
       500
     );
-    text("Good luck with your mission Soldier!", 60, 550);
+    text("Good luck with your mission Soldier!", 60, 522.5);
     pop();
   }
 }

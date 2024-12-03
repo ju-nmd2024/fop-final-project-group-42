@@ -30,7 +30,7 @@ export default class WinScreen {
     textSize(30);
     fill(255);
     textFont("stencil");
-    text("Results:", 232.5, 82.5);
+    text("Results:", 232.5, 182.5);
     pop();
 
     //text box
@@ -38,52 +38,42 @@ export default class WinScreen {
     stroke(255);
     strokeWeight(5);
     fill(0);
-    rect(20, 150, 560, 562.5, 50);
+    rect(50, 350, 500, 362.5, 50);
     pop();
 
     push();
-    textSize(45);
+    textSize(40);
     textFont("stencil");
     fill(0, 200, 0);
     stroke(255);
     strokeWeight(3);
-    text("mission accomplished", 40, 230);
+    text("mission accomplished", 68, 430);
 
     push();
     fill(0);
     stroke(255);
     strokeWeight(5);
-    rect(50, 612.5, 200, 70, 25);
+    rect(80, 612.5, 200, 70, 25);
     textFont("stencil");
     textSize(25);
     fill(255);
     strokeWeight(1);
     noStroke();
-    text("back to menu", 62, 655);
+    text("back to menu", 92, 655);
     pop();
 
     push();
     fill(0);
     stroke(255);
     strokeWeight(5);
-    rect(350, 612.5, 200, 70, 25);
+    rect(320, 612.5, 200, 70, 25);
     textFont("stencil");
     textSize(40);
     fill(255);
     strokeWeight(1);
     noStroke();
-    text("retry", 387.5, 660);
+    text("retry", 357.5, 660);
     pop();
-
-    push();
-    fill(255);
-    noStroke();
-    textFont("stencil");
-    textSize(30);
-    text("time:", 200, 340);
-    text("enemies killed:", 35, 480);
-    pop();
-
     pop();
   }
 }
