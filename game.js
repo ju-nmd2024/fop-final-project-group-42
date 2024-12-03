@@ -248,7 +248,7 @@ function shipBooster() {
 }
 
 //Enemies
-let speed = 5;
+let speed = 1;
 let enemies = [];
 
 class Enemy1 {
@@ -521,7 +521,7 @@ class Projectile {
     this.projectileY = startProjectileY;
     this.projectileAngle = projectileAngle;
     this.projectileSize = 0.3;
-    this.speed = -15;
+    this.speed = -5;
   }
 
   draw() {
@@ -886,11 +886,6 @@ function draw() {
     instructionsScreen.draw();
   } else if (gameState === "lose") {
     loseScreen.draw();
-    enemies.pop();
-    for (let enemy of enemies) {
-      enemy.draw();
-      enemy.move(speed);
-    }
   } else if (gameState === "win") {
     winScreen.draw();
   }
