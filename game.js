@@ -849,7 +849,7 @@ function draw() {
         enemy.move(speed);
       }
     }
-    console.log(enemies.length);
+    //console.log(enemies.length);
   } else if (gameState === "stage2") {
     stage2.draw();
     ship();
@@ -984,7 +984,7 @@ function draw() {
       shipTurningLeftBooster();
       shipRotate -= 10;
     }
-    if (
+    /* if (
       dist(
         projectiles.projectileX,
         projectiles.projectileY,
@@ -993,7 +993,7 @@ function draw() {
       )
     ) {
       enemies = enemies.filter((enemy) => enemy.y < -100);
-    }
+    } */
   }
   //gameplay in stage0
   if (gameState === "stage0") {
@@ -1031,6 +1031,8 @@ function draw() {
       projectile.move();
       projectile.draw();
 
+      console.log(projectile.y);
+
       // Remove projectiles if they go off-screen
       if (
         projectile.x < 0 ||
@@ -1043,11 +1045,6 @@ function draw() {
       }
       for (let j = enemies.length - 1; j >= 0; j--) {
         let enemy = enemies[j];
-        if (checkCollision(projectile, enemy)) {
-          projectiles.splice(i, 1);
-          enemies.splice(j, 1);
-          break;
-        }
       }
     }
   }
@@ -1070,16 +1067,7 @@ function createProjectile() {
   let newProjectile = new Projectile(projectileX, projectileY, shipRotate + 90);
   projectiles.push(newProjectile);
 }
-function checkCollision(projectile, enemy) {
-  let distance = dist(
-    projectile.projectileX,
-    projectile.projectileY,
-    enemy.x,
-    enemy.y
-  );
-  return distance < 40 * enemy.size;
-}
-console.log(Projectile.projectileY);
+
 //gameplay in stage2
 
 //gameplay in stage3
