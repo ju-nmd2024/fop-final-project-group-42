@@ -521,7 +521,7 @@ class Projectile {
     this.projectileY = startProjectileY;
     this.projectileAngle = projectileAngle;
     this.projectileSize = 0.3;
-    this.speed = -5;
+    this.speed = -15;
   }
 
   draw() {
@@ -544,6 +544,7 @@ class Projectile {
   move() {
     this.projectileX += this.speed * cos(this.projectileAngle);
     this.projectileY += this.speed * sin(this.projectileAngle);
+    console.log(this.projectileY);
   }
 }
 // let distance = dist (projectiles.projectileX,projectiles.projectileY, enemies.x, enemies.y);
@@ -1082,7 +1083,7 @@ function keyPressed() {
 
 function createProjectile() {
   angleMode(DEGREES);
-  let newProjectile = new Projectile(projectileX, projectileY, shipRotate + 90);
+  let newProjectile = new Projectile(shipX + 300, shipY + 400, shipRotate + 90);
   projectiles.push(newProjectile);
 }
 //losing condition
