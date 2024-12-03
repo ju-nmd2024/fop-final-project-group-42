@@ -1039,6 +1039,15 @@ function draw() {
         projectile.y > height
       ) {
         projectiles.splice(i, 1);
+        continue;
+      }
+      for (let j = enemies.length - 1; j >= 0; j--) {
+        let enemy = enemies[j];
+        if (checkCollision(projectile, enemy)) {
+          projectiles.splice(i, 1);
+          enemies.splice(j, 1);
+          break;
+        }
       }
     }
   }
@@ -1050,18 +1059,27 @@ function keyPressed() {
 
   // Rotate the ship using arrow keys
   if (keyCode === LEFT_ARROW) {
-    projectileRotate -= 10; // Rotate counterclockwise
+    projectileRotate -= 10;
   } else if (keyCode === RIGHT_ARROW) {
-    projectileRotate += 10; // Rotate clockwise
+    projectileRotate += 10;
   }
 }
 
 function createProjectile() {
-  // Create a new projectile at the ship's current position and rotation
   angleMode(DEGREES);
-  let newProjectile = new Projectile(projectileX, projectileY, shipRotate + 90); // Adjusting for ship facing down
+  let newProjectile = new Projectile(projectileX, projectileY, shipRotate + 90);
   projectiles.push(newProjectile);
 }
+function checkCollision(projectile, enemy) {
+  let distance = dist(
+    projectile.projectileX,
+    projectile.projectileY,
+    enemy.x,
+    enemy.y
+  );
+  return distance < 40 * enemy.size;
+}
+console.log(Projectile.projectileY);
 //gameplay in stage2
 
 //gameplay in stage3

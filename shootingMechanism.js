@@ -2,11 +2,15 @@ let projectiles = [];
 let projectileX = 300;
 let projectileY = 400;
 let projectileSize = 0.3;
-
+let projectileOrigin = {
+  x: 300,
+  y: 400,
+};
 class Projectile {
   constructor(projectileX, projectileY) {
     this.projectileX = projectileX;
     this.projectileY = projectileY;
+    3;
     this.projectileSize = 0.3;
     this.velocity = -15;
   }
@@ -44,7 +48,6 @@ function createProjectiles(proyectileX, projectileY) {
 
 function draw() {
   background(255, 255, 255);
-
   for (let projectile of projectiles) {
     projectile.move();
     projectile.draw();
@@ -53,6 +56,7 @@ function draw() {
 
 function keyTyped() {
   if (keyIsDown(32)) {
-    createProjectiles(projectileX, projectileY);
+    createProjectiles(projectileOrigin.x, projectileOrigin.y);
   }
 }
+console.log(this.projectileX);
