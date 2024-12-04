@@ -547,7 +547,6 @@ class Projectile {
     console.log(this.projectileY);
   }
 }
-// let distance = dist (projectiles.projectileX,projectiles.projectileY, enemies.x, enemies.y);
 
 //Fuel Tank
 function fuelTank() {
@@ -607,7 +606,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "start";
+let gameState = "stage1";
 function logo() {
   fill(0);
   stroke(255, 255, 255);
@@ -843,7 +842,7 @@ function draw() {
   } else if (gameState === "stage1") {
     stage1.draw();
     ship();
-    //if(distance<100){
+
     enemies = enemies.filter((enemy) => enemy.y < -70);
     //spawning enemies
     if (shipY <= 0) {
@@ -855,7 +854,7 @@ function draw() {
         }
       }
     }
-    console.log(enemies.length);
+    //console.log(enemies.length);
   } else if (gameState === "stage2") {
     stage2.draw();
     ship();
@@ -1050,20 +1049,27 @@ function draw() {
       projectile.move();
       projectile.draw();
 
-      //console.log(projectile.y);
+      console.log(projectile.x);
 
-      // Remove projectiles if they go off-screen
-      if (
-        projectile.x < 0 ||
-        projectile.x > width ||
-        projectile.y < 0 ||
-        projectile.y > height
-      ) {
+      // Remove projectiles
+      if (this.projectileX <= -300 || this.projectileY <= -300) {
         projectiles.splice(i, 1);
-        continue;
       }
       for (let j = enemies.length - 1; j >= 0; j--) {
         let enemy = enemies[j];
+
+        let distance = dist(
+          projectile.projectileX,
+          projectile.projectileY,
+          enemy.x,
+          enemy.y
+        );
+
+        if (distance < 50) {
+          enemies.splice(j, 1);
+          projectiles.splice(i, 1);
+          break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
+        }
       }
     }
   }
