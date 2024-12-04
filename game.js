@@ -288,7 +288,7 @@ class Enemy1 {
   constructor(x, y, size, rotation) {
     this.x = x;
     this.y = y;
-    this.size = 0.4;
+    this.size = size;
     this.rotation = rotation;
   }
 
@@ -299,7 +299,7 @@ class Enemy1 {
   draw() {
     angleMode(DEGREES);
     push();
-    //translate(300);
+    translate(this.x, this.y);
     rotate(this.rotation);
 
     // Connections
@@ -527,18 +527,21 @@ class Enemy2 {
 }
 function setup() {
   createCanvas(600, 800);
+  push();
   // Create enemy2 and add them to the array
-  enemies.push(new Enemy2(0, -200, 0.4, 150));
-  enemies.push(new Enemy2(0, -300, 0.5, 160));
-  enemies.push(new Enemy2(0, -500, 0.4, 115));
+  // enemies.push(new Enemy2(0, 400, 0.4, 180));
+  // enemies.push(new Enemy2(0, -300, 0.5, 180));
+  // enemies.push(new Enemy2(0, -500, 0.4, 115));
 
   // Create enemy1 with different positions and sizes
-  enemies.push(new Enemy1(0, -200, 0.4, 180));
-  enemies.push(new Enemy1(0, -300, 0.8, 145));
-  enemies.push(new Enemy1(0, -500, 1, 100));
-  enemies.push(new Enemy1(0, -500, 1, 120));
-  enemies.push(new Enemy1(0, -400, 1, 170));
-  enemies.push(new Enemy1(0, -350, 1, 100));
+  //translate(this.x,this.y);
+  enemies.push(new Enemy1(200, 100, 0.4, 0));
+  // enemies.push(new Enemy1(0, -300, 0.4, 145));
+  // enemies.push(new Enemy1(0, -500, 0.4, 100));
+  // enemies.push(new Enemy1(0, -500, 0.4, 120));
+  // enemies.push(new Enemy1(0, -400, 0.4, 170));
+  // enemies.push(new Enemy1(0, -350, 0.4, 100));
+  pop();
 }
 
 //Gem
@@ -1016,15 +1019,17 @@ function draw() {
       shipY = 380;
     }
 
-    enemies = enemies.filter((enemy) => enemy.y < -70);
+    //enemies = enemies.filter((enemy) => enemy.y < -70);
     //spawning enemies
     if (shipY <= 0) {
       for (let enemy of enemies) {
         enemy.draw();
+        console.log(enemy.y);
+
         //enemy.move(speed);
-        if (enemy.y >= -70) {
-          gameState = "lose";
-        }
+        // if (enemy.y >= -70) {
+        //   gameState = "lose";
+        // }
       }
     }
     //combate state at shipY = 0
@@ -1060,7 +1065,7 @@ function draw() {
           enemy.y
         );
 
-        if (distance < 300) {
+        if (distance < 50) {
           enemies.splice(j, 1);
           projectiles.splice(i, 1);
           console.log("hit");
