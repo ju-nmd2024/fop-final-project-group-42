@@ -306,62 +306,43 @@ class Enemy1 {
     stroke(0);
     strokeWeight(5 * this.size);
     fill(100);
-    rect(
-      this.x - 70 * this.size,
-      this.y - 10 * this.size,
-      140 * this.size,
-      20 * this.size
-    );
+    rect(-70 * this.size, -10 * this.size, 140 * this.size, 20 * this.size);
 
     // Turbine
     quad(
-      this.x - 15 * this.size,
-      this.y - 80 * this.size,
-      this.x - 10 * this.size,
-      this.y - 95 * this.size,
-      this.x + 10 * this.size,
-      this.y - 95 * this.size,
-      this.x + 15 * this.size,
-      this.y - 80 * this.size
+      -15 * this.size,
+      -80 * this.size,
+      -10 * this.size,
+      -95 * this.size,
+      +10 * this.size,
+      -95 * this.size,
+      +15 * this.size,
+      -80 * this.size
     );
 
     // Outer ring
     strokeWeight(20 * this.size);
     noFill();
-    arc(this.x, this.y, 150 * this.size, 150 * this.size, 115, 65);
+    arc(0, 0, 150 * this.size, 150 * this.size, 115, 65);
     strokeWeight(13 * this.size);
     stroke(140);
-    arc(this.x, this.y, 150 * this.size, 150 * this.size, 115, 65);
+    arc(0, 0, 150 * this.size, 150 * this.size, 115, 65);
 
     // Midsection
     stroke(0);
     strokeWeight(5 * this.size);
     fill(140);
-    circle(this.x, this.y, 90 * this.size);
+    circle(0, 0, 90 * this.size);
     strokeWeight(4 * this.size);
-    circle(this.x, this.y - 55 * this.size, 20 * this.size);
+    circle(0, -55 * this.size, 20 * this.size);
     noFill();
 
     // Window
     strokeWeight(15 * this.size);
-    arc(
-      this.x,
-      this.y + -5 * this.size,
-      70 * this.size,
-      70 * this.size,
-      50,
-      130
-    );
+    arc(0, -5 * this.size, 70 * this.size, 70 * this.size, 50, 130);
     strokeWeight(10 * this.size);
     stroke(170, 40, 0);
-    arc(
-      this.x,
-      this.y + -5 * this.size,
-      70 * this.size,
-      70 * this.size,
-      50,
-      130
-    );
+    arc(0, -5 * this.size, 70 * this.size, 70 * this.size, 50, 130);
 
     pop();
   }
@@ -379,7 +360,7 @@ class Enemy2 {
   draw() {
     push();
     angleMode(DEGREES);
-    //translate(300, 400);
+    translate(this.x, this.y);
     rotate(this.rotation);
 
     // Your original enemy drawing code
@@ -387,104 +368,75 @@ class Enemy2 {
     stroke(0);
     strokeWeight(3 * this.size);
     // Inner body
-    circle(this.x, this.y, 70 * this.size);
-    rect(
-      this.x - 40 * this.size,
-      this.y - 55 * this.size,
-      65 * this.size,
-      55 * this.size
-    );
-    circle(this.x, this.y, 30 * this.size);
+    circle(0, 0, 70 * this.size);
+    rect(-40 * this.size, -55 * this.size, 65 * this.size, 55 * this.size);
+    circle(0, 0, 30 * this.size);
 
     // Inner wings
     triangle(
-      this.x + 25 * this.size,
-      this.y - 100 * this.size,
-      this.x + 25 * this.size,
-      this.y + 100 * this.size,
-      this.x + 100 * this.size,
-      this.y - 100 * this.size
+      +25 * this.size,
+      -100 * this.size,
+      +25 * this.size,
+      +100 * this.size,
+      +100 * this.size,
+      -100 * this.size
     );
     triangle(
-      this.x - 25 * this.size,
-      this.y - 100 * this.size,
-      this.x - 25 * this.size,
-      this.y + 100 * this.size,
-      this.x - 100 * this.size,
-      this.y - 100 * this.size
+      -25 * this.size,
+      -100 * this.size,
+      -25 * this.size,
+      +100 * this.size,
+      -100 * this.size,
+      -100 * this.size
     );
 
     // Window
     noFill();
     strokeWeight(10 * this.size);
-    arc(
-      this.x,
-      this.y - 10 * this.size,
-      70 * this.size,
-      70 * this.size,
-      60,
-      120
-    );
+    arc(0, -10 * this.size, 70 * this.size, 70 * this.size, 60, 120);
     strokeWeight(5 * this.size);
     stroke(170, 40, 0);
-    arc(
-      this.x,
-      this.y - 10 * this.size,
-      70 * this.size,
-      70 * this.size,
-      60,
-      120
-    );
+    arc(0, -10 * this.size, 70 * this.size, 70 * this.size, 60, 120);
 
     // Outer wings
     fill(150);
     strokeWeight(3 * this.size);
     stroke(0);
     triangle(
-      this.x + 125 * this.size,
-      this.y - 100 * this.size,
-      this.x + 125 * this.size,
-      this.y,
-      this.x + 90 * this.size,
-      this.y - 100 * this.size
+      +125 * this.size,
+      -100 * this.size,
+      +125 * this.size,
+      0,
+      +90 * this.size,
+      -100 * this.size
     );
     triangle(
-      this.x - 125 * this.size,
-      this.y - 100 * this.size,
-      this.x - 125 * this.size,
-      this.y,
-      this.x - 90 * this.size,
-      this.y - 100 * this.size
+      -125 * this.size,
+      -100 * this.size,
+      -125 * this.size,
+      0,
+      -90 * this.size,
+      -100 * this.size
     );
 
     // Engines and other parts
     noStroke();
-    rect(
-      this.x - 123 * this.size,
-      this.y - 99 * this.size,
-      96 * this.size,
-      55 * this.size
-    );
-    rect(
-      this.x + 123 * this.size,
-      this.y - 99 * this.size,
-      -96 * this.size,
-      55 * this.size
-    );
+    rect(-123 * this.size, -99 * this.size, 96 * this.size, 55 * this.size);
+    rect(+123 * this.size, -99 * this.size, -96 * this.size, 55 * this.size);
 
     noFill();
     stroke(3 * this.size);
     arc(
-      this.x + 95 * this.size,
-      this.y - 10 * this.size,
+      +95 * this.size,
+      -10 * this.size,
       50 * this.size,
       70 * this.size,
       225,
       311
     );
     arc(
-      this.x - 95 * this.size,
-      this.y - 10 * this.size,
+      -95 * this.size,
+      -10 * this.size,
       50 * this.size,
       70 * this.size,
       235,
@@ -493,29 +445,19 @@ class Enemy2 {
 
     // Engines
     fill(80);
-    rect(
-      this.x - 90 * this.size,
-      this.y - 125 * this.size,
-      40 * this.size,
-      60 * this.size
-    );
+    rect(-90 * this.size, -125 * this.size, 40 * this.size, 60 * this.size);
     arc(
-      this.x - 70 * this.size,
-      this.y - 67 * this.size,
+      -70 * this.size,
+      -67 * this.size,
       40.6 * this.size,
       20 * this.size,
       0,
       180
     );
-    rect(
-      this.x + 90 * this.size,
-      this.y - 125 * this.size,
-      -40 * this.size,
-      60 * this.size
-    );
+    rect(+90 * this.size, -125 * this.size, -40 * this.size, 60 * this.size);
     arc(
-      this.x + 70 * this.size,
-      this.y - 67 * this.size,
+      +70 * this.size,
+      -67 * this.size,
       40.6 * this.size,
       20 * this.size,
       0,
@@ -528,19 +470,18 @@ class Enemy2 {
 function setup() {
   createCanvas(600, 800);
   push();
-  // Create enemy2 and add them to the array
-  // enemies.push(new Enemy2(0, 400, 0.4, 180));
-  // enemies.push(new Enemy2(0, -300, 0.5, 180));
-  // enemies.push(new Enemy2(0, -500, 0.4, 115));
+  //Create enemy2 and add them to the array
+  enemies.push(new Enemy2(500, 100, 0.35, 180));
+  enemies.push(new Enemy2(300, 570, 0.35, 180));
+  enemies.push(new Enemy2(250, 100, 0.35, 115));
 
   // Create enemy1 with different positions and sizes
-  //translate(this.x,this.y);
-  enemies.push(new Enemy1(200, 100, 0.4, 0));
-  // enemies.push(new Enemy1(0, -300, 0.4, 145));
-  // enemies.push(new Enemy1(0, -500, 0.4, 100));
-  // enemies.push(new Enemy1(0, -500, 0.4, 120));
-  // enemies.push(new Enemy1(0, -400, 0.4, 170));
-  // enemies.push(new Enemy1(0, -350, 0.4, 100));
+  enemies.push(new Enemy1(200, 100, 0.4, 50));
+  enemies.push(new Enemy1(300, 200, 0.4, -100));
+  enemies.push(new Enemy1(400, 500, 0.4, 100));
+  enemies.push(new Enemy1(300, 500, 0.4, 120));
+  enemies.push(new Enemy1(550, 400, 0.4, 170));
+  enemies.push(new Enemy1(100, 350, 0.4, 100));
   pop();
 }
 
@@ -582,7 +523,7 @@ class Projectile {
     this.projectileY += this.speed * sin(this.projectileAngle);
     console.log(this.projectileY);
     console.log(this.projectileX);
-    //console.log(enemies.length);
+    console.log(enemies.length);
   }
 }
 
@@ -900,7 +841,6 @@ function draw() {
       }
     }
   }
-
   //howToPlay
   if (gameState === "howToPlay") {
     howToPlayScreen.draw();
@@ -924,7 +864,6 @@ function draw() {
       }
     }
   }
-
   //winScreen
   if (gameState === "win") {
     winScreen.draw();
@@ -962,7 +901,6 @@ function draw() {
       }
     }
   }
-
   //combat state mechanics (moving)
   if (combatState === false) {
     if (keyIsDown(38) || keyIsDown(87)) {
@@ -974,10 +912,10 @@ function draw() {
     shipVelocity = 0;
     if (keyIsDown(39) || keyIsDown(68)) {
       shipTurningRightBooster();
-      shipRotate += 10;
+      shipRotate += 7.5;
     } else if (keyIsDown(37) || keyIsDown(65)) {
       shipTurningLeftBooster();
-      shipRotate -= 10;
+      shipRotate -= 7.5;
     }
     /* if ( 
       dist(
@@ -1024,8 +962,9 @@ function draw() {
     if (shipY <= 0) {
       for (let enemy of enemies) {
         enemy.draw();
-        //console.log(enemy.y);
+        console.log(enemy.y);
 
+        //gameState lose for when they get too close
         //enemy.move(speed);
         // if (enemy.y >= -70) {
         //   gameState = "lose";
@@ -1050,18 +989,13 @@ function draw() {
       projectile.draw();
 
       // Remove projectiles ??
-      if (
-        projectile.projectileX <= -10 ||
-        projectile.projectileY <= -10 ||
-        projectile.projectileX >= 610 ||
-        projectile.projectileY >= 810
-      ) {
+      if (projectile.projectileX <= -300 || projectile.projectileY <= -300) {
         projectiles.splice(i, 1);
-        console.log("deleted");
       }
       //making enemies
       for (let j = enemies.length - 1; j >= 0; j--) {
         let enemy = enemies[j];
+        console.log(projectileY);
 
         //collision using distance method
         let distance = dist(
@@ -1070,14 +1004,21 @@ function draw() {
           enemy.x,
           enemy.y
         );
-
-        if (distance < 50) {
+        if (distance < 42.5) {
           enemies.splice(j, 1);
           projectiles.splice(i, 1);
           console.log("hit");
           break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
         }
       }
+    }
+  }
+
+  //gameplay in stage2
+  if (gameState === "stage2") {
+    if (shipY <= -440) {
+      gameState = "stageFinal";
+      shipY = 380;
     }
   }
 }
@@ -1095,7 +1036,6 @@ function keyPressed() {
     projectileRotate += 10;
   }
 }
-
 //making projectiles
 function createProjectile() {
   angleMode(DEGREES);
@@ -1103,13 +1043,5 @@ function createProjectile() {
   projectiles.push(newProjectile);
 }
 //losing condition
-
-//gameplay in stage2
-if (gameState === "stage2") {
-  if (shipY <= -440) {
-    gameState = "stageFinal";
-    shipY = 380;
-  }
-}
 
 //gameplay in stage3
