@@ -31,9 +31,6 @@ const winScreen = new WinScreen();
 import LoseScreen from "./loseScreen.js";
 const loseScreen = new LoseScreen();
 
-function setup() {
-  createCanvas(600, 800);
-}
 let shipX = 0;
 let shipY = 350;
 let shipRotate = 0;
@@ -282,7 +279,9 @@ function shipBooster() {
 
 //Enemies
 let speed = 1;
-let enemies = [];
+let enemies1 = [];
+let enemies2 = [];
+let enemies3 = [];
 
 class Enemy1 {
   constructor(x, y, size, rotation) {
@@ -470,18 +469,41 @@ class Enemy2 {
 function setup() {
   createCanvas(600, 800);
   push();
+  // Create enemy1 with different positions and sizes in stage1
+  enemies1.push(new Enemy1(200, 100, 0.4, 50));
+  enemies1.push(new Enemy1(300, 200, 0.4, -100));
+  enemies1.push(new Enemy1(400, 500, 0.4, 100));
+  enemies1.push(new Enemy1(300, 500, 0.4, 120));
+  enemies1.push(new Enemy1(550, 400, 0.4, 170));
+  enemies1.push(new Enemy1(100, 350, 0.4, 100));
   //Create enemy2 and add them to the array
-  enemies.push(new Enemy2(500, 100, 0.35, 180));
-  enemies.push(new Enemy2(300, 570, 0.35, 180));
-  enemies.push(new Enemy2(250, 100, 0.35, 115));
+  enemies1.push(new Enemy2(500, 100, 0.35, 180));
+  enemies1.push(new Enemy2(300, 570, 0.35, 180));
+  enemies1.push(new Enemy2(250, 100, 0.35, 115));
 
-  // Create enemy1 with different positions and sizes
-  enemies.push(new Enemy1(200, 100, 0.4, 50));
-  enemies.push(new Enemy1(300, 200, 0.4, -100));
-  enemies.push(new Enemy1(400, 500, 0.4, 100));
-  enemies.push(new Enemy1(300, 500, 0.4, 120));
-  enemies.push(new Enemy1(550, 400, 0.4, 170));
-  enemies.push(new Enemy1(100, 350, 0.4, 100));
+  // Create enemy1 with different positions and sizes in stage 2
+  enemies2.push(new Enemy1(200, 100, 0.4, 50));
+  enemies2.push(new Enemy1(300, 200, 0.4, -100));
+  enemies2.push(new Enemy1(400, 500, 0.4, 100));
+  enemies2.push(new Enemy1(300, 500, 0.4, 120));
+  enemies2.push(new Enemy1(550, 400, 0.4, 170));
+  enemies2.push(new Enemy1(100, 350, 0.4, 100));
+  //Create enemy2 and add them to the array
+  enemies2.push(new Enemy2(500, 100, 0.35, 180));
+  enemies2.push(new Enemy2(300, 570, 0.35, 180));
+  enemies2.push(new Enemy2(250, 100, 0.35, 115));
+
+  // Create enemy1 with different positions and sizes in stage 3
+  enemies3.push(new Enemy1(200, 100, 0.4, 50));
+  enemies3.push(new Enemy1(300, 200, 0.4, -100));
+  enemies3.push(new Enemy1(400, 500, 0.4, 100));
+  enemies3.push(new Enemy1(300, 500, 0.4, 120));
+  enemies3.push(new Enemy1(550, 400, 0.4, 170));
+  enemies3.push(new Enemy1(100, 350, 0.4, 100));
+  //Create enemy2 and add them to the array
+  enemies3.push(new Enemy2(500, 100, 0.35, 180));
+  enemies3.push(new Enemy2(300, 570, 0.35, 180));
+  enemies3.push(new Enemy2(250, 100, 0.35, 115));
   pop();
 }
 
@@ -778,6 +800,9 @@ function motharoof() {
 function draw() {
   if (gameState === "start") {
     startScreen();
+  } else if (gameState === "stage1") {
+    stage1.draw();
+    ship();
   } else if (gameState === "stage2") {
     stage2.draw();
     ship();
@@ -950,17 +975,15 @@ function draw() {
   // gameplay in stage1
   if (gameState === "stage1") {
     combatState = false;
-    stage1.draw();
-    ship();
     if (shipY <= -440) {
       gameState = "stage2";
-      shipY = 380;
+      shipY = 400;
     }
 
     //enemies = enemies.filter((enemy) => enemy.y < -70);
     //spawning enemies
     if (shipY <= 0) {
-      for (let enemy of enemies) {
+      for (let enemy of enemies1) {
         enemy.draw();
         //console.log(enemy.y);
 
@@ -977,7 +1000,7 @@ function draw() {
     }
 
     //changing the gameplay tobe playable after the enemies disappear and it's length is 0
-    if (enemies.length === 0) {
+    if (enemies1.length === 0) {
       combatState = false;
       shipRotate = 0;
     }
@@ -998,8 +1021,8 @@ function draw() {
         projectiles.splice(i, 1);
       }
       //making enemies
-      for (let j = enemies.length - 1; j >= 0; j--) {
-        let enemy = enemies[j];
+      for (let j = enemies1.length - 1; j >= 0; j--) {
+        let enemy = enemies1[j];
         //console.log(projectileY);
 
         //collision using distance method
@@ -1010,7 +1033,7 @@ function draw() {
           enemy.y
         );
         if (distance < 42.5) {
-          enemies.splice(j, 1);
+          enemies1.splice(j, 1);
           projectiles.splice(i, 1);
           console.log("hit");
           break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
@@ -1021,9 +1044,137 @@ function draw() {
 
   //gameplay in stage2
   if (gameState === "stage2") {
+    combatState = false;
     if (shipY <= -440) {
       gameState = "stageFinal";
       shipY = 380;
+    }
+    console.log(shipY);
+    //enemies = enemies.filter((enemy) => enemy.y < -70);
+    //spawning enemies
+    if (shipY <= 0) {
+      for (let enemy of enemies2) {
+        enemy.draw();
+        //console.log(enemy.y);
+
+        //gameState lose for when they get too close
+        //enemy.move(speed);
+        // if (enemy.y >= -70) {
+        //   gameState = "lose";
+        // }
+      }
+    }
+    //combate state at shipY = 0
+    if (shipY === 0) {
+      combatState = true;
+    }
+
+    //changing the gameplay tobe playable after the enemies disappear and it's length is 0
+    if (enemies2.length === 0) {
+      combatState = false;
+      shipRotate = 0;
+    }
+
+    //making projectles
+    for (let i = projectiles.length - 1; i >= 0; i--) {
+      let projectile = projectiles[i];
+      projectile.move();
+      projectile.draw();
+
+      // Remove projectiles ??
+      if (
+        projectile.projectileX <= -10 ||
+        projectile.projectileY <= -10 ||
+        projectile.projectileX >= 610 ||
+        projectile.projectileY >= 810
+      ) {
+        projectiles.splice(i, 1);
+      }
+      //making enemies
+      for (let j = enemies2.length - 1; j >= 0; j--) {
+        let enemy = enemies2[j];
+        //console.log(projectileY);
+
+        //collision using distance method
+        let distance = dist(
+          projectile.projectileX,
+          projectile.projectileY,
+          enemy.x,
+          enemy.y
+        );
+        if (distance < 42.5) {
+          enemies2.splice(j, 1);
+          projectiles.splice(i, 1);
+          console.log("hit");
+          break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
+        }
+      }
+    }
+  }
+
+  //gameplay in stageFinal
+  if (gameState === "stageFinal") {
+    combatState = false;
+    console.log(shipY);
+    //enemies = enemies.filter((enemy) => enemy.y < -70);
+    //spawning enemies
+    if (shipY <= 0) {
+      for (let enemy of enemies3) {
+        enemy.draw();
+        //console.log(enemy.y);
+
+        //gameState lose for when they get too close
+        //enemy.move(speed);
+        // if (enemy.y >= -70) {
+        //   gameState = "lose";
+        // }
+      }
+    }
+    //combate state at shipY = 0
+    if (shipY === 0) {
+      combatState = true;
+    }
+
+    //changing the gameplay tobe playable after the enemies disappear and it's length is 0
+    if (enemies3.length === 0) {
+      combatState = false;
+      shipRotate = 0;
+    }
+
+    //making projectles
+    for (let i = projectiles.length - 1; i >= 0; i--) {
+      let projectile = projectiles[i];
+      projectile.move();
+      projectile.draw();
+
+      // Remove projectiles ??
+      if (
+        projectile.projectileX <= -10 ||
+        projectile.projectileY <= -10 ||
+        projectile.projectileX >= 610 ||
+        projectile.projectileY >= 810
+      ) {
+        projectiles.splice(i, 1);
+      }
+      //making enemies
+      for (let j = enemies3.length - 1; j >= 0; j--) {
+        let enemy = enemies3[j];
+        //console.log(projectileY);
+
+        //collision using distance method
+        let distance = dist(
+          projectile.projectileX,
+          projectile.projectileY,
+          enemy.x,
+          enemy.y
+        );
+        if (distance < 42.5) {
+          enemies3.splice(j, 1);
+          projectiles.splice(i, 1);
+          console.log("hit");
+          break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
+        }
+      }
     }
   }
 }
@@ -1047,6 +1198,3 @@ function createProjectile() {
   let newProjectile = new Projectile(shipX + 300, shipY + 400, shipRotate + 90);
   projectiles.push(newProjectile);
 }
-//losing condition
-
-//gameplay in stage3
