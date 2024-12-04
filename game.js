@@ -523,7 +523,7 @@ class Projectile {
     this.projectileY += this.speed * sin(this.projectileAngle);
     console.log(this.projectileY);
     console.log(this.projectileX);
-    console.log(enemies.length);
+    //console.log(enemies.length);
   }
 }
 
@@ -962,7 +962,7 @@ function draw() {
     if (shipY <= 0) {
       for (let enemy of enemies) {
         enemy.draw();
-        console.log(enemy.y);
+        //console.log(enemy.y);
 
         //gameState lose for when they get too close
         //enemy.move(speed);
@@ -989,13 +989,18 @@ function draw() {
       projectile.draw();
 
       // Remove projectiles ??
-      if (projectile.projectileX <= -300 || projectile.projectileY <= -300) {
+      if (
+        projectile.projectileX <= -10 ||
+        projectile.projectileY <= -10 ||
+        projectile.projectileX >= 610 ||
+        projectile.projectileY >= 810
+      ) {
         projectiles.splice(i, 1);
       }
       //making enemies
       for (let j = enemies.length - 1; j >= 0; j--) {
         let enemy = enemies[j];
-        console.log(projectileY);
+        //console.log(projectileY);
 
         //collision using distance method
         let distance = dist(
