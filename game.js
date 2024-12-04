@@ -299,7 +299,7 @@ class Enemy1 {
   draw() {
     angleMode(DEGREES);
     push();
-    translate(300, 400);
+    //translate(300);
     rotate(this.rotation);
 
     // Connections
@@ -379,7 +379,7 @@ class Enemy2 {
   draw() {
     push();
     angleMode(DEGREES);
-    translate(300, 400);
+    //translate(300, 400);
     rotate(this.rotation);
 
     // Your original enemy drawing code
@@ -528,17 +528,17 @@ class Enemy2 {
 function setup() {
   createCanvas(600, 800);
   // Create enemy2 and add them to the array
-  enemies.push(new Enemy2(0, -200, 0.4, 270));
-  enemies.push(new Enemy2(0, -300, 0.5, 60));
+  enemies.push(new Enemy2(0, -200, 0.4, 150));
+  enemies.push(new Enemy2(0, -300, 0.5, 160));
   enemies.push(new Enemy2(0, -500, 0.4, 115));
 
   // Create enemy1 with different positions and sizes
-  enemies.push(new Enemy1(0, -400, 1.0, 0));
-  enemies.push(new Enemy1(0, -300, 0.8, 45));
-  enemies.push(new Enemy1(0, -700, 1, 80));
+  enemies.push(new Enemy1(0, -200, 0.4, 180));
+  enemies.push(new Enemy1(0, -300, 0.8, 145));
+  enemies.push(new Enemy1(0, -500, 1, 100));
   enemies.push(new Enemy1(0, -500, 1, 120));
-  enemies.push(new Enemy1(0, -400, 1, 260));
-  enemies.push(new Enemy1(0, -350, 1, 200));
+  enemies.push(new Enemy1(0, -400, 1, 170));
+  enemies.push(new Enemy1(0, -350, 1, 100));
 }
 
 //Gem
@@ -578,6 +578,8 @@ class Projectile {
     this.projectileX += this.speed * cos(this.projectileAngle);
     this.projectileY += this.speed * sin(this.projectileAngle);
     console.log(this.projectileY);
+    console.log(this.projectileX);
+    console.log(enemies.length);
   }
 }
 
@@ -980,9 +982,9 @@ function draw() {
         projectiles.projectileY,
         enemies.x,
         enemies.y
-      )
+      )  
     ) {
-      enemies = enemies.filter((enemy) => enemy.y < -100);
+      enemies = enemies.filter((enemy) => enemy.y < -100); 
     } */
   }
   //gameplay in stage0
@@ -1019,7 +1021,7 @@ function draw() {
     if (shipY <= 0) {
       for (let enemy of enemies) {
         enemy.draw();
-        enemy.move(speed);
+        //enemy.move(speed);
         if (enemy.y >= -70) {
           gameState = "lose";
         }
@@ -1058,9 +1060,10 @@ function draw() {
           enemy.y
         );
 
-        if (distance < 50) {
+        if (distance < 300) {
           enemies.splice(j, 1);
           projectiles.splice(i, 1);
+          console.log("hit");
           break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
         }
       }
