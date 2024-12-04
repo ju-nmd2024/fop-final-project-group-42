@@ -582,7 +582,7 @@ class Projectile {
     this.projectileY += this.speed * sin(this.projectileAngle);
     console.log(this.projectileY);
     console.log(this.projectileX);
-    console.log(enemies.length);
+    //console.log(enemies.length);
   }
 }
 
@@ -1024,7 +1024,7 @@ function draw() {
     if (shipY <= 0) {
       for (let enemy of enemies) {
         enemy.draw();
-        console.log(enemy.y);
+        //console.log(enemy.y);
 
         //enemy.move(speed);
         // if (enemy.y >= -70) {
@@ -1050,8 +1050,14 @@ function draw() {
       projectile.draw();
 
       // Remove projectiles ??
-      if (this.projectileX <= -300 || this.projectileY <= -300) {
+      if (
+        projectile.projectileX <= -10 ||
+        projectile.projectileY <= -10 ||
+        projectile.projectileX >= 610 ||
+        projectile.projectileY >= 810
+      ) {
         projectiles.splice(i, 1);
+        console.log("deleted");
       }
       //making enemies
       for (let j = enemies.length - 1; j >= 0; j--) {
