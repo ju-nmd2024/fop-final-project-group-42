@@ -1,3 +1,36 @@
+//importing gameScreen0
+import GameScreen0 from "./gameScreen0.js";
+const stage0 = new GameScreen0();
+
+//importing gameScreen1
+import GameScreen1 from "./gameScreen1.js";
+const stage1 = new GameScreen1();
+
+//importing gameScreen2
+import GameScreen2 from "./gameScreen2.js";
+const stage2 = new GameScreen2();
+
+//importing gameScreenFinal
+import GameScreenFinal from "./gameScreenFinal.js";
+const stageFinal = new GameScreenFinal();
+
+//importing howtoplayscreen
+import HowToPlayScreen from "./howToPlayScreen.js";
+const howToPlayScreen = new HowToPlayScreen();
+
+//importing instructions screen
+import InstructionsScreen from "./instructionsScreen.js";
+const instructionsScreen = new InstructionsScreen();
+
+//Results Screens
+//importing winning screen
+import WinScreen from "./winScreen.js";
+const winScreen = new WinScreen();
+
+//importing losing screen
+import LoseScreen from "./loseScreen.js";
+const loseScreen = new LoseScreen();
+
 function setup() {
   createCanvas(600, 800);
 }
@@ -675,38 +708,6 @@ for (let i = 0; i < 2500; i++) {
 }
 
 //Game Screens
-//importing gameScreen0
-import GameScreen0 from "./gameScreen0.js";
-const stage0 = new GameScreen0();
-
-//importing gameScreen1
-import GameScreen1 from "./gameScreen1.js";
-const stage1 = new GameScreen1();
-
-//importing gameScreen2
-import GameScreen2 from "./gameScreen2.js";
-const stage2 = new GameScreen2();
-
-//importing gameScreenFinal
-import GameScreenFinal from "./gameScreenFinal.js";
-const stageFinal = new GameScreenFinal();
-
-//importing howtoplayscreen
-import HowToPlayScreen from "./howToPlayScreen.js";
-const howToPlayScreen = new HowToPlayScreen();
-
-//importing instructions screen
-import InstructionsScreen from "./instructionsScreen.js";
-const instructionsScreen = new InstructionsScreen();
-
-//Results Screens
-//importing winning screen
-import WinScreen from "./winScreen.js";
-const winScreen = new WinScreen();
-
-//importing losing screen
-import LoseScreen from "./loseScreen.js";
-const loseScreen = new LoseScreen();
 
 //The big ship
 let mothaShipX = 0;
@@ -831,30 +832,6 @@ function motharoof() {
 function draw() {
   if (gameState === "start") {
     startScreen();
-  } else if (gameState === "stage0") {
-    stage0.draw();
-    mothaship();
-    ship();
-    motharoof();
-    if (keyIsDown(38) || keyIsDown(87)) {
-      shipBooster();
-    }
-  } else if (gameState === "stage1") {
-    stage1.draw();
-    ship();
-
-    enemies = enemies.filter((enemy) => enemy.y < -70);
-    //spawning enemies
-    if (shipY <= 0) {
-      for (let enemy of enemies) {
-        enemy.draw();
-        enemy.move(speed);
-        if (enemy.y >= -70) {
-          gameState = "lose";
-        }
-      }
-    }
-    //console.log(enemies.length);
   } else if (gameState === "stage2") {
     stage2.draw();
     ship();
@@ -880,14 +857,6 @@ function draw() {
     textFont("stencil");
     text("Final Stage", 210, 30);
     pop();
-  } else if (gameState === "howToPlay") {
-    howToPlayScreen.draw();
-  } else if (gameState === "instructions") {
-    instructionsScreen.draw();
-  } else if (gameState === "lose") {
-    loseScreen.draw();
-  } else if (gameState === "win") {
-    winScreen.draw();
   }
 
   //buttons' functionality
@@ -903,8 +872,9 @@ function draw() {
       }
     }
   }
-  //instructions buttons
+  //instructions
   if (gameState === "instructions") {
+    instructionsScreen.draw();
     if (mouseIsPressed) {
       if (mouseX > 45 && mouseX < 252 && mouseY > 687.5 && mouseY < 759.5) {
         gameState = "start";
@@ -926,8 +896,9 @@ function draw() {
     }
   }
 
-  //howToPlay buttons
+  //howToPlay
   if (gameState === "howToPlay") {
+    howToPlayScreen.draw();
     if (mouseIsPressed) {
       if (mouseX > 45 && mouseX < 252 && mouseY > 609.5 && mouseY < 684.5) {
         gameState = "start";
@@ -949,8 +920,9 @@ function draw() {
     }
   }
 
-  //winScreen buttons
+  //winScreen
   if (gameState === "win") {
+    winScreen.draw();
     combatState = false;
 
     if (mouseIsPressed) {
@@ -967,9 +939,9 @@ function draw() {
       }
     }
   }
-
-  //loseScreen buttons
+  //loseScreen
   if (gameState === "lose") {
+    loseScreen.draw();
     combatState = false;
     if (mouseIsPressed) {
       if (mouseX > 77 && mouseX < 222 && mouseY > 610 && mouseY < 685) {
@@ -986,7 +958,7 @@ function draw() {
     }
   }
 
-  //moving mechanics
+  //combat state mechanics (moving)
   if (combatState === false) {
     if (keyIsDown(38) || keyIsDown(87)) {
       shipBooster();
@@ -1015,49 +987,70 @@ function draw() {
   }
   //gameplay in stage0
   if (gameState === "stage0") {
+    stage0.draw();
+    mothaship();
+    ship();
+    motharoof();
+    if (keyIsDown(38) || keyIsDown(87)) {
+      shipBooster();
+    }
     shipY -= 3;
 
     if (shipY <= 150) {
       shipY += 3;
     }
+    if (shipY <= -440) {
+      gameState = "stage1";
+      shipY = 380;
+    }
   }
-
-  //stopping at shY && eY1 = 0
-  if (gameState === "stage0" && shipY <= -440) {
-    gameState = "stage1";
-    shipY = 380;
-  } else if (gameState === "stage1" && shipY <= -440) {
-    gameState = "stage2";
-    shipY = 380;
-  } else if (gameState === "stage2" && shipY <= -440) {
-    gameState = "stageFinal";
-    shipY = 380;
-  }
-
   // gameplay in stage1
   if (gameState === "stage1") {
     combatState = false;
+    stage1.draw();
+    ship();
+    if (shipY <= -440) {
+      gameState = "stage2";
+      shipY = 380;
+    }
+
+    enemies = enemies.filter((enemy) => enemy.y < -70);
+    //spawning enemies
+    if (shipY <= 0) {
+      for (let enemy of enemies) {
+        enemy.draw();
+        enemy.move(speed);
+        if (enemy.y >= -70) {
+          gameState = "lose";
+        }
+      }
+    }
+    //combate state at shipY = 0
     if (shipY === 0) {
       combatState = true;
     }
+
+    //changing the gameplay tobe playable after the enemies disappear and it's length is 0
     if (enemies.length === 0) {
       combatState = false;
       shipRotate = 0;
     }
+
+    //making projectles
     for (let i = projectiles.length - 1; i >= 0; i--) {
       let projectile = projectiles[i];
       projectile.move();
       projectile.draw();
 
-      console.log(projectile.x);
-
-      // Remove projectiles
+      // Remove projectiles ??
       if (this.projectileX <= -300 || this.projectileY <= -300) {
         projectiles.splice(i, 1);
       }
+      //making enemies
       for (let j = enemies.length - 1; j >= 0; j--) {
         let enemy = enemies[j];
 
+        //collision using distance method
         let distance = dist(
           projectile.projectileX,
           projectile.projectileY,
@@ -1074,6 +1067,8 @@ function draw() {
     }
   }
 }
+
+//appear the flame at the bottom of ship
 function keyPressed() {
   if (keyCode === 32 && combatState === true) {
     createProjectile();
@@ -1087,6 +1082,7 @@ function keyPressed() {
   }
 }
 
+//making projectiles
 function createProjectile() {
   angleMode(DEGREES);
   let newProjectile = new Projectile(shipX + 300, shipY + 400, shipRotate + 90);
@@ -1095,5 +1091,11 @@ function createProjectile() {
 //losing condition
 
 //gameplay in stage2
+if (gameState === "stage2") {
+  if (shipY <= -440) {
+    gameState = "stageFinal";
+    shipY = 380;
+  }
+}
 
 //gameplay in stage3
