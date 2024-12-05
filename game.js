@@ -278,8 +278,9 @@ function shipBooster() {
 }
 
 //Enemies
-let speed = 2;
+let speed = 1;
 let enemies1 = [];
+
 let enemies2 = [];
 let enemies3 = [];
 
@@ -350,6 +351,7 @@ class Enemy1 {
     pop();
   }
 }
+
 class Enemy2 {
   constructor(x, y, size, rotation) {
     this.x = x;
@@ -474,7 +476,9 @@ class Enemy2 {
     pop();
   }
 }
+
 function setup() {
+  frameRate(60);
   createCanvas(600, 800);
   stage0 = new GameScreen0();
   stage1 = new GameScreen1();
@@ -487,6 +491,7 @@ function setup() {
 
   push();
   // Create enemy1 with different positions and sizes in stage1
+  //if(gameState=== "stage1"){
   enemies1.push(new Enemy1(300, -300, 0.4, 0));
   enemies1.push(new Enemy1(1050, -100, 0.4, 50));
   enemies1.push(new Enemy1(1050, 400, 0.4, 90));
@@ -494,7 +499,7 @@ function setup() {
   enemies1.push(new Enemy1(590, 1400, 0.4, 165));
   enemies1.push(new Enemy1(-50, 750, 0.4, -135));
   enemies1.push(new Enemy1(-700, 100, 0.4, 280));
-
+  //}
   // Create enemy2 with different positions and sizes in stage 2
   enemies2.push(new Enemy2(0, -800, 0.35, 0));
   enemies2.push(new Enemy2(800, -200, 0.35, 45));
@@ -934,6 +939,7 @@ function draw() {
   if (gameState === "lose") {
     loseScreen.draw();
     combatState = false;
+    //enemies1.pop();
     if (mouseIsPressed) {
       if (mouseX > 77 && mouseX < 222 && mouseY > 610 && mouseY < 685) {
         gameState = "start";
@@ -993,6 +999,7 @@ function draw() {
     }
 
     //enemies = enemies.filter((enemy) => enemy.y < -70);
+
     //spawning enemies
     if (shipY <= 0) {
       for (let enemy of enemies1) {
