@@ -31,6 +31,10 @@ let winScreen;
 import LoseScreen from "./loseScreen.js";
 let loseScreen;
 
+function preload() {
+  gem = loadImage("gem.png");
+}
+
 let shipX = 0;
 let shipY = 350; // put back to 350
 let shipRotate = 0;
@@ -280,7 +284,6 @@ function shipBooster() {
 //Enemies
 let speed = 1;
 let enemies1 = [];
-
 let enemies2 = [];
 let enemies3 = [];
 
@@ -477,21 +480,8 @@ class Enemy2 {
   }
 }
 
-function setup() {
-  frameRate(60);
-  createCanvas(600, 800);
-  stage0 = new GameScreen0();
-  stage1 = new GameScreen1();
-  stage2 = new GameScreen2();
-  stageFinal = new GameScreenFinal();
-  howToPlayScreen = new HowToPlayScreen();
-  instructionsScreen = new InstructionsScreen();
-  winScreen = new WinScreen();
-  loseScreen = new LoseScreen();
-
-  push();
-  // Create enemy1 with different positions and sizes in stage1
-  //if(gameState=== "stage1"){
+function reset() {
+  enemies1 = [];
   enemies1.push(new Enemy1(300, -300, 0.4, 0));
   enemies1.push(new Enemy1(1050, -100, 0.4, 50));
   enemies1.push(new Enemy1(1050, 400, 0.4, 90));
@@ -499,9 +489,9 @@ function setup() {
   enemies1.push(new Enemy1(590, 1400, 0.4, 165));
   enemies1.push(new Enemy1(-50, 750, 0.4, -135));
   enemies1.push(new Enemy1(-700, 100, 0.4, 280));
-  //}
-  // Create enemy2 with different positions and sizes in stage 2
-  enemies2.push(new Enemy2(0, -800, 0.35, 0));
+
+  enemies2 = [];
+  enemies2.push(new Enemy2(300, -800, 0.35, 0));
   enemies2.push(new Enemy2(800, -200, 0.35, 45));
   enemies2.push(new Enemy2(825, 25, 0.35, 55));
   enemies2.push(new Enemy2(1300, 200, 0.35, 85));
@@ -513,7 +503,7 @@ function setup() {
   enemies2.push(new Enemy2(-150, 100, 0.35, 300));
   enemies2.push(new Enemy2(-100, -600, 0.35, -35));
 
-  // Create enemy1 with different positions and sizes in stage 3
+  enemies3 = [];
   enemies3.push(new Enemy1(-450, 0, 0.4, -90));
   enemies3.push(new Enemy1(-500, 600, 0.4, -105));
   enemies3.push(new Enemy1(-150, 700, 0.4, -125));
@@ -530,6 +520,23 @@ function setup() {
   enemies3.push(new Enemy2(175, 1150, 0.35, 190));
   enemies3.push(new Enemy2(-150, 1300, 0.35, 205));
   enemies3.push(new Enemy2(-500, 1650, 0.35, 230));
+}
+
+function setup() {
+  frameRate(60);
+  createCanvas(600, 800);
+  stage0 = new GameScreen0();
+  stage1 = new GameScreen1();
+  stage2 = new GameScreen2();
+  stageFinal = new GameScreenFinal();
+  howToPlayScreen = new HowToPlayScreen();
+  instructionsScreen = new InstructionsScreen();
+  winScreen = new WinScreen();
+  loseScreen = new LoseScreen();
+
+  push();
+  reset();
+
   pop();
 }
 window.setup = setup;
@@ -919,8 +926,8 @@ function draw() {
   //winScreen
   if (gameState === "win") {
     winScreen.draw();
+    reset();
     combatState = false;
-
     if (mouseIsPressed) {
       if (mouseX > 47 && mouseX < 252 && mouseY > 610 && mouseY < 685) {
         gameState = "start";
@@ -937,6 +944,8 @@ function draw() {
   }
   //loseScreen
   if (gameState === "lose") {
+    reset();
+    shipY = -500;
     loseScreen.draw();
     combatState = false;
     //enemies1.pop();
@@ -965,21 +974,26 @@ function draw() {
     shipVelocity = 0;
     if (keyIsDown(39) || keyIsDown(68)) {
       shipTurningRightBooster();
-      shipRotate += 7.5;
+      shipRotate += 2.5;
     } else if (keyIsDown(37) || keyIsDown(65)) {
       shipTurningLeftBooster();
-      shipRotate -= 7.5;
+      shipRotate -= 2.5;
     }
   }
+
   //gameplay in stage0
   if (gameState === "stage0") {
+    let gemY = 547;
     stage0.draw();
     mothaship();
+    if (shipY >= 160) {
+      image(gem, 285, gemY, 30, 50);
+    }
     ship();
-    motharoof();
     if (keyIsDown(38) || (keyIsDown(87) && shipY > -300)) {
       shipBooster();
     }
+    motharoof();
     shipY -= 3;
 
     if (shipY <= 150) {
@@ -1008,8 +1022,8 @@ function draw() {
         //console.log(enemy.y);
 
         //gameState lose for when they get too close
-        let deadthDistance = dist(300, 400, enemy.x, enemy.y);
-        if (deadthDistance <= 30) {
+        let deathDistance = dist(300, 400, enemy.x, enemy.y);
+        if (deathDistance <= 60) {
           gameState = "lose";
         }
       }
@@ -1079,8 +1093,8 @@ function draw() {
         //console.log(enemy.y);
 
         //gameState lose for when they get too close
-        let deadthDistance = dist(300, 400, enemy.x, enemy.y);
-        if (deadthDistance <= 30) {
+        let deathDistance = dist(300, 400, enemy.x, enemy.y);
+        if (deathDistance <= 60) {
           gameState = "lose";
         }
       }
@@ -1145,8 +1159,8 @@ function draw() {
         //console.log(enemy.y);
 
         //gameState lose for when they get too close
-        let deadthDistance = dist(300, 400, enemy.x, enemy.y);
-        if (deadthDistance <= 30) {
+        let deathDistance = dist(300, 400, enemy.x, enemy.y);
+        if (deathDistance <= 60) {
           gameState = "lose";
         }
       }
@@ -1197,13 +1211,14 @@ function draw() {
         }
       }
     }
-
+    let gemY = 40;
     //winning condition
     if (shipY <= -170) {
+      image(gem, 285, gemY, 30, 50);
       shipVelocity = 0;
       shipY -= 3;
     }
-    if (shipY <= -380) {
+    if (shipY <= -500) {
       gameState = "win";
     }
   }
