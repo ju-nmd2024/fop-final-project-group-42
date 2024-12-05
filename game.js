@@ -278,7 +278,7 @@ function shipBooster() {
 }
 
 //Enemies
-let speed = 1;
+let speed = 2;
 let enemies1 = [];
 let enemies2 = [];
 let enemies3 = [];
@@ -478,44 +478,44 @@ function setup() {
   createCanvas(600, 800);
   push();
   // Create enemy1 with different positions and sizes in stage1
-  enemies1.push(new Enemy1(300, 200, 0.4, 0));
-  enemies1.push(new Enemy1(450, 300, 0.4, 50));
-  enemies1.push(new Enemy1(500, 400, 0.4, 90));
-  enemies1.push(new Enemy1(440, 520, 0.4, 135));
-  enemies1.push(new Enemy1(370, 700, 0.4, 165));
-  enemies1.push(new Enemy1(100, 350, 0.4, 280));
-  enemies1.push(new Enemy1(100, 600, 0.4, 225));
+  enemies1.push(new Enemy1(300, -300, 0.4, 0));
+  enemies1.push(new Enemy1(1050, -100, 0.4, 50));
+  enemies1.push(new Enemy1(1050, 400, 0.4, 90));
+  enemies1.push(new Enemy1(720, 760, 0.4, 135));
+  enemies1.push(new Enemy1(590, 1400, 0.4, 165));
+  enemies1.push(new Enemy1(-50, 750, 0.4, -135));
+  enemies1.push(new Enemy1(-700, 100, 0.4, 280));
 
-  // Create enemy1 with different positions and sizes in stage 2
-  enemies2.push(new Enemy2(300, 200, 0.35, 0));
-  enemies2.push(new Enemy2(425, 250, 0.35, 45));
-  enemies2.push(new Enemy2(475, 275, 0.35, 55));
-  enemies2.push(new Enemy2(550, 350, 0.35, 85));
-  enemies2.push(new Enemy2(500, 500, 0.35, 120));
-  enemies2.push(new Enemy2(425, 600, 0.35, 150));
-  enemies2.push(new Enemy2(300, 550, 0.35, 180));
-  enemies2.push(new Enemy2(200, 500, 0.35, 225));
-  enemies2.push(new Enemy2(100, 420, 0.35, 265));
-  enemies2.push(new Enemy2(150, 300, 0.35, 300));
-  enemies2.push(new Enemy2(175, 200, 0.35, -35));
+  // Create enemy2 with different positions and sizes in stage 2
+  enemies2.push(new Enemy2(0, -800, 0.35, 0));
+  enemies2.push(new Enemy2(800, -200, 0.35, 45));
+  enemies2.push(new Enemy2(825, 25, 0.35, 55));
+  enemies2.push(new Enemy2(1300, 200, 0.35, 85));
+  enemies2.push(new Enemy2(1500, 1000, 0.35, 120));
+  enemies2.push(new Enemy2(925, 1400, 0.35, 150));
+  enemies2.push(new Enemy2(300, 1000, 0.35, 180));
+  enemies2.push(new Enemy2(-100, 800, 0.35, 225));
+  enemies2.push(new Enemy2(-300, 460, 0.35, 265));
+  enemies2.push(new Enemy2(-150, 100, 0.35, 300));
+  enemies2.push(new Enemy2(-100, -600, 0.35, -35));
 
   // Create enemy1 with different positions and sizes in stage 3
-  enemies3.push(new Enemy1(50, 400, 0.4, -90));
-  enemies3.push(new Enemy1(100, 450, 0.4, -105));
-  enemies3.push(new Enemy1(150, 500, 0.4, -125));
-  enemies3.push(new Enemy1(200, 550, 0.4, -140));
-  enemies3.push(new Enemy1(250, 600, 0.4, -165));
-  enemies3.push(new Enemy1(300, 650, 0.4, 180));
-  enemies3.push(new Enemy1(350, 600, 0.4, 165));
-  enemies3.push(new Enemy1(400, 550, 0.4, 150));
-  enemies3.push(new Enemy2(450, 500, 0.35, 125));
-  enemies3.push(new Enemy2(500, 450, 0.35, 105));
-  enemies3.push(new Enemy2(550, 400, 0.35, 90));
-  enemies3.push(new Enemy2(350, 450, 0.35, 140));
-  enemies3.push(new Enemy2(450, 400, 0.35, 90));
-  enemies3.push(new Enemy2(250, 700, 0.35, 190));
-  enemies3.push(new Enemy2(150, 700, 0.35, 205));
-  enemies3.push(new Enemy2(100, 570, 0.35, 230));
+  enemies3.push(new Enemy1(-450, 0, 0.4, -90));
+  enemies3.push(new Enemy1(-500, 600, 0.4, -105));
+  enemies3.push(new Enemy1(-150, 700, 0.4, -125));
+  enemies3.push(new Enemy1(50, 925, 0.4, -140));
+  enemies3.push(new Enemy1(50, 1400, 0.4, -165));
+  enemies3.push(new Enemy1(300, 1150, 0.4, 180));
+  enemies3.push(new Enemy1(600, 1200, 0.4, 165));
+  enemies3.push(new Enemy1(700, 1300, 0.4, 150));
+  enemies3.push(new Enemy2(675, 800, 0.35, 125));
+  enemies3.push(new Enemy2(900, 550, 0.35, 105));
+  enemies3.push(new Enemy2(1300, 400, 0.35, 90));
+  enemies3.push(new Enemy2(800, 800, 0.35, 120));
+  enemies3.push(new Enemy2(900, 400, 0.35, 90));
+  enemies3.push(new Enemy2(175, 1150, 0.35, 190));
+  enemies3.push(new Enemy2(-150, 1300, 0.35, 205));
+  enemies3.push(new Enemy2(-500, 1650, 0.35, 230));
   pop();
 }
 
@@ -1058,7 +1058,7 @@ function draw() {
     if (shipY <= 0) {
       for (let enemy of enemies2) {
         enemy.draw();
-        enemy.move(speed);
+        //enemy.move(speed);
         //console.log(enemy.y);
 
         //gameState lose for when they get too close
@@ -1124,7 +1124,7 @@ function draw() {
     if (shipY <= 0) {
       for (let enemy of enemies3) {
         enemy.draw();
-        //enemy.move(speed);
+        enemy.move(speed);
         //console.log(enemy.y);
 
         //gameState lose for when they get too close
