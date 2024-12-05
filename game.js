@@ -32,7 +32,7 @@ import LoseScreen from "./loseScreen.js";
 const loseScreen = new LoseScreen();
 
 let shipX = 0;
-let shipY = 0; // put back to 350
+let shipY = 350; // put back to 350
 let shipRotate = 0;
 let shipSize = 0.3;
 let shipVelocity = 3;
@@ -619,7 +619,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "stageFinal";
+let gameState = "start";
 function logo() {
   fill(0);
   stroke(255, 255, 255);
@@ -1058,7 +1058,7 @@ function draw() {
     if (shipY <= 0) {
       for (let enemy of enemies2) {
         enemy.draw();
-        //enemy.move(speed);
+        enemy.move(speed);
         //console.log(enemy.y);
 
         //gameState lose for when they get too close
