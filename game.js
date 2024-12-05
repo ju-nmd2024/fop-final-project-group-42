@@ -1,49 +1,44 @@
-//importing gameScreen0
+//importing gameScreens
 import GameScreen0 from "./gameScreen0.js";
 let stage0;
 
-// //importing gameScreen1
 import GameScreen1 from "./gameScreen1.js";
 let stage1;
 
-//importing gameScreen2
 import GameScreen2 from "./gameScreen2.js";
 let stage2;
 
-//importing gameScreenFinal
 import GameScreenFinal from "./gameScreenFinal.js";
 let stageFinal;
 
-//importing howtoplayscreen
 import HowToPlayScreen from "./howToPlayScreen.js";
 let howToPlayScreen;
 
-//importing instructions screen
 import InstructionsScreen from "./instructionsScreen.js";
 let instructionsScreen;
 
-//Results Screens
-//importing winning screen
 import WinScreen from "./winScreen.js";
 let winScreen;
 
-//importing losing screen
 import LoseScreen from "./loseScreen.js";
 let loseScreen;
 
+//importing gem.png
+let gem;
 function preload() {
-  gem = loadImage("gem.png");
+  gem = loadImage("./gem.png");
 }
+window.preload = preload;
 
+//Ship
 let shipX = 0;
 let shipY = 350; // put back to 350
 let shipRotate = 0;
 let shipSize = 0.3;
 let shipVelocity = 3;
 let boosterSize = 0.6;
-
 let combatState = false;
-//Player (ship and flames and ammo)
+
 function ship() {
   angleMode(DEGREES);
   push();
@@ -286,7 +281,6 @@ let speed = 1;
 let enemies1 = [];
 let enemies2 = [];
 let enemies3 = [];
-
 class Enemy1 {
   constructor(x, y, size, rotation) {
     this.x = x;
@@ -296,6 +290,7 @@ class Enemy1 {
   }
 
   move(speed) {
+    //the following 5 lines of code was adapted from https://chatgpt.com/share/6751c57f-a508-8003-a1d3-4f71e2e564e9
     let dx = 300 - this.x;
     let dy = 400 - this.y;
     let angle = atan2(dy, dx);
@@ -354,7 +349,6 @@ class Enemy1 {
     pop();
   }
 }
-
 class Enemy2 {
   constructor(x, y, size, rotation) {
     this.x = x;
@@ -479,7 +473,6 @@ class Enemy2 {
     pop();
   }
 }
-
 function reset() {
   enemies1 = [];
   enemies1.push(new Enemy1(300, -300, 0.4, 0));
@@ -521,7 +514,7 @@ function reset() {
   enemies3.push(new Enemy2(-150, 1300, 0.35, 205));
   enemies3.push(new Enemy2(-500, 1650, 0.35, 230));
 }
-
+//setup
 function setup() {
   frameRate(60);
   createCanvas(600, 800);
@@ -533,17 +526,14 @@ function setup() {
   instructionsScreen = new InstructionsScreen();
   winScreen = new WinScreen();
   loseScreen = new LoseScreen();
-
+  //reseting the enemy spawning mechanic
   push();
   reset();
-
   pop();
 }
 window.setup = setup;
 
-//Gem
-
-//projectile
+//projectiles
 let projectiles = [];
 let projectileX = 300;
 let projectileY = 400;
@@ -577,63 +567,7 @@ class Projectile {
   move() {
     this.projectileX += this.speed * cos(this.projectileAngle);
     this.projectileY += this.speed * sin(this.projectileAngle);
-    console.log(this.projectileY);
-    console.log(this.projectileX);
-    //console.log(enemies.length);
   }
-}
-
-//Fuel Tank
-function fuelTank() {
-  push();
-  angleMode(DEGREES);
-  let fuelX = 100;
-  let fuelY = 100;
-  let fuelS = 0.3;
-  strokeWeight(3 * fuelS);
-  fill(100, 0, 0);
-  stroke(0, 0, 0);
-  rect(
-    fuelX - 10 * fuelS,
-    fuelY + 10 * fuelS,
-    100 * fuelS,
-    135 * fuelS,
-    20 * fuelS
-  );
-  fill(150, 0, 0);
-  push();
-  strokeWeight(15 * fuelS);
-  stroke(0, 0, 0);
-  noFill();
-  square(fuelX + 10 * fuelS, fuelY - 15 * fuelS, 50 * fuelS, 18 * fuelS);
-  square(fuelX + 70 * fuelS, fuelY * fuelS, 18, 5);
-  push();
-  strokeWeight(8 * fuelS);
-  arc(
-    fuelX + 100 * fuelS,
-    fuelY + 5 * fuelS,
-    50 * fuelS,
-    50 * fuelS,
-    180 * fuelS,
-    -80 * fuelS
-  );
-  pop();
-  strokeWeight(10 * fuelS);
-  stroke(150, 0, 0);
-  noFill();
-  square(fuelX + 10 * fuelS, fuelY - 15 * fuelS, 50 * fuelS, 18 * fuelS);
-  pop();
-  stroke(0, 0, 0);
-  fill(150, 0, 0);
-  rect(fuelX, fuelY, 100 * fuelS, 135 * fuelS, 20 * fuelS);
-
-  textSize(80 * fuelS);
-  fill(100, 0, 0);
-  stroke(100, 0, 0);
-  strokeWeight(15 * fuelS);
-  textFont("arial");
-  text("X", fuelX + 23 * fuelS, fuelY + 95 * fuelS);
-  pop();
 }
 
 //Start Screen
@@ -699,6 +633,7 @@ function startScreen() {
   logo();
   buttons();
 }
+//for loop for creating stars randomly on the canvas
 for (let i = 0; i < 2500; i++) {
   const x = Math.floor(Math.random() * innerWidth);
   const y = Math.floor(Math.random() * innerHeight);
@@ -709,8 +644,6 @@ for (let i = 0; i < 2500; i++) {
   starAlpha.push(alpha);
 }
 
-//Game Screens
-
 //The big ship
 let mothaShipX = 0;
 let mothaShipY = 0;
@@ -720,7 +653,7 @@ function mothaship() {
   stroke(0);
   translate(300, 400);
   strokeWeight(4);
-
+  //body of the ship
   rect(mothaShipX - 300, mothaShipY + 200, 600, 150);
   fill(40, 200, 220);
   rect(mothaShipX - 300, mothaShipY + 225, 600, 150);
@@ -729,6 +662,7 @@ function mothaship() {
   fill(140);
   strokeWeight(4);
   push();
+  //landing platform
   rect(mothaShipX - 100, mothaShipY + 100, 200, 240);
   stroke(240, 200, 0);
   fill(240, 200, 0);
@@ -738,15 +672,14 @@ function mothaship() {
   fill(50);
   stroke(0);
   pop();
-
+  //more body of the ship
   arc(mothaShipX + 302, mothaShipY + 248, 150, 150, 180, 270);
   arc(mothaShipX - 302, mothaShipY + 248, 150, 150, 270, 0);
   strokeWeight(20);
   stroke(50);
-
+  //details
   line(mothaShipX - 70, mothaShipY + 105, mothaShipX - 70, mothaShipY + 340);
   line(mothaShipX + 70, mothaShipY + 105, mothaShipX + 70, mothaShipY + 340);
-
   strokeWeight(1);
   fill(0, 255, 0);
   circle(mothaShipX - 70, mothaShipY + 220, 8);
@@ -779,7 +712,6 @@ function mothaship() {
   circle(mothaShipX - 200, mothaShipY + 335, 4);
   circle(mothaShipX - 200, mothaShipY + 360, 4);
   circle(mothaShipX - 200, mothaShipY + 385, 4);
-
   line(mothaShipX + 170, mothaShipY + 250, mothaShipX + 170, mothaShipY + 310);
   line(mothaShipX + 170, mothaShipY + 310, mothaShipX + 300, mothaShipY + 310);
   circle(mothaShipX + 160, mothaShipY + 260, 4);
@@ -877,7 +809,7 @@ function draw() {
       }
     }
   }
-  //instructions
+  //instructions buttons
   if (gameState === "instructions") {
     instructionsScreen.draw();
     if (mouseIsPressed) {
@@ -900,7 +832,7 @@ function draw() {
       }
     }
   }
-  //howToPlay
+  //howToPlay buttons
   if (gameState === "howToPlay") {
     howToPlayScreen.draw();
     if (mouseIsPressed) {
@@ -923,7 +855,7 @@ function draw() {
       }
     }
   }
-  //winScreen
+  //winScreen buttons
   if (gameState === "win") {
     winScreen.draw();
     reset();
@@ -942,7 +874,7 @@ function draw() {
       }
     }
   }
-  //loseScreen
+  //loseScreen buttons
   if (gameState === "lose") {
     reset();
     shipY = -500;
@@ -963,6 +895,7 @@ function draw() {
       }
     }
   }
+
   //combat state mechanics (moving)
   if (combatState === false) {
     if (keyIsDown(38) || keyIsDown(87)) {
@@ -986,19 +919,25 @@ function draw() {
     let gemY = 547;
     stage0.draw();
     mothaship();
+
+    //spawning the gem
     if (shipY >= 160) {
       image(gem, 285, gemY, 30, 50);
     }
+
     ship();
+    //make booster appear
     if (keyIsDown(38) || (keyIsDown(87) && shipY > -300)) {
       shipBooster();
     }
     motharoof();
-    shipY -= 3;
 
+    //automation in movement in the beginning of the game
+    shipY -= 3;
     if (shipY <= 150) {
       shipY += 3;
     }
+    //changing states when ship is out of sight
     if (shipY <= -440) {
       gameState = "stage1";
       shipY = 380;
@@ -1007,19 +946,18 @@ function draw() {
   // gameplay in stage1
   if (gameState === "stage1") {
     combatState = false;
+
+    //changing states when ship is out of sight
     if (shipY <= -440) {
       gameState = "stage2";
       shipY = 400;
     }
 
-    //enemies = enemies.filter((enemy) => enemy.y < -70);
-
-    //spawning enemies
+    //making enemies appear and move
     if (shipY <= 0) {
       for (let enemy of enemies1) {
         enemy.draw();
         enemy.move(speed);
-        //console.log(enemy.y);
 
         //gameState lose for when they get too close
         let deathDistance = dist(300, 400, enemy.x, enemy.y);
@@ -1033,7 +971,7 @@ function draw() {
       combatState = true;
     }
 
-    //changing the gameplay tobe playable after the enemies disappear and it's length is 0
+    //changing the gameplay to be playable after the enemies disappear and it's length is 0
     if (enemies1.length === 0) {
       combatState = false;
       shipRotate = 0;
@@ -1045,7 +983,7 @@ function draw() {
       projectile.move();
       projectile.draw();
 
-      // Remove projectiles ??
+      // Remove projectiles when they are out of sight
       if (
         projectile.projectileX <= -10 ||
         projectile.projectileY <= -10 ||
@@ -1054,23 +992,24 @@ function draw() {
       ) {
         projectiles.splice(i, 1);
       }
-      //making enemies
+
+      //making enemies array lose an index when enemy disappears (gets shot)
       for (let j = enemies1.length - 1; j >= 0; j--) {
         let enemy = enemies1[j];
-        //console.log(projectileY);
 
-        //collision using distance method
+        //collision between projectiles and enemies using distance method
         let distance = dist(
           projectile.projectileX,
           projectile.projectileY,
           enemy.x,
           enemy.y
         );
+        //making the enemies and projectiles disappear when shot
         if (distance < 42.5) {
           enemies1.splice(j, 1);
           projectiles.splice(i, 1);
-          console.log("hit");
-          break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
+          //the following 1 line of code was adapted from https://chatgpt.com/share/6751c57f-a508-8003-a1d3-4f71e2e564e9
+          break; //(this makes it to where it exits the enemy loop after collision is detected)
         }
       }
     }
@@ -1083,14 +1022,12 @@ function draw() {
       gameState = "stageFinal";
       shipY = 380;
     }
-    console.log(shipY);
-    //enemies = enemies.filter((enemy) => enemy.y < -70);
+
     //spawning enemies
     if (shipY <= 0) {
       for (let enemy of enemies2) {
         enemy.draw();
         enemy.move(speed);
-        //console.log(enemy.y);
 
         //gameState lose for when they get too close
         let deathDistance = dist(300, 400, enemy.x, enemy.y);
@@ -1104,7 +1041,7 @@ function draw() {
       combatState = true;
     }
 
-    //changing the gameplay tobe playable after the enemies disappear and it's length is 0
+    //changing the gameplay to be playable after the enemies disappear and it's length is 0
     if (enemies2.length === 0) {
       combatState = false;
       shipRotate = 0;
@@ -1116,7 +1053,7 @@ function draw() {
       projectile.move();
       projectile.draw();
 
-      // Remove projectiles ??
+      // Remove projectiles when out of sight
       if (
         projectile.projectileX <= -10 ||
         projectile.projectileY <= -10 ||
@@ -1128,19 +1065,19 @@ function draw() {
       //making enemies
       for (let j = enemies2.length - 1; j >= 0; j--) {
         let enemy = enemies2[j];
-        //console.log(projectileY);
 
-        //collision using distance method
+        //collision between enemies and projectiles using distance method
         let distance = dist(
           projectile.projectileX,
           projectile.projectileY,
           enemy.x,
           enemy.y
         );
+        //making enemies and projectiles disappear after getting shot
         if (distance < 42.5) {
           enemies2.splice(j, 1);
           projectiles.splice(i, 1);
-          console.log("hit");
+          //the following 1 line was adapted from https://chatgpt.com/share/6751c57f-a508-8003-a1d3-4f71e2e564e9
           break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
         }
       }
@@ -1150,13 +1087,12 @@ function draw() {
   //gameplay in stageFinal
   if (gameState === "stageFinal") {
     combatState = false;
-    console.log(shipY);
+
     //spawning enemies
     if (shipY <= 0) {
       for (let enemy of enemies3) {
         enemy.draw();
         enemy.move(speed);
-        //console.log(enemy.y);
 
         //gameState lose for when they get too close
         let deathDistance = dist(300, 400, enemy.x, enemy.y);
@@ -1170,7 +1106,7 @@ function draw() {
       combatState = true;
     }
 
-    //changing the gameplay tobe playable after the enemies disappear and it's length is 0
+    //changing the gameplay to be playable after the enemies disappear and it's length is 0
     if (enemies3.length === 0) {
       combatState = false;
       shipRotate = 0;
@@ -1182,7 +1118,7 @@ function draw() {
       projectile.move();
       projectile.draw();
 
-      // Remove projectiles ??
+      // Remove projectiles when they are out of sight
       if (
         projectile.projectileX <= -10 ||
         projectile.projectileY <= -10 ||
@@ -1194,19 +1130,19 @@ function draw() {
       //making enemies
       for (let j = enemies3.length - 1; j >= 0; j--) {
         let enemy = enemies3[j];
-        //console.log(projectileY);
 
-        //collision using distance method
+        //collision between enemies and projectiles using distance method
         let distance = dist(
           projectile.projectileX,
           projectile.projectileY,
           enemy.x,
           enemy.y
         );
+        //removing enemies and projectiles when they hit each other
         if (distance < 42.5) {
           enemies3.splice(j, 1);
           projectiles.splice(i, 1);
-          console.log("hit");
+          //the following 1 line of code was adapted from https://chatgpt.com/share/6751c57f-a508-8003-a1d3-4f71e2e564e9
           break; //(this makes it to where it exits the enemy loop after collision is detected boyyyy)
         }
       }
@@ -1225,22 +1161,23 @@ function draw() {
 }
 window.draw = draw;
 
-//appear the flame at the bottom of ship
 function keyPressed() {
+  //ship booster being visible when going forward
   if (keyCode === 32 && combatState === true) {
     createProjectile();
   }
 
-  // Rotate the ship using arrow keys
+  // Rotate the projectiles using arrow keys
   if (keyCode === LEFT_ARROW) {
     projectileRotate -= 10;
   } else if (keyCode === RIGHT_ARROW) {
     projectileRotate += 10;
   }
 }
-
 window.keyPressed = keyPressed;
+
 //making projectiles
+//the following 4 lines of code were adapted frm https://chatgpt.com/share/6751c57f-a508-8003-a1d3-4f71e2e564e9
 function createProjectile() {
   angleMode(DEGREES);
   let newProjectile = new Projectile(shipX + 300, shipY + 400, shipRotate + 90);
