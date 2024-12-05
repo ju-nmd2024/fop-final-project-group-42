@@ -206,10 +206,10 @@ export default class HowToPlayScreen {
     pop();
   }
 }
-function setup() {
-  createCanvas(600, 800);
-}
+// function setup() {
+//   createCanvas(600, 800);
+// }
 
-function draw() {
-  gameStage1.draw();
-}
+// function draw() {
+//   gameStage1.draw();
+// }

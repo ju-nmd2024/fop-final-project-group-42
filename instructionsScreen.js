@@ -113,9 +113,9 @@ export default class InstructionsScreen {
     pop();
   }
 }
-function setup() {
-  createCanvas(600, 800);
-}
-function draw() {
-  gameStage1.draw();
-}
+// function setup() {
+//   createCanvas(600, 800);
+// }
+// function draw() {
+//   gameStage1.draw();
+// }

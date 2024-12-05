@@ -1,38 +1,38 @@
 //importing gameScreen0
 import GameScreen0 from "./gameScreen0.js";
-const stage0 = new GameScreen0();
+let stage0;
 
-//importing gameScreen1
+// //importing gameScreen1
 import GameScreen1 from "./gameScreen1.js";
-const stage1 = new GameScreen1();
+let stage1;
 
 //importing gameScreen2
 import GameScreen2 from "./gameScreen2.js";
-const stage2 = new GameScreen2();
+let stage2;
 
 //importing gameScreenFinal
 import GameScreenFinal from "./gameScreenFinal.js";
-const stageFinal = new GameScreenFinal();
+let stageFinal;
 
 //importing howtoplayscreen
 import HowToPlayScreen from "./howToPlayScreen.js";
-const howToPlayScreen = new HowToPlayScreen();
+let howToPlayScreen;
 
 //importing instructions screen
 import InstructionsScreen from "./instructionsScreen.js";
-const instructionsScreen = new InstructionsScreen();
+let instructionsScreen;
 
 //Results Screens
 //importing winning screen
 import WinScreen from "./winScreen.js";
-const winScreen = new WinScreen();
+let winScreen;
 
 //importing losing screen
 import LoseScreen from "./loseScreen.js";
-const loseScreen = new LoseScreen();
+let loseScreen;
 
 let shipX = 0;
-let shipY = 0; // put back to 350
+let shipY = 350; // put back to 350
 let shipRotate = 0;
 let shipSize = 0.3;
 let shipVelocity = 3;
@@ -101,9 +101,9 @@ function ship() {
     50 * shipSize
   );
   rect(
-    shipX + 80 * shipSize,
+    shipX + 40 * shipSize,
     shipY - 60 * shipSize,
-    -40 * shipSize,
+    40 * shipSize,
     50 * shipSize
   );
   arc(
@@ -123,7 +123,7 @@ function ship() {
     0
   );
   rect(shipX - 90 * shipSize, shipY, 60 * shipSize, 80 * shipSize);
-  rect(shipX + 90 * shipSize, shipY, -60 * shipSize, 80 * shipSize);
+  rect(shipX + 30 * shipSize, shipY, 60 * shipSize, 80 * shipSize);
   arc(
     shipX + 60 * shipSize,
     shipY + 2 * shipSize,
@@ -429,7 +429,7 @@ class Enemy2 {
     // Engines and other parts
     noStroke();
     rect(-123 * this.size, -99 * this.size, 96 * this.size, 55 * this.size);
-    rect(+123 * this.size, -99 * this.size, -96 * this.size, 55 * this.size);
+    rect(27 * this.size, -99 * this.size, 96 * this.size, 55 * this.size);
 
     noFill();
     stroke(3 * this.size);
@@ -461,7 +461,7 @@ class Enemy2 {
       0,
       180
     );
-    rect(+90 * this.size, -125 * this.size, -40 * this.size, 60 * this.size);
+    rect(+50 * this.size, -125 * this.size, +40 * this.size, 60 * this.size);
     arc(
       +70 * this.size,
       -67 * this.size,
@@ -476,6 +476,15 @@ class Enemy2 {
 }
 function setup() {
   createCanvas(600, 800);
+  stage0 = new GameScreen0();
+  stage1 = new GameScreen1();
+  stage2 = new GameScreen2();
+  stageFinal = new GameScreenFinal();
+  howToPlayScreen = new HowToPlayScreen();
+  instructionsScreen = new InstructionsScreen();
+  winScreen = new WinScreen();
+  loseScreen = new LoseScreen();
+
   push();
   // Create enemy1 with different positions and sizes in stage1
   enemies1.push(new Enemy1(300, -300, 0.4, 0));
@@ -518,6 +527,7 @@ function setup() {
   enemies3.push(new Enemy2(-500, 1650, 0.35, 230));
   pop();
 }
+window.setup = setup;
 
 //Gem
 
@@ -619,7 +629,7 @@ function fuelTank() {
 let starX = [];
 let starY = [];
 let starAlpha = [];
-let gameState = "stageFinal";
+let gameState = "start";
 function logo() {
   fill(0);
   stroke(255, 255, 255);
@@ -678,8 +688,8 @@ function startScreen() {
   buttons();
 }
 for (let i = 0; i < 2500; i++) {
-  const x = Math.floor(Math.random() * width);
-  const y = Math.floor(Math.random() * height);
+  const x = Math.floor(Math.random() * innerWidth);
+  const y = Math.floor(Math.random() * innerHeight);
   const alpha = Math.random();
 
   starX.push(x);
@@ -1058,7 +1068,7 @@ function draw() {
     if (shipY <= 0) {
       for (let enemy of enemies2) {
         enemy.draw();
-        //enemy.move(speed);
+        enemy.move(speed);
         //console.log(enemy.y);
 
         //gameState lose for when they get too close
@@ -1191,6 +1201,7 @@ function draw() {
     }
   }
 }
+window.draw = draw;
 
 //appear the flame at the bottom of ship
 function keyPressed() {
@@ -1205,6 +1216,8 @@ function keyPressed() {
     projectileRotate += 10;
   }
 }
+
+window.keyPressed = keyPressed;
 //making projectiles
 function createProjectile() {
   angleMode(DEGREES);

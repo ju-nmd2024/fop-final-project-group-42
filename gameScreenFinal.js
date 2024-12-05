@@ -29,11 +29,11 @@ export default class GameScreenFinal {
     }
   }
 }
-function setup() {
-  createCanvas(600, 800);
-}
-//do this in game.js and call it then you can use it
+// function setup() {
+//   createCanvas(600, 800);
+// }
+// //do this in game.js and call it then you can use it
 
-function draw() {
-  gameStage1.draw();
-}
+// function draw() {
+//   gameStage1.draw();
+// }
